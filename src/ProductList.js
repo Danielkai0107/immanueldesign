@@ -56,15 +56,13 @@ const ProductCard = ({
 
 
 const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
-  const updateSelectedVariantIndex = (productId, variantIndex) => {
-    const updatedSelectedProducts = selectedProducts.map((product) => {
-      if (product.id === productId) {
-        return { ...product, selectedVariantIndex: variantIndex };
-      }
-      return product;
-    });
-    toggleProduct(updatedSelectedProducts);
-  };
+const updateSelectedVariantIndex = (productId, variantIndex) => {
+  const updatedProduct = selectedProducts.find((product) => product.id === productId);
+  if (updatedProduct) {
+    toggleProduct({ ...updatedProduct, selectedVariantIndex: variantIndex });
+  }
+};
+
   return (
     <ul className="product-list">
       <h2>{categoryName}</h2>

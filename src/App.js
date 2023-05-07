@@ -7,14 +7,22 @@ import "./App.scss";
 function App() {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
-const toggleProduct = (product, selectedVariantIndex) => {
-  const isSelected = selectedProducts.some((p) => p.id === product.id);
-  if (isSelected) {
-    setSelectedProducts(selectedProducts.filter((p) => p.id !== product.id));
-  } else {
-    setSelectedProducts([...selectedProducts, { ...product, selectedVariantIndex }]);
-  }
+const toggleProduct = (selectedProduct) => {
+  setSelectedProducts((prevState) => {
+    const existingProductIndex = prevState.findIndex((product) => product.id === selectedProduct.id);
+
+    if (existingProductIndex > -1) {
+      // Update the existing product in the array
+      const updatedProducts = [...prevState];
+      updatedProducts[existingProductIndex] = selectedProduct;
+      return updatedProducts;
+    } else {
+      // Add the new product to the array
+      return [...prevState, selectedProduct];
+    }
+  });
 };
+
 
 const totalPrice = selectedProducts.reduce(
   (acc, product) => acc + products.find((p) => p.id === product.id).price,
