@@ -2,23 +2,27 @@
 export const products = [
   {
     id: 1,
-    price: 100,
+    price: 5000,
     size: "M",
     zIndex: 1,
     type: "background",
-    categoryName: "背景",
+    categoryName: "Main 主背景",
     selectedVariantIndex: 0,
-    variants: [
+      variants: [
       {
-        color: "#ff0000",
-        imageModule: () => import("../images/222.png"),
+        color: "#A6A28F",
+        imageModule: () => import("../images/333.png"),
+      },
+      {
+        color: "#D9C2AD",
+        imageModule: () => import("../images/111.png"),
       },
     ],
   },
   {
     id: 2,
     imageModule: () => import("../images/222.png"),
-    price: 300,
+    price: 3000,
     size: "M",
     zIndex: 1,
     type: "prop",
@@ -26,18 +30,18 @@ export const products = [
     selectedVariantIndex: 0,
     variants: [
       {
-        color: "#ff0000",
+        color: "#D9C2AD",
         imageModule: () => import("../images/333.png"),
       },
       {
-        color: "#00ff00",
+        color: "#A67E6F",
         imageModule: () => import("../images/111.png"),
       },
     ],
   },
   {
     id: 3,
-    price: 100,
+    price: 1500,
     size: "M",
     zIndex: 1,
     type: "background",
@@ -45,17 +49,17 @@ export const products = [
     selectedVariantIndex: 0,
     variants: [
       {
-        color: "#ff0000",
+        color: "#71736A",
         imageModule: () => import("../images/222.png"),
       },
       {
-        color: "#00ff00",
+        color: "#A6A28F",
         imageModule: () => import("../images/333.png"),
       },
     ],
   },{
     id: 4,
-    price: 100,
+    price: 1060,
     size: "M",
     zIndex: 1,
     type: "background",
@@ -63,17 +67,17 @@ export const products = [
     selectedVariantIndex: 0,
     variants: [
       {
-        color: "#ff0000",
+        color: "#A6A28F",
         imageModule: () => import("../images/222.png"),
       },
       {
-        color: "#00ff00",
+        color: "#D9C2AD",
         imageModule: () => import("../images/333.png"),
       },
     ],
   },{
     id: 5,
-    price: 100,
+    price: 1800,
     size: "M",
     zIndex: 1,
     type: "background",
@@ -81,17 +85,17 @@ export const products = [
     selectedVariantIndex: 0,
     variants: [
       {
-        color: "#ff0000",
+        color: "#D9C2AD",
         imageModule: () => import("../images/222.png"),
       },
       {
-        color: "#00ff00",
+        color: "#A67E6F",
         imageModule: () => import("../images/333.png"),
       },
     ],
   },{
     id: 6,
-    price: 100,
+    price: 1900,
     size: "M",
     zIndex: 1,
     type: "background",
@@ -99,11 +103,11 @@ export const products = [
     selectedVariantIndex: 0,
     variants: [
       {
-        color: "#ff0000",
+        color: "#71736A",
         imageModule: () => import("../images/222.png"),
       },
       {
-        color: "#00ff00",
+        color: "#A67E6F",
         imageModule: () => import("../images/333.png"),
       },
     ],

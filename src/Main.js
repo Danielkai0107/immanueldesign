@@ -1,7 +1,8 @@
-// App.js
+// Main.js
 import React, { useState,useEffect } from "react";
 import { products } from "./contents/data";
-import ProductList from "./ProductList";
+import ProductList from "./components/ProductList";
+import Navbar from "./components/Navbar";
 
 
 function Main() {
@@ -34,10 +35,12 @@ function Main() {
       }
     });
   };
-  const totalPrice = selectedProducts.reduce(
-    (acc, product) => acc + products.find((p) => p.id === product.id).price,
-    0
-  );
+  const totalPrice = selectedProducts
+    .reduce(
+      (acc, product) => acc + products.find((p) => p.id === product.id).price,
+      0
+    )
+    .toLocaleString();
   const backgrounds = products.filter((product) => product.type === "background");
   const props = products.filter((product) => product.type === "prop");
   const ProductLayer = ({ product }) => {
@@ -69,7 +72,9 @@ function Main() {
   };
 
   return (
-    <article className="App">
+    <article className="outside">
+    <Navbar/>
+    <main className="Main">
       <section className="containerA">
         <ProductList
           categoryName={backgrounds[0]?.categoryName}
@@ -115,7 +120,8 @@ function Main() {
       </li>
       </ul>
       
-    </article>
+    </main></article>
+    
   );
 }
 
