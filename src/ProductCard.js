@@ -10,11 +10,8 @@ const ProductCard = ({
   const [imageSrc, setImageSrc] = useState(null);
 
   const handleColorButtonClick = (index) => {
-    // Update the product color in the B section directly
-    if (isSelected) {
-      updateSelectedVariantIndex(product.id, index);
-    }
-  };  
+    updateSelectedVariantIndex(product.id, index);
+  };
 
   useEffect(() => {
     const loadImage = async () => {
@@ -30,6 +27,8 @@ const ProductCard = ({
       onClick={() => toggleProduct(product, selectedVariantIndex)}
     >
       {imageSrc && <img src={imageSrc} alt="product" className="product-image" />}
+      <div>價格: {product.price}</div>
+      <div>尺寸: {product.size}</div>
       {product.variants && (
         <div className="color-selector">
           {product.variants.map((variant, index) => (
@@ -42,14 +41,12 @@ const ProductCard = ({
                 handleColorButtonClick(index);
               }}
             ></button>
-
           ))}
         </div>
       )}
-      <div>價格: {product.price}</div>
-      <div>尺寸: {product.size}</div>
     </div>
   );
 };
+
 
 export default ProductCard;
