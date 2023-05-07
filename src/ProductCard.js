@@ -6,15 +6,17 @@ const ProductCard = ({
   toggleProduct,
   selectedVariantIndex,
   updateSelectedVariantIndex,
+  setSelectedVariantIndex
 }) => {
   const [imageSrc, setImageSrc] = useState(null);
 
   const handleColorButtonClick = (index) => {
+    setSelectedVariantIndex(index);
     // Update the product color in the B section directly
     if (isSelected) {
       updateSelectedVariantIndex(product.id, index);
     }
-  };
+  };  
 
   useEffect(() => {
     const loadImage = async () => {
@@ -44,6 +46,7 @@ const ProductCard = ({
                 handleColorButtonClick(index);
               }}
             ></button>
+
           ))}
         </div>
       )}
