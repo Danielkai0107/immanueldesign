@@ -1,10 +1,10 @@
 // App.js
 import React, { useState,useEffect } from "react";
-import { products } from "./data";
+import { products } from "./contents/data";
 import ProductList from "./ProductList";
-import "./App.scss";
 
-function App() {
+
+function Main() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const toggleProduct = (selectedProduct) => {
     setSelectedProducts((prevState) => {
@@ -111,6 +111,7 @@ function App() {
       </li>
       <li className="containerC">
         <div className="total-price">總價: {totalPrice}</div>
+        <button>我要訂購，聯絡我們</button>
       </li>
       </ul>
       
@@ -118,4 +119,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;

@@ -1,7 +1,7 @@
 // ProductList.js
 import React from "react";
 import ProductCard from "./ProductCard";
-import "./ProductList.scss";
+
 
 
 const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
