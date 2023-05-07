@@ -2,17 +2,21 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.scss";
 
-const ProductCard = ({ product, isSelected, toggleProduct }) => {
+const ProductCard = ({
+  product,
+  isSelected,
+  toggleProduct,
+  selectedVariantIndex,
+  updateSelectedVariantIndex,
+}) => {
   const [imageSrc, setImageSrc] = useState(null);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-  const handleColorButtonClick = (index) => {
-  setSelectedVariantIndex(index);
 
-  // Update the product color in the B section directly
-  if (isSelected) {
-    toggleProduct(product, index);
-  }
-};
+  const handleColorButtonClick = (index) => {
+    // Update the product color in the B section directly
+    if (isSelected) {
+      updateSelectedVariantIndex(product.id, index);
+    }
+  };
 
   useEffect(() => {
     const loadImage = async () => {
@@ -25,7 +29,7 @@ const ProductCard = ({ product, isSelected, toggleProduct }) => {
   return (
     <div
       className={`product-card ${isSelected ? "selected" : ""}`}
-    onClick={() => toggleProduct(product, selectedVariantIndex)}
+      onClick={() => toggleProduct(product, selectedVariantIndex)}
     >
       {imageSrc && <img src={imageSrc} alt="product" className="product-image" />}
       <div>價格: {product.price}</div>
@@ -50,19 +54,34 @@ const ProductCard = ({ product, isSelected, toggleProduct }) => {
 };
 
 
+
 const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
+  const updateSelectedVariantIndex = (productId, variantIndex) => {
+    const updatedSelectedProducts = selectedProducts.map((product) => {
+      if (product.id === productId) {
+        return { ...product, selectedVariantIndex: variantIndex };
+      }
+      return product;
+    });
+    toggleProduct(updatedSelectedProducts);
+  };
   return (
     <ul className="product-list">
       <h2>{categoryName}</h2>
       <li className="product-list-items">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            isSelected={selectedProducts.includes(product.id)}
-            toggleProduct={toggleProduct}
-          />
-        ))}
+        {products.map((product) => {
+          const selectedProduct = selectedProducts.find((p) => p.id === product.id);
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              isSelected={!!selectedProduct}
+              selectedVariantIndex={selectedProduct?.selectedVariantIndex || 0}
+              toggleProduct={toggleProduct}
+              updateSelectedVariantIndex={updateSelectedVariantIndex}
+            />
+          );
+        })}
       </li>
     </ul>
   );
