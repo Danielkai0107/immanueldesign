@@ -8,13 +8,29 @@ function App() {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
 const toggleProduct = (product, selectedVariantIndex) => {
-  const isSelected = selectedProducts.some((p) => p.id === product.id);
-  if (isSelected) {
-    setSelectedProducts(selectedProducts.filter((p) => p.id !== product.id));
+  const existingProductIndex = selectedProducts.findIndex((p) => p.id === product.id);
+
+  if (existingProductIndex >= 0) {
+    if (selectedProducts[existingProductIndex].selectedVariantIndex !== selectedVariantIndex) {
+      // Update the product's selectedVariantIndex in the selectedProducts array
+      setSelectedProducts((prevSelectedProducts) => {
+        const updatedSelectedProducts = [...prevSelectedProducts];
+        updatedSelectedProducts[existingProductIndex] = {
+          ...updatedSelectedProducts[existingProductIndex],
+          selectedVariantIndex,
+        };
+        return updatedSelectedProducts;
+      });
+    } else {
+      // Remove the product from the selectedProducts array
+      setSelectedProducts(selectedProducts.filter((p) => p.id !== product.id));
+    }
   } else {
+    // Add the product to the selectedProducts array
     setSelectedProducts([...selectedProducts, { ...product, selectedVariantIndex }]);
   }
 };
+
 
 const totalPrice = selectedProducts.reduce(
   (acc, product) => acc + products.find((p) => p.id === product.id).price,

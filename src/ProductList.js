@@ -5,6 +5,14 @@ import "./ProductList.scss";
 const ProductCard = ({ product, isSelected, toggleProduct }) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const handleColorButtonClick = (index) => {
+  setSelectedVariantIndex(index);
+
+  // Update the product color in the B section directly
+  if (isSelected) {
+    toggleProduct(product, index);
+  }
+};
 
   useEffect(() => {
     const loadImage = async () => {
@@ -31,7 +39,7 @@ const ProductCard = ({ product, isSelected, toggleProduct }) => {
               style={{ backgroundColor: variant.color }}
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedVariantIndex(index);
+                handleColorButtonClick(index);
               }}
             ></button>
           ))}
