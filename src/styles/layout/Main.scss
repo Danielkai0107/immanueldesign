@@ -41,7 +41,7 @@
 
   .containerB {
     border: 1px solid purple;
-    height: 80vh;
+    height: 70vh;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -50,9 +50,51 @@
     border-left: 1px solid #ccc;
   }
 
+  .layer-bgc {
+    position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 60vh;
+      aspect-ratio: 16/9;
+      z-index: -1;
+  }
+  .bg-image-1 {
+    background-image: url('../../images/bbb.png');
+    background-size: cover;
+      background-repeat: no-repeat;
+  }
+
+  .bg-image-2 {
+    background-image: url('../../images/b2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .product-layer {
+    border: 1px solid red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60vh;
+    aspect-ratio: 16/9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // animation-name: fadeIn;
+    // animation-duration: 1s; // 這裡可以根據需要自由調整動畫持續時間
+
+    .product-image {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
   .containerC {
     border: 1px solid black;
-    height: 20vh;
+    height: 30vh;
     display: flex;
     justify-content: center;
     align-items: center;
