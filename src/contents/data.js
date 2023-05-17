@@ -3,9 +3,9 @@
 export const products = [
   {
     id: 1,
-    name:"大背板",
+    name:"高架花藝",
     price: 5000,
-    size: "H200 W400",
+    size: "H 200 W 400",
     categoryName: "Main 主背景",
     categoryIndex: 1, 
     budgetLevel: "low",

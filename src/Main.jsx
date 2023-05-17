@@ -1,19 +1,37 @@
 // Main.js
-import React, { useState,useEffect } from "react";
-import { products } from "./contents/data";
+import React, { useState,useEffect } from "react";    
 import ProductList from "./components/ProductList";
 import Navbar from "./components/Navbar";
 import Filter from "./components/Filter";
 
 
 function Main() {
+  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [filterLevel, setFilterLevel] = useState("high");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
   const handleBackgroundChange = (newClass) => {
   setBackgroundClass(newClass);
-};
+  };
+
+  useEffect(() => {
+    fetch("/data.json") // 根据实际情况修改文件路径
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setProducts(data);
+        setFilteredProducts(data);
+      })
+      .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+  }, []);
 
   const toggleProduct = (selectedProduct) => {
   setSelectedProducts((prevState) => {
@@ -68,12 +86,11 @@ function Main() {
     const [imageSrc, setImageSrc] = useState(null);
 
     useEffect(() => {
-    const loadImage = async () => {
-      const displayImage = await product.displayImage();
-      setImageSrc(displayImage.default);
-    };
-    loadImage();
-  }, [product.displayImage, product]);
+      import(`./images/${product.displayImage}`)
+        .then((image) => {
+          setImageSrc(image.default);
+        });
+    }, [product.displayImage, product]);
 
     return (
       <div className="product-layer">
@@ -95,17 +112,17 @@ function Main() {
   };  
 
   useEffect(() => {
-  const filterProducts = (level) => {
-    if (level === "low") {
-      return products.filter((product) => product.budgetLevel === "low");
-    } else if (level === "medium") {
-      return products.filter((product) => product.budgetLevel !== "high");
-    } else {
-      return products;
-    }
-  };
-  setFilteredProducts(filterProducts(filterLevel));
-}, [filterLevel]);
+    const filterProducts = (level) => {
+      if (level === "low") {
+        return products.filter((product) => product.budgetLevel === "low");
+      } else if (level === "medium") {
+        return products.filter((product) => product.budgetLevel !== "high");
+      } else {
+        return products;
+      }
+    };
+    setFilteredProducts(filterProducts(filterLevel));
+  }, [filterLevel, products]);
 
   return (
     <article className="outside">

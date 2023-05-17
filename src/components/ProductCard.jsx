@@ -17,11 +17,10 @@ const ProductCard = ({
     };
 
   useEffect(() => {
-    const loadImage = async () => {
-      const productImage = await product.variants[selectedVariantIndex].productImage();
-      setImageSrc(productImage.default);
-    };
-    loadImage();
+    import(`../images/${product.variants[selectedVariantIndex].productImage}`)
+      .then((image) => {
+        setImageSrc(image.default);
+      });
   }, [product, selectedVariantIndex]);
 
   return (
