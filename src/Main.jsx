@@ -1,8 +1,9 @@
 // Main.js
-import React, { useState,useEffect } from "react";    
+import React, { useState, useEffect } from "react";
 import ProductList from "./components/ProductList";
 import Navbar from "./components/Navbar";
 import Filter from "./components/Filter";
+import ContainerC from "./components/ContainerC";
 
 
 function Main() {
@@ -12,7 +13,7 @@ function Main() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
   const handleBackgroundChange = (newClass) => {
-  setBackgroundClass(newClass);
+    setBackgroundClass(newClass);
   };
 
   useEffect(() => {
@@ -34,53 +35,52 @@ function Main() {
   }, []);
 
   const toggleProduct = (selectedProduct) => {
-  setSelectedProducts((prevState) => {
-    const existingProductIndex = prevState.findIndex(
-      (product) => product.id === selectedProduct.id
-    );
+    setSelectedProducts((prevState) => {
+      const existingProductIndex = prevState.findIndex(
+        (product) => product.id === selectedProduct.id
+      );
 
-    if (existingProductIndex > -1) {
-      // Check if the selected variant is the same as the existing one
-      if (
-        prevState[existingProductIndex].selectedVariantIndex ===
-        selectedProduct.selectedVariantIndex
-      ) {
-        // Remove the product from the array
-        return prevState.filter(
-          (product) => product.id !== selectedProduct.id
-        );
+      if (existingProductIndex > -1) {
+        // If the product exists and the variant is the same, remove it
+        if (prevState[existingProductIndex].selectedVariantIndex === selectedProduct.selectedVariantIndex) {
+          return prevState.filter((product) => product.id !== selectedProduct.id);
+        } else {
+          // Otherwise, update the variant
+          const updatedProducts = [...prevState];
+          updatedProducts[existingProductIndex] = {
+            ...selectedProduct,
+            categoryIndex: selectedProduct.categoryIndex,
+            clickOrder: prevState[existingProductIndex].clickOrder,
+          };
+          return updatedProducts;
+        }
       } else {
-        // Update the existing product in the array
-        const updatedProducts = [...prevState];
-        updatedProducts[existingProductIndex] = {
-          ...selectedProduct,
-          categoryIndex: selectedProduct.categoryIndex,
-          clickOrder: prevState[existingProductIndex].clickOrder,
-        };
-        return updatedProducts;
+        // If the product does not exist, add it
+        return [
+          ...prevState,
+          {
+            ...selectedProduct,
+            categoryIndex: selectedProduct.categoryIndex,
+            clickOrder: prevState.length + 1,
+          },
+        ];
       }
-    } else {
-      // Add the new product to the array
-      return [
-        ...prevState,
-        {
-          ...selectedProduct,
-          categoryIndex: selectedProduct.categoryIndex,
-          clickOrder: prevState.length + 1,
-        },
-      ];
-    }
-  });
-};
+    });
+  };
 
-  const handleClearSelect=()=>{
+
+
+
+  const handleClearSelect = () => {
     setSelectedProducts([])
   }
 
+  const totalSelected = selectedProducts.length;
+
   const totalPrice = selectedProducts.reduce(
-      (acc, product) => acc + products.find((p) => p.id === product.id).price,
-      0
-    ).toLocaleString();
+    (acc, product) => acc + products.find((p) => p.id === product.id).price,
+    0
+  ).toLocaleString();
 
   const ProductLayer = ({ product }) => {
     const [imageSrc, setImageSrc] = useState(null);
@@ -109,7 +109,7 @@ function Main() {
   };
   const getUniqueCategories = () => {
     return [...new Set(products.map((product) => product.categoryName))];
-  };  
+  };
 
   useEffect(() => {
     const filterProducts = (level) => {
@@ -126,11 +126,11 @@ function Main() {
 
   return (
     <article className="outside">
-    <Navbar/>
-    <main className="Main">
-      <section className="containerA">
-        <Filter onFilterChange={(level) => setFilterLevel(level)} />
-        {getUniqueCategories().map((category) => (
+      <Navbar />
+      <main className="Main">
+        <section className="containerA">
+          <Filter onFilterChange={(level) => setFilterLevel(level)} />
+          {getUniqueCategories().map((category) => (
             <ProductList
               key={category}
               categoryName={category}
@@ -142,48 +142,40 @@ function Main() {
               updateSelectedVariantIndex={updateSelectedVariantIndex}
             />
           ))}
-      </section>
-      <ul className="containerR">
-        <li className="containerB">
-          <div className={`layer-bgc ${backgroundClass}`}></div>
-          {
-            selectedProducts
-              .sort((a, b) => {
-                if (a.categoryIndex !== b.categoryIndex) {
-                  return a.categoryIndex - b.categoryIndex;
-                } else {
-                  return a.clickOrder - b.clickOrder;
-                }
-              })
-              .map((selectedProduct) => {
-                const product = products.find((p) => p.id === selectedProduct.id);
-                const selectedVariant = product.variants[selectedProduct.selectedVariantIndex];
-                return (
-                  <ProductLayer
-                    key={selectedProduct.id}
-                    product={{
-                      ...selectedVariant,
-                      categoryIndex: product.categoryIndex,
-                      type: product.type,
-                    }}
-                  />
-                );
-              })
-          }
-      </li>
-      <li className="containerC">
-        <section>
-          <button onClick={() => handleBackgroundChange('bg-image-1')}>背景1</button>
-          <button onClick={() => handleBackgroundChange('bg-image-2')}>背景2</button>
-          <button onClick={handleClearSelect}>清空</button>
-          </section>
-        <div className="total-price">總價: {totalPrice}</div>
-        <button>我要訂購，聯絡我們</button>
-      </li>
-      </ul>
-      
-    </main></article>
-    
+        </section>
+        <ul className="containerR">
+          <li className="containerB">
+            <div className={`layer-bgc ${backgroundClass}`}></div>
+            {
+              selectedProducts
+                .sort((a, b) => {
+                  if (a.categoryIndex !== b.categoryIndex) {
+                    return a.categoryIndex - b.categoryIndex;
+                  } else {
+                    return a.clickOrder - b.clickOrder;
+                  }
+                })
+                .map((selectedProduct) => {
+                  const product = products.find((p) => p.id === selectedProduct.id);
+                  const selectedVariant = product.variants[selectedProduct.selectedVariantIndex];
+                  return (
+                    <ProductLayer
+                      key={selectedProduct.id}
+                      product={{
+                        ...selectedVariant,
+                        categoryIndex: product.categoryIndex,
+                        type: product.type,
+                      }}
+                    />
+                  );
+                })
+            }
+          </li>
+          <ContainerC handleBackgroundChange={handleBackgroundChange} handleClearSelect={handleClearSelect} totalSelected={totalSelected} totalPrice={totalPrice}/>
+        </ul>
+
+      </main></article>
+
   );
 }
 

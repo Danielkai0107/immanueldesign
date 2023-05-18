@@ -31,8 +31,12 @@
       font-weight: 300;
       background-color: transparent;
       border: none;
-      margin-left: .5rem;
+      margin-left: 1rem;
+      text-align: center;
       cursor: pointer;
+      &.selected {
+          font-size: 18px;
+        }
     }
   } 
 

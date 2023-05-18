@@ -1,25 +1,46 @@
-
 [
   {
     "id": 1,
-    "name":"高架花藝",
+    "name": "高架花藝",
     "price": 5000,
     "size": "H 200 W 400",
-    "categoryName": "Main 主背景",
-    "categoryIndex": 1, 
+    "categoryName": "仿真花藝",
+    "categoryIndex": 1,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
-    {
-      "color": "#A6A28F",
-      "productImage": "p2.png",
-      "displayImage": "後格.png"
-    },
-    {
-      "color": "#A6A28F",
-      "productImage": "p1.png",
-      "displayImage": "後格2.png"
-    }
-  ]
+      {
+        "color": "#A6A28F",
+        "productImage": "p2.png",
+        "displayImage": "後格.png"
+      },
+      {
+        "color": "#303030",
+        "productImage": "p1.png",
+        "displayImage": "後格2.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "花藝",
+    "price": 600,
+    "size": "H 200 W 400",
+    "categoryName": "Main 主背景",
+    "categoryIndex": 2,
+    "budgetLevel": "high",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#A60000",
+        "productImage": "p2.png",
+        "displayImage": "後格.png"
+      },
+      {
+        "color": "#330000",
+        "productImage": "p1.png",
+        "displayImage": "後格2.png"
+      }
+    ]
   }
 ]

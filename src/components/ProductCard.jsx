@@ -24,7 +24,7 @@ const ProductCard = ({
   }, [product, selectedVariantIndex]);
 
   return (
-    <section className={`product-card ${isSelected ? "selected" : ""}`} onClick={() => toggleProduct(product, selectedVariantIndex)}>
+    <section className={`product-card ${isSelected ? "selected" : ""}`} onClick={() => toggleProduct({ ...product, selectedVariantIndex })}>
       {imageSrc && (
         <img src={imageSrc} alt="product" className="product-image" />
       )}

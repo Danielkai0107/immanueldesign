@@ -1,0 +1,32 @@
+.filter-area {
+  width: 40vw;
+  display: flex;
+  padding: 1rem;
+  position: fixed;
+  z-index: 10;
+  top: 3rem;
+  left: 0;
+  background-color: #fff;
+  button {
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 6px;
+    padding: 0 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    letter-spacing: 2px;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    color:#d7d7d7;
+    font-weight: 300;
+    &:active {
+      scale: 0.8;
+    }
+    &.selected {
+      background-color: rgb(241, 250, 237);
+      border: 2px solid rgb(200, 224, 190);
+      color: #000000;
+    }
+  }
+}

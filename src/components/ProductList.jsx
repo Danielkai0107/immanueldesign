@@ -22,7 +22,7 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
         <h2>{categoryName}</h2>
         <div className="product-list-header-info">
           {products.length > 0 && (
-        <span className="selectInfo">已選取 ({selectedCount})</span>
+            <span className={selectedCount > 0 ? "selected" : ""}>已選取 ({selectedCount})</span>
         )}
         {products.length > 0 && (
           <span>
