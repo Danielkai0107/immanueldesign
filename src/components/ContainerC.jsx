@@ -1,6 +1,26 @@
+// ContainerC.js
 import React from 'react'
 
-function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, totalSelected }) {
+function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, totalSelected, selectedProducts }) {
+
+  async function handleSubmitOrder() {
+    const response = await fetch('http://localhost:3000/send-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        selectedProducts: selectedProducts,
+      }),
+    });
+
+    if (response.ok) {
+      console.log('訂單已經成功傳送！');
+    } else {
+      console.error('訂單傳送失敗！');
+    }
+  }
+
   return (
   <li className="containerC">
     <section>
@@ -10,7 +30,7 @@ function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, tot
     </section>
     <div className="total-price">總價: {totalPrice}</div>
     <div className="total-price">共 {totalSelected} 項</div>
-    <button>我要訂購，聯絡我們</button>
+    <button onClick={handleSubmitOrder}>下訂單</button>
   </li>
   )
 }

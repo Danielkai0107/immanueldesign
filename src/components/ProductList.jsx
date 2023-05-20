@@ -17,10 +17,10 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
   ).length;
 
   return (
-    <div className="product-list">
-      <div className="product-list-header" onClick={() => setIsExpanded(!isExpanded)}>
-        <h2>{categoryName}</h2>
-        <div className="product-list-header-info">
+    <section className="product-list">
+      <ul className="product-list-header" onClick={() => setIsExpanded(!isExpanded)}>
+        <li>{categoryName}</li>
+        <li className="product-list-header-info">
           {products.length > 0 && (
             <span className={selectedCount > 0 ? "selected" : ""}>已選取 ({selectedCount})</span>
         )}
@@ -29,9 +29,9 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
             {isExpanded ? "收起" : "展開"}
           </span>
         )}
-        </div>
+        </li>
         
-      </div>
+      </ul>
       {isExpanded && (
         <ul className="product-list-items">
           {products.length > 0 ? (
@@ -55,7 +55,7 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
           )}
         </ul>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -7,15 +7,16 @@ const ProductCard = ({
   toggleProduct,
   selectedVariantIndex,
   updateSelectedVariantIndex,
-}) => {
+  }) => {
+  // State Hooks
   const [imageSrc, setImageSrc] = useState(null);
-
+  // Handler Functions
   const handleColorButtonClick = (index) => {
       if (selectedVariantIndex !== index) {
         updateSelectedVariantIndex(product.id, index);
       }
     };
-
+  // Effect Hooks
   useEffect(() => {
     import(`../images/${product.variants[selectedVariantIndex].productImage}`)
       .then((image) => {
@@ -24,7 +25,10 @@ const ProductCard = ({
   }, [product, selectedVariantIndex]);
 
   return (
-    <section className={`product-card ${isSelected ? "selected" : ""}`} onClick={() => toggleProduct({ ...product, selectedVariantIndex })}>
+    <li
+      className={`product-card ${isSelected ? "selected" : ""}`}
+      onClick={() => toggleProduct({ ...product, selectedVariantIndex })}
+    >
       {imageSrc && (
         <img src={imageSrc} alt="product" className="product-image" />
       )}
@@ -32,7 +36,7 @@ const ProductCard = ({
       <h2>{product.price.toLocaleString()}<span> NT</span></h2>
       <h4>{product.size}</h4>
       {product.variants && (
-        <div className="color-selector">
+        <section className="color-selector">
           {product.variants.map((variant, index) => (
             <button
               key={index}
@@ -44,9 +48,9 @@ const ProductCard = ({
               }}
             ></button>
           ))}
-        </div>
+        </section>
       )}
-    </section>
+    </li>
   );
 };
 
