@@ -1,9 +1,117 @@
 .containerC {
-  border: 1px solid black;
-  height: 30vh;
   display: flex;
+  flex-flow: column;
   justify-content: center;
-  align-items: center;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0 .8rem;
+  margin-top: 1rem;
+  .bgcChanger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+        background-color: #fff;
+        box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+        border-radius: 2rem;
+        border: 2px solid transparent;
+        padding: .6rem 1rem;
+        //font
+        font-weight: 300;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        color: #6d6d6d;
+        cursor: pointer;
+    
+        &:active {
+          scale: 0.8;
+        }
+    
+        &.selected {
+          background-color: #F9F7F4;
+          border: 2px solid #DCD4C9;
+          color: #A99374;
+        }
+    
+      }
+    li {
+      display: flex;
+      gap: 1rem;
+    }
+    .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      p {
+        font-size: 0.9rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        line-height: 2rem;
+        color: #A9A8A8;
+        }
+      .total-price {
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-family: 'Noto Sans', sans-serif;
+      }
+    }
+    
+    
+  }
+  .second-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .info {
+        .total-num {
+          font-size: 1.1rem;
+          font-weight: 300;
+          letter-spacing: 2px;
+          line-height: 2rem;
+        }
+    
+        p {
+          font-size: 0.9rem;
+          font-weight: 300;
+          letter-spacing: 2px;
+          line-height: 2rem;
+          color: #A9A8A8;
+        }
+      }
+    
+      .priceAndConnect {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        span {
+          background-color: #fff;
+          box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+          border-radius: 2rem;
+          border: 2px solid transparent;
+          padding: .6rem 1rem;
+          //font
+          font-weight: 300;
+          font-size: 1.2rem;
+          letter-spacing: 2px;
+          color: #A99374;
+          cursor: pointer;
+          transition: all 0.5s;
+    
+          &:active {
+            scale: 0.9;
+          }
+    
+          &:hover {
+            scale: 1.1
+          }
+    
+        }
+    
+      }
+  }
+  
 }

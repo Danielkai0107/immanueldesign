@@ -1,8 +1,8 @@
 //Filter.js
-import React from "react";
+import React, { useState } from "react";
 
 function Filter({ onFilterChange }) {
-  const [selectedOption, setSelectedOption] = React.useState("low");
+  const [selectedOption, setSelectedOption] = useState("low");
 
   const handleClick = (option) => {
     setSelectedOption(option);
@@ -10,26 +10,26 @@ function Filter({ onFilterChange }) {
   };
   
   return (
-    <section className="filter-area">
-      <button
+    <ul className="filter-area">
+      <li
         onClick={() => handleClick("low")}
         className={selectedOption === "low" ? "selected" : ""}
       >
         低预算
-      </button>
-      <button
+      </li>
+      <li
         onClick={() => handleClick("medium")}
         className={selectedOption === "medium" ? "selected" : ""}
       >
         中预算
-      </button>
-      <button
+      </li>
+      <li
         onClick={() => handleClick("high")}
         className={selectedOption === "high" ? "selected" : ""}
       >
         高预算
-      </button>
-    </section>
+      </li>
+    </ul>
   );
 }
 

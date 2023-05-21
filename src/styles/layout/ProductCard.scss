@@ -1,57 +1,100 @@
+@keyframes fadeIn {
+  0%{opacity: 0;}
+  100% {opacity: 1;}
+}
+
 .product-card {
-  width: calc((100% - 1rem) / 3);
+  width: calc((100% - 2rem) / 3);
   display: flex;
   flex-direction: column;
-  gap: .8rem;
-  padding: 1rem;
-  border: 1px solid #F2F2F2;
-  border-radius: .5rem;
+  padding: 1rem 1rem .5rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
   cursor: pointer;
-  animation: fadeIn .6s ease-in;
+  border: 2px solid transparent;
   transition: all 0.3s;
-
   &.selected {
     opacity: 1;
-    background-color: #F2F2F2;
-    border: 1px solid transparent;
-
-    .color-selector {
-      transform: scale(1);
-    }
-
-    h3 {
-      font-weight: 400;
-    }
+    background-color: #F9F7F4;
+    border: 3px solid #DCD4C9;
   }
-
   &:hover {
     scale: 1.05;
   }
-
   .product-image {
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    margin-bottom: 10px;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+  }
+  .content {
+    display: flex;
+    flex-flow: column;
+    gap: .7rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    .name {
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+    .price {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 200;
+      letter-spacing: 1px;
+      span {
+        margin-right: .2rem;
+      }
+    }
+    .size {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 100;
+      letter-spacing: 1px;
+    }
   }
 
-  .color-selector {
+  .color-selector-container {
+    width: 100%;
+    height: 3rem;
     display: flex;
-    margin-top: 1rem;
-    gap: .2rem;
-    transform: scale(0.3);
-    transition: transform 0.3s;
+    justify-content: center;
+    align-items: center;
+    ul {
+      width: auto;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: .4rem;
 
-    .color-option {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      margin-right: 5px;
-      border: none;
-      cursor: pointer;
+      &.selected {
+        width: 100%;
+        animation: fadeIn .5s ease-in-out;
+      }
 
-      &:active {
-        opacity: 0.3;
+
+      .color-selector-before {
+        width: .6rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+      }
+      .color-selector-after {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc((100% - 2rem) / 6);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        span {
+          font-size: .4rem;
+        }
+        &:active {
+          opacity: 0.3;
+        }
       }
     }
   }

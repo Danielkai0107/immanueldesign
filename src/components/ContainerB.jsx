@@ -1,7 +1,7 @@
 // ContainerB.js
 import React, { useEffect, useState } from "react";
 
-const ContainerB = ({ selectedProducts, products, backgroundClass }) => {
+const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSelect }) => {
 
   const ProductLayer = ({ product }) => {
     const [imageSrc, setImageSrc] = useState(null);
@@ -22,6 +22,7 @@ const ContainerB = ({ selectedProducts, products, backgroundClass }) => {
 
   return (
     <section className="containerB">
+      <span className='clearBtn' onClick={handleClearSelect}>清空</span>
       <figure className={`layer-bgc ${backgroundClass}`}></figure>
       {
         selectedProducts

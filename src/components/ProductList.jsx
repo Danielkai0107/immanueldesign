@@ -16,18 +16,21 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
     products.some((product) => product.id === selectedProduct.id)
   ).length;
 
+  const sortByPrice = (products) => {
+    return products.slice().sort((a, b) => a.price - b.price);
+  };
+
+
   return (
     <section className="product-list">
-      <ul className="product-list-header" onClick={() => setIsExpanded(!isExpanded)}>
-        <li>{categoryName}</li>
+      <ul className="product-list-header" >
+        <li className="product-list-header-title">{categoryName}</li>
         <li className="product-list-header-info">
-          {products.length > 0 && (
-            <span className={selectedCount > 0 ? "selected" : ""}>已選取 ({selectedCount})</span>
+          {selectedCount > 0 && (
+            <p className="selectedInfo"><span className="dot"></span> {selectedCount}</p>
         )}
         {products.length > 0 && (
-          <span>
-            {isExpanded ? "收起" : "展開"}
-          </span>
+            <figure className={isExpanded ? "close" : "open"} onClick={() => setIsExpanded(!isExpanded)}></figure>
         )}
         </li>
         
@@ -35,7 +38,7 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
       {isExpanded && (
         <ul className="product-list-items">
           {products.length > 0 ? (
-            products.map((product) => {
+            sortByPrice(products).map((product) => {
               const selectedProduct = selectedProducts.find(
                 (p) => p.id === product.id
               );

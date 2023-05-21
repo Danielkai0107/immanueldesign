@@ -1,32 +1,27 @@
 .filter-area {
   width: 40vw;
   display: flex;
-  padding: 1rem;
-  position: fixed;
-  z-index: 10;
-  top: 3rem;
-  left: 0;
+  gap: 1rem;
   background-color: #fff;
-  button {
+  li {
     background-color: #fff;
-    border: 1px solid #d7d7d7;
-    border-radius: 6px;
-    padding: 0 1rem;
-    margin-right: 1rem;
-    cursor: pointer;
-    letter-spacing: 2px;
-    line-height: 2rem;
-    text-align: center;
-    font-size: 1rem;
-    color:#d7d7d7;
+    box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+    border-radius: 2rem;
+    border: 2px solid transparent;
+    padding: .6rem 1rem;
+    //font
     font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color:#6d6d6d;
+    cursor: pointer;
     &:active {
       scale: 0.8;
     }
     &.selected {
-      background-color: rgb(241, 250, 237);
-      border: 2px solid rgb(200, 224, 190);
-      color: #000000;
+      background-color: #F9F7F4;
+      border: 2px solid #DCD4C9;
+      color: #A99374;
     }
   }
 }

@@ -116,10 +116,10 @@ function Main() {
             selectedProducts={selectedProducts}
             products={products}
             backgroundClass={backgroundClass}
+            handleClearSelect={handleClearSelect}
           />
           <ContainerC
             handleBackgroundChange={handleBackgroundChange}
-            handleClearSelect={handleClearSelect}
             totalSelected={totalSelected}
             totalPrice={totalPrice}
             selectedProducts={selectedProducts}

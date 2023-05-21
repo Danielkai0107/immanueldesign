@@ -1,9 +1,7 @@
 .containerA {
-  border: 1px solid red;
-  width: 40%;
+  width: 48%;
   height: 100%;
-  padding: 3rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   overflow: auto;
-  box-sizing: border-box;
-  @include scrollbar-style(2px, gray);
+  @include scrollbar-style(1px, transparent);
 }

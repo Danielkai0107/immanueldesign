@@ -1,37 +1,48 @@
 // ContainerC.js
-import React from 'react'
+import React, { useState } from 'react'
 
-function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, totalSelected, selectedProducts }) {
-
-  async function handleSubmitOrder() {
-    const response = await fetch('http://localhost:3000/send-order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        selectedProducts: selectedProducts,
-      }),
-    });
-
-    if (response.ok) {
-      console.log('訂單已經成功傳送！');
-    } else {
-      console.error('訂單傳送失敗！');
-    }
-  }
+function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, totalSelected }) {
+  
+  const [selectedOption, setSelectedOption] = useState("bg-image-1");
+  
+  const handleClick = (option) => {
+    handleBackgroundChange(option);
+    setSelectedOption(option);
+  };
 
   return (
-  <li className="containerC">
-    <section>
-      <button onClick={() => handleBackgroundChange('bg-image-1')}>背景1</button>
-      <button onClick={() => handleBackgroundChange('bg-image-2')}>背景2</button>
-      <button onClick={handleClearSelect}>清空</button>
-    </section>
-    <div className="total-price">總價: {totalPrice}</div>
-    <div className="total-price">共 {totalSelected} 項</div>
-    <button onClick={handleSubmitOrder}>下訂單</button>
-  </li>
+  <section className="containerC">
+    <ul className='bgcChanger'>
+      <li>
+          <span 
+            className={selectedOption === "bg-image-1" ? "selected" : ""} 
+            onClick={() => handleClick('bg-image-1')}
+          >背景一
+          </span>
+          <span 
+            className={selectedOption === "bg-image-2" ? "selected" : ""}
+            onClick={() => handleClick('bg-image-2')}
+          >背景二
+          </span>
+      </li>
+      <li className='price-container'>
+        <p>佈置總金額：</p>
+        <section className="total-price">${totalPrice}</section>
+      </li>
+
+    </ul>
+    <ul className='second-container'>
+      <li className='info'>
+        <h3 className="total-num">共計 {totalSelected} 項</h3>
+        <p>＊皆包含進、撤場佈置服務</p>
+        <p>＊皆為道具出租</p>
+        <p>＊選定後請截圖傳送至官方line@預約檔期</p>
+      </li>
+      <li className='priceAndConnect'>
+        <span>立即預約檔期</span>
+      </li>
+    </ul>
+  </section>
   )
 }
 
