@@ -23,14 +23,14 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
 
   return (
     <section className="product-list">
-      <ul className="product-list-header" >
+      <ul className="product-list-header" onClick={() => setIsExpanded(!isExpanded)} >
         <li className="product-list-header-title">{categoryName}</li>
         <li className="product-list-header-info">
           {selectedCount > 0 && (
             <p className="selectedInfo"><span className="dot"></span> {selectedCount}</p>
         )}
         {products.length > 0 && (
-            <figure className={isExpanded ? "close" : "open"} onClick={() => setIsExpanded(!isExpanded)}></figure>
+            <figure className={isExpanded ? "close" : "open"} ></figure>
         )}
         </li>
         

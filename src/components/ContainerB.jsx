@@ -30,7 +30,7 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
             if (a.categoryIndex !== b.categoryIndex) {
               return a.categoryIndex - b.categoryIndex;
             } else {
-              return a.clickOrder - b.clickOrder;
+              return a.insideIndex - b.insideIndex; // change this line
             }
           })
           .map((selectedProduct) => {
@@ -47,6 +47,7 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
               />
             );
           })
+
       }
     </section>
   );

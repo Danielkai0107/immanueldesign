@@ -35,6 +35,7 @@ function Main() {
             ...selectedProduct,
             categoryIndex: selectedProduct.categoryIndex,
             clickOrder: prevState[existingProductIndex].clickOrder,
+            insideIndex: selectedProduct.insideIndex, // add this line
           };
           return updatedProducts;
         }
@@ -46,11 +47,13 @@ function Main() {
             ...selectedProduct,
             categoryIndex: selectedProduct.categoryIndex,
             clickOrder: prevState.length + 1,
+            insideIndex: selectedProduct.insideIndex, // add this line
           },
         ];
       }
     });
   };
+
   const handleClearSelect = () => {
     setSelectedProducts([])
   }
