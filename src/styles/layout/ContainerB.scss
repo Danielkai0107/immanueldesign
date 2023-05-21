@@ -1,3 +1,4 @@
+
 .containerB {
   aspect-ratio: 16/9;
   border-radius: 1rem;
@@ -20,8 +21,13 @@
     letter-spacing: 2px;
     color: #6d6d6d;
     cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      scale: 1.1;
+    }
+  
     &:active {
-      scale: 0.8;
+      scale: 0.7;
     }
   }
   .layer-bgc {
@@ -32,10 +38,11 @@
       width: 100%;
       aspect-ratio: 16/9;
       z-index: -1;
+      transition: all 0.4s;
     }
   
   .bg-image-1 {
-    background-image: url('../../images/bbb.png');
+    background-image: url('../../images/bb0.jpg');
     background-size: cover;
     background-repeat: no-repeat;
   }

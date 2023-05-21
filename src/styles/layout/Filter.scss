@@ -15,13 +15,19 @@
     letter-spacing: 2px;
     color:#6d6d6d;
     cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      scale: 1.1;
+    }
+  
     &:active {
-      scale: 0.8;
+      scale: 0.7;
     }
     &.selected {
       background-color: #F9F7F4;
       border: 2px solid #DCD4C9;
       color: #A99374;
+      
     }
   }
 }

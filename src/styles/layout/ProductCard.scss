@@ -1,6 +1,14 @@
-@keyframes fadeIn {
-  0%{opacity: 0;}
-  100% {opacity: 1;}
+//ProductCard.scss
+@keyframes colorMove {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -120%);
+  }
 }
 
 .product-card {
@@ -12,7 +20,7 @@
   box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &.selected {
     opacity: 1;
     background-color: #F9F7F4;
@@ -31,7 +39,6 @@
     flex-flow: column;
     gap: .7rem;
     margin-top: 1rem;
-    margin-bottom: .5rem;
     .name {
         font-size: 1rem;
         font-weight: 300;
@@ -56,47 +63,77 @@
 
   .color-selector-container {
     width: 100%;
-    height: 3rem;
+    height: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    ul {
-      width: auto;
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      gap: .4rem;
+    p {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 100;
+      letter-spacing: 1px;
+    }
+    .color-default {
+      width: .5rem;
+      height: .5rem;
+      border-radius: .5rem;
+    }
+    .color-showBox {
+      position: relative;
+      margin-right: -.3rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 2rem;
+      transition: all 0.4s;
+      figure {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url('../../images/color.png');
+        background-size: cover;
+        background-repeat: no-repeat;
 
-      &.selected {
-        width: 100%;
-        animation: fadeIn .5s ease-in-out;
       }
-
-
-      .color-selector-before {
-        width: .6rem;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-      }
-      .color-selector-after {
+      ul {
+        height: 10rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -120%);
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: calc((100% - 2rem) / 6);
-        aspect-ratio: 1;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        span {
-          font-size: .4rem;
+        justify-content: flex-end;
+        flex-flow: column;
+        flex-wrap: wrap-reverse;
+        gap: .5rem;
+        animation: colorMove 0.4s forwards;
+        transition: all 0.6s;
+        &.close {
+          display: none;
         }
-        &:active {
-          opacity: 0.3;
+    
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 1.8rem;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          border: none;
+          box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+          cursor: pointer;
+          span {
+            font-size: .4rem;
+          }
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
+    
   }
 
 }

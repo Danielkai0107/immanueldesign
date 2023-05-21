@@ -16,6 +16,9 @@ const ProductCard = ({
         updateSelectedVariantIndex(product.id, index);
       }
     };
+  const [selectedColor, setSelectedColor] = useState(product.variants[0].color || "");
+  const [isExpanded, setIsExpanded] = useState(false);
+
   // Effect Hooks
   useEffect(() => {
     import(`../images/${product.variants[selectedVariantIndex].productImage}`)
@@ -27,33 +30,44 @@ const ProductCard = ({
   return (
     <li
       className={`product-card ${isSelected ? "selected" : ""}`}
-      onClick={() => toggleProduct({ ...product, selectedVariantIndex })}
+      onClick={() => {toggleProduct({ ...product, selectedVariantIndex });setIsExpanded(false)}}
     >
+      <section className="content">
       {imageSrc && (
         <img src={imageSrc} alt="product" className="product-image" />
-      )}
-      <section className="content">
+        )}
         <p className="name">{product.name}</p>
         <p className="price"><span>$</span>{product.price.toLocaleString()}</p>
         <p className="size">{product.sizeInfo}</p>
       </section>
       
       {product.variants && (
-        <section className="color-selector-container">
-          <ul className={isSelected ? "selected" : ""}>
-            {product.variants.map((variant, index) => (
-              <li
-                key={index}
-                className={isSelected ? "color-selector-after" : "color-selector-before"}
-                style={{ backgroundColor: variant.color }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleColorButtonClick(index);
-                }}
-              ><span>{isSelected ? variant.info : ''}</span></li>
-            ))}
-          </ul>
-        </section>
+        <article className="color-selector-container">
+          <p className="size">{product.variants.length} 色</p>
+          {isSelected ? 
+          (<section className="color-showBox" style={{ backgroundColor: selectedColor }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded)
+            }}>
+              <figure></figure>
+              <ul className={isExpanded ? "" : "close"}>
+                {product.variants.map((variant, index) => (
+                  <li
+                    key={index}
+                    style={{ backgroundColor: variant.color }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleColorButtonClick(index);
+                      setSelectedColor(variant.color);
+                      setIsExpanded(!isExpanded)
+                    }}
+                  ><span>{isSelected ? variant.info : ''}</span></li>
+                ))}
+              </ul>
+            </section>):
+            (<section className="color-default" style={{ backgroundColor: selectedColor }} ></section>)}
+        </article>
       )}
       
     </li>

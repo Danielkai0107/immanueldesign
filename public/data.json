@@ -3,7 +3,7 @@
     "id": 1,
     "name": "大背板",
     "price": 7000,
-    "sizeInfo": "H 200 W 400",
+    "sizeInfo": "200 x 400cm",
     "insideIndex":1,
     "categoryName": "婚禮背板｜Background",
     "categoryIndex": 1,
@@ -11,7 +11,43 @@
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#A6A28F",
+        "color": "#F28585",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#F2E8DF",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#F2B263",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#86A69D",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#F2C6C2",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#646C8F",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      },
+      {
+        "color": "#8F797E",
         "info":"",
         "productImage": "大背板.png",
         "displayImage": "大背板.png"
@@ -22,7 +58,7 @@
     "id": 2,
     "name": "圓型鐵件",
     "price": 5000,
-    "sizeInfo": "H 200 W 400",
+    "sizeInfo": "100 x 30cm",
     "insideIndex":2,
     "categoryName": "婚禮背板｜Background",
     "categoryIndex": 1,
@@ -53,7 +89,7 @@
     "id": 3,
     "name": "五角鐵件",
     "price": 5000,
-    "sizeInfo": "H 200 W 400",
+    "sizeInfo": "20 x 40cm",
     "insideIndex":3,
     "categoryName": "婚禮背板｜Background",
     "categoryIndex": 1,
@@ -78,7 +114,7 @@
     "id": 4,
     "name": "五角鐵件",
     "price": 5000,
-    "sizeInfo": "H 200 W 400",
+    "sizeInfo": "70 x 100cm",
     "insideIndex":1,
     "categoryName": "仿真花藝｜Flowers",
     "categoryIndex": 2,
