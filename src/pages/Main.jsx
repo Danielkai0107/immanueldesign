@@ -9,14 +9,15 @@ import ContainerB from "../components/ContainerB";
 function Main() {
   // State Hooks
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState(products);
-  const [filterLevel, setFilterLevel] = useState("high");
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filterLevel, setFilterLevel] = useState("high"); 
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
 
   // Handler Functions
   const handleBackgroundChange = (newClass) => {
     setBackgroundClass(newClass);
+    localStorage.setItem("backgroundClass", newClass);
   };
   const toggleProduct = (selectedProduct) => {
     setSelectedProducts((prevState) => {
@@ -24,35 +25,42 @@ function Main() {
         (product) => product.id === selectedProduct.id
       );
 
+      let updatedProducts;
+
       if (existingProductIndex > -1) {
         // If the product exists and the variant is the same, remove it
         if (prevState[existingProductIndex].selectedVariantIndex === selectedProduct.selectedVariantIndex) {
-          return prevState.filter((product) => product.id !== selectedProduct.id);
+          updatedProducts = prevState.filter((product) => product.id !== selectedProduct.id);
         } else {
           // Otherwise, update the variant
-          const updatedProducts = [...prevState];
+          updatedProducts = [...prevState];
           updatedProducts[existingProductIndex] = {
             ...selectedProduct,
             categoryIndex: selectedProduct.categoryIndex,
             clickOrder: prevState[existingProductIndex].clickOrder,
-            insideIndex: selectedProduct.insideIndex, // add this line
+            insideIndex: selectedProduct.insideIndex,
           };
-          return updatedProducts;
         }
       } else {
         // If the product does not exist, add it
-        return [
+        updatedProducts = [
           ...prevState,
           {
             ...selectedProduct,
             categoryIndex: selectedProduct.categoryIndex,
             clickOrder: prevState.length + 1,
-            insideIndex: selectedProduct.insideIndex, // add this line
+            insideIndex: selectedProduct.insideIndex,
           },
         ];
       }
+
+      // Save to localStorage
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+
+      return updatedProducts;
     });
   };
+
 
   const handleClearSelect = () => {
     setSelectedProducts([])
@@ -84,10 +92,18 @@ function Main() {
       .then((data) => {
         setProducts(data);
         setFilteredProducts(data);
+        const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        console.log("Recovered from localStorage:", recoveredProducts);
+        const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
+        setSelectedProducts(verifiedProducts);
       })
       .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
       });
+  }, []);
+  useEffect(() => {
+    const savedBackgroundClass = localStorage.getItem("backgroundClass");
+    setBackgroundClass(savedBackgroundClass || 'bg-image-1');
   }, []);
   useEffect(() => {
     const filterProducts = (level) => {
@@ -116,13 +132,13 @@ function Main() {
         />
         <aside className="container-for-BC">
           <ContainerB 
+            backgroundClass={backgroundClass}
+            handleBackgroundChange={handleBackgroundChange}
             selectedProducts={selectedProducts}
             products={products}
-            backgroundClass={backgroundClass}
             handleClearSelect={handleClearSelect}
           />
           <ContainerC
-            handleBackgroundChange={handleBackgroundChange}
             totalSelected={totalSelected}
             totalPrice={totalPrice}
             selectedProducts={selectedProducts}

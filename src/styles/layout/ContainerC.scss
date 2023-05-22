@@ -1,4 +1,5 @@
 .containerC {
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -6,92 +7,57 @@
   align-items: flex-start;
   padding: 0 .8rem 0 0.4rem;
   margin-top: .2rem;
-  .bgcChanger {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    span {
-      width: 2.4rem;
-      aspect-ratio: 1;
-      box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
-      border-radius: 4rem;
-      border: 2px solid transparent;
-      padding: .6rem 1rem;
-      cursor: pointer;
-      transition: 0.2s;
-      background-size: 250%;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.7;
-      &:first-of-type {
-        background-image: url('../../images/bb0.jpg');
-      }
-      &:nth-of-type(2){
-        background-image: url('../../images/b2.png');
-      }
-      &:hover {
-        scale: 1.1;
-      }
-      &:active {
-        scale: 0.7;
-      }
-      &.selected {
-        position: relative;
-        opacity: 1;
-        &::after {
-          content: '';
-          width: 2.6rem;
-          height: 2.6rem;
-          border: 2px solid #A99374;
-          border-radius: 2.6rem;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%,-50%);
-        }
-        
-      }
+  @media screen and (max-width: 970px) {
+    justify-content: flex-start;
+    width: 50%;
+    margin-top: 0;
+    padding: 0 1.5rem;
+    }
   
-    }
-    li {
-      display: flex;
-      gap: 1rem;
-    }
     .price-container {
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      @media screen and (max-width: 970px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       p {
         font-size: 0.9rem;
         font-weight: 300;
         letter-spacing: 2px;
         line-height: 2rem;
         color: #A9A8A8;
-        }
+      }
+  
       .total-price {
         font-size: 2.5rem;
         font-weight: 300;
         font-family: 'Noto Sans', sans-serif;
       }
     }
-    
-    
-  }
   .second-container {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    gap: 1rem;
+    @media screen and (max-width: 970px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     .info {
         .total-num {
           font-size: 1.1rem;
           font-weight: 300;
           letter-spacing: 2px;
           line-height: 2rem;
+          @media screen and (max-width: 970px) {
+              margin-bottom: .2rem;
+            }
         }
     
         p {
@@ -100,10 +66,14 @@
           letter-spacing: 2px;
           line-height: 2rem;
           color: #A9A8A8;
+          @media screen and (max-width: 970px) {
+              font-size: 0.8rem;
+              line-height: 1.5rem;
+            }
         }
       }
     
-      .priceAndConnect {
+      .Connect {
         display: flex;
         justify-content: space-between;
         align-items: center;

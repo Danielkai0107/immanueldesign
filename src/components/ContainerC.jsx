@@ -1,44 +1,23 @@
 // ContainerC.js
-import React, { useState } from 'react'
+import React from 'react'
 
-function ContainerC({ handleBackgroundChange, handleClearSelect, totalPrice, totalSelected }) {
+function ContainerC({ totalPrice, totalSelected }) {
 
-  const [selectedOption, setSelectedOption] = useState("bg-image-1");
 
-  const handleClick = (option) => {
-    handleBackgroundChange(option);
-    setSelectedOption(option);
-  };
 
   return (
     <section className="containerC">
-      <ul className='bgcChanger'>
-        <li>
-          <span
-            className={selectedOption === "bg-image-1" ? "selected" : ""}
-            onClick={() => handleClick('bg-image-1')}
-          >
-          </span>
-          <span
-            className={selectedOption === "bg-image-2" ? "selected" : ""}
-            onClick={() => handleClick('bg-image-2')}
-          >
-          </span>
-        </li>
-        <li className='price-container'>
-          <p>佈置總金額：</p>
-          <section className="total-price">${totalPrice}</section>
-        </li>
-
+      <ul className='price-container'>
+        <p>佈置總金額：</p>
+        <section className="total-price">${totalPrice}</section>
       </ul>
       <ul className='second-container'>
         <li className='info'>
           <h3 className="total-num">共計 {totalSelected} 項</h3>
-          <p>＊皆包含進、撤場佈置服務</p>
-          <p>＊皆為道具出租</p>
-          <p>＊選定後請截圖傳送至官方line@預約檔期</p>
+          <p>＊包含進、撤場佈置服務</p>
+          <p>＊所有道具為出租模式</p>
         </li>
-        <li className='priceAndConnect'>
+        <li className='Connect'>
           <span>立即預約檔期</span>
         </li>
       </ul>

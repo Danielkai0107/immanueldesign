@@ -7,19 +7,42 @@
       width: 100%;
       height: calc(100vh - 7rem);
       margin-top: 1rem;
-      padding: 0 2.25rem;
+      padding: 0 1.25rem;
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       overflow: hidden;
+      @media screen and (max-width: 970px) {
+      flex-direction: column-reverse;
+      padding: 0 1rem;
+      }
+
+      .containerA {
+        width: 54%;
+        height: 100%;
+        padding: 1rem;
+        overflow: auto;
+        @include scrollbar-style(1px, transparent);
+        @media screen and (max-width: 970px) {
+          width: 100%;
+        }
+      }
 
       .container-for-BC {
-        width: 48%;
+        width: 45%;
         height: 100%;
         display: flex;
-        // justify-content: space-between;
         flex-direction: column;
-        padding: .8rem 0;
+        padding: 1rem;
+        @media screen and (max-width: 970px) {
+          width: 100%;
+          height: auto;
+          flex-direction: row;
+          padding-bottom: 1.25rem;
+        }
       }
     }
 }
+
+
