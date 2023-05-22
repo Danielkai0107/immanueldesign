@@ -8,10 +8,10 @@
   padding: 0 .8rem 0 0.4rem;
   margin-top: .2rem;
   @media screen and (max-width: 970px) {
-    justify-content: flex-start;
-    width: 50%;
+    justify-content: space-between;
+    width: 35%;
     margin-top: 0;
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem 4rem 3rem;
     }
   
     .price-container {

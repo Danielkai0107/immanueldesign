@@ -64,6 +64,7 @@ function Main() {
 
   const handleClearSelect = () => {
     setSelectedProducts([])
+    localStorage.setItem("selectedProducts", JSON.stringify([]));
   }
   const totalSelected = selectedProducts.length;
   const totalPrice = selectedProducts.reduce(
@@ -93,12 +94,10 @@ function Main() {
         setProducts(data);
         setFilteredProducts(data);
         const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
-        console.log("Recovered from localStorage:", recoveredProducts);
         const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
         setSelectedProducts(verifiedProducts);
       })
       .catch((error) => {
-        console.error('There has been a problem with your fetch operation:', error);
       });
   }, []);
   useEffect(() => {

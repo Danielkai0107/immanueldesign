@@ -22,7 +22,6 @@ const ContainerA = ({
         <ProductList
           key={category}
           categoryName={category}
-          categoryNameEn={category}
           products={filteredProducts.filter(
             (product) => product.categoryName === category
           )}

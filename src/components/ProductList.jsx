@@ -1,9 +1,9 @@
 // ProductList.js
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  // const [isExpanded, setIsExpanded] = useState(true);
   const updateSelectedVariantIndex = (productId, variantIndex) => {
     const updatedProduct = selectedProducts.find((product) => product.id === productId);
     if (updatedProduct) {
@@ -19,45 +19,44 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
   const sortByPrice = (products) => {
     return products.slice().sort((a, b) => a.price - b.price);
   };
-
+  const categoryNameEn = products[0].categoryNameEn
 
   return (
     <section className="product-list">
-      <ul className="product-list-header" onClick={() => setIsExpanded(!isExpanded)} >
-        <li className="product-list-header-title">{categoryName}</li>
+      <ul className="product-list-header" >
+        <li className="product-list-header-title">
+          <p>{categoryName}</p>
+          <span>{categoryNameEn}</span>
+        </li>
         <li className="product-list-header-info">
           {selectedCount > 0 && (
             <p className="selectedInfo"><span className="dot"></span> {selectedCount}</p>
-        )}
-        {products.length > 0 && (
-            <figure className={isExpanded ? "close" : "open"} ></figure>
-        )}
+          )}
+          <p className="listInfo">({products.length}項)</p>
         </li>
         
       </ul>
-      {isExpanded && (
-        <ul className="product-list-items">
-          {products.length > 0 ? (
-            sortByPrice(products).map((product) => {
-              const selectedProduct = selectedProducts.find(
-                (p) => p.id === product.id
-              );
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isSelected={!!selectedProduct}
-                  selectedVariantIndex={selectedProduct?.selectedVariantIndex || 0}
-                  toggleProduct={toggleProduct}
-                  updateSelectedVariantIndex={updateSelectedVariantIndex}
-                />
-              );
-            })
-          ) : (
-            <h4 className="op-6">暫時沒有相關道具</h4>
-          )}
-        </ul>
-      )}
+      <ul className="product-list-items">
+        {products.length > 0 ? (
+          sortByPrice(products).map((product) => {
+            const selectedProduct = selectedProducts.find(
+              (p) => p.id === product.id
+            );
+            return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isSelected={!!selectedProduct}
+                selectedVariantIndex={selectedProduct?.selectedVariantIndex || 0}
+                toggleProduct={toggleProduct}
+                updateSelectedVariantIndex={updateSelectedVariantIndex}
+              />
+            );
+          })
+        ) : (
+          <h4 className="op-6">暫時沒有相關道具</h4>
+        )}
+      </ul>
     </section>
   );
 };

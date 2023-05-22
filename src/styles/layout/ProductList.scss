@@ -23,14 +23,21 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 1.2rem;
-    cursor: pointer;
 
     &-title {
-      font-size: 1.25rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-size: 1.25rem;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+      }
       span {
-        font-weight: 100;
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 200;
+        letter-spacing: 1px;
       }
     }
 
@@ -39,37 +46,43 @@
       gap: 1rem;
       justify-content: center;
       align-items: center;
-      .open {
-          width: 1.8rem;
-          height: 1.8rem;
-          background-image: url("../../images/open.png");
-          background-size: cover;
-          background-repeat: no-repeat;cursor: pointer;
-        }
+      // .open {
+      //     width: 1.8rem;
+      //     height: 1.8rem;
+      //     background-image: url("../../images/open.png");
+      //     background-size: cover;
+      //     background-repeat: no-repeat;cursor: pointer;
+      //   }
       
-      .close {
-        width: 1.8rem;
-        height: 1.8rem;
-        background-image: url("../../images/close.png");
-        background-size: cover;
-        background-repeat: no-repeat;cursor: pointer;
-      }
-
+      // .close {
+      //   width: 1.8rem;
+      //   height: 1.8rem;
+      //   background-image: url("../../images/close.png");
+      //   background-size: cover;
+      //   background-repeat: no-repeat;cursor: pointer;
+      // }
       .selectedInfo {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: .5rem;
-        font-size: 1.25rem;
-        font-weight: 200;
+        font-size: 1.5rem;
+        font-weight: 300;
         color: #A99374;
+
         span {
           display: flex;
           width: .5rem;
           height: .5rem;
           border-radius: .5rem;
           background-color: #A99374;
+          margin-top: 2px;
         }
+      }
+      .listInfo {
+        font-size: 1rem;
+        letter-spacing: 2px;
+        font-weight: 200;
       }
     }
   } 

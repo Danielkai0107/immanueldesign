@@ -5,7 +5,48 @@
     "price": 7000,
     "sizeInfo": "200 x 400cm",
     "insideIndex":1,
-    "categoryName": "婚禮背板｜Background",
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
+    "categoryIndex": 1,
+    "budgetLevel": "low",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#8F797E",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "布幔",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
+    "categoryIndex": 1,
+    "budgetLevel": "low",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#F28585",
+        "info":"",
+        "productImage": "大幕.png",
+        "displayImage": "大幕.png"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "大背板",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
     "categoryIndex": 1,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
@@ -55,18 +96,19 @@
     ]
   },
   {
-    "id": 2,
-    "name": "圓型鐵件",
-    "price": 5000,
-    "sizeInfo": "100 x 30cm",
-    "insideIndex":2,
-    "categoryName": "婚禮背板｜Background",
-    "categoryIndex": 1,
+    "id": 4,
+    "name": "長輸出",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "層次背板",
+    "categoryNameEn": "｜Backdrop Display",
+    "categoryIndex": 2,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#A6A28F",
+        "color": "#F28585",
         "info":"",
         "productImage": "長輸出.png",
         "displayImage": "長輸出.png"
@@ -74,36 +116,31 @@
       {
         "color": "#303030",
         "info":"",
-        "productImage": "長輸出.png",
-        "displayImage": "長輸出.png"
-      },
-      {
-        "color": "#A6A28F",
-        "info":"",
-        "productImage": "長輸出.png",
-        "displayImage": "長輸出.png"
+        "productImage": "長簾.png",
+        "displayImage": "長簾.png"
       }
     ]
   },
   {
-    "id": 3,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "20 x 40cm",
-    "insideIndex":3,
-    "categoryName": "婚禮背板｜Background",
-    "categoryIndex": 1,
+    "id": 6,
+    "name": "地板花藝",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "仿真花藝",
+    "categoryNameEn": "｜Flowers",
+    "categoryIndex": 3,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#A6A28F",
+        "color": "#F28585",
         "info":"",
         "productImage": "前地1.png",
         "displayImage": "前地1.png"
       },
       {
-        "color": "#303030",
+        "color": "#F548DF",
         "info":"",
         "productImage": "前草2.png",
         "displayImage": "前草2.png"
@@ -111,124 +148,28 @@
     ]
   },
   {
-    "id": 8,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "70 x 100cm",
-    "insideIndex":1,
-    "categoryName": "仿真花藝｜Flowers",
-    "categoryIndex": 2,
-    "budgetLevel": "high",
-    "selectedVariantIndex": 0,
-    "variants": [
-      {
-        "color": "#A6A28F",
-        "info":"",
-        "productImage": "p2.png",
-        "displayImage": "後格.png"
-      },
-      {
-        "color": "#303030",
-        "info":"",
-        "productImage": "p1.png",
-        "displayImage": "後格2.png"
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "70 x 100cm",
-    "insideIndex":1,
-    "categoryName": "仿真花藝｜Flowers",
-    "categoryIndex": 2,
-    "budgetLevel": "high",
-    "selectedVariantIndex": 0,
-    "variants": [
-      {
-        "color": "#A6A28F",
-        "info":"",
-        "productImage": "p2.png",
-        "displayImage": "後格.png"
-      },
-      {
-        "color": "#303030",
-        "info":"",
-        "productImage": "p1.png",
-        "displayImage": "後格2.png"
-      }
-    ]
-  },{
-    "id": 5,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "70 x 100cm",
-    "insideIndex":1,
-    "categoryName": "仿真花藝｜Flowers",
-    "categoryIndex": 2,
-    "budgetLevel": "high",
-    "selectedVariantIndex": 0,
-    "variants": [
-      {
-        "color": "#A6A28F",
-        "info":"",
-        "productImage": "p2.png",
-        "displayImage": "後格.png"
-      },
-      {
-        "color": "#303030",
-        "info":"",
-        "productImage": "p1.png",
-        "displayImage": "後格2.png"
-      }
-    ]
-  },{
-    "id": 6,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "70 x 100cm",
-    "insideIndex":1,
-    "categoryName": "仿真花藝｜Flowers",
-    "categoryIndex": 2,
-    "budgetLevel": "high",
-    "selectedVariantIndex": 0,
-    "variants": [
-      {
-        "color": "#A6A28F",
-        "info":"",
-        "productImage": "p2.png",
-        "displayImage": "後格.png"
-      },
-      {
-        "color": "#303030",
-        "info":"",
-        "productImage": "p1.png",
-        "displayImage": "後格2.png"
-      }
-    ]
-  },{
     "id": 7,
-    "name": "五角鐵件",
-    "price": 5000,
-    "sizeInfo": "70 x 100cm",
-    "insideIndex":1,
-    "categoryName": "仿真花藝｜Flowers",
-    "categoryIndex": 2,
-    "budgetLevel": "high",
+    "name": "高架花藝",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":2,
+    "categoryName": "仿真花藝",
+    "categoryNameEn": "｜Flowers",
+    "categoryIndex": 3,
+    "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#A6A28F",
+        "color": "#F28585",
         "info":"",
-        "productImage": "p2.png",
-        "displayImage": "後格.png"
+        "productImage": "前格1.png",
+        "displayImage": "前格1.png"
       },
       {
-        "color": "#303030",
+        "color": "#F2E8DF",
         "info":"",
-        "productImage": "p1.png",
-        "displayImage": "後格2.png"
+        "productImage": "前格2.png",
+        "displayImage": "前格2.png"
       }
     ]
   }
