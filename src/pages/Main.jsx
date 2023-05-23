@@ -1,10 +1,10 @@
 // Main.js
 import React, { useState, useEffect } from "react";
 import Navbar from '../components/Navbar'
-import ContainerC from "../components/ContainerC";
-import ContainerA from "../components/ContainerA";
-import ContainerB from "../components/ContainerB";
-
+const ContainerA = React.lazy(() => import('../components/ContainerA'));
+const ContainerB = React.lazy(() => import('../components/ContainerB'));
+const ContainerC = React.lazy(() => import('../components/ContainerC'));
+// const Navbar = memo(Navbar);
 
 function Main() {
   // State Hooks
@@ -63,9 +63,11 @@ function Main() {
 
 
   const handleClearSelect = () => {
-    setSelectedProducts([])
-    localStorage.setItem("selectedProducts", JSON.stringify([]));
-  }
+    if (selectedProducts.length > 0) {
+      setSelectedProducts([]);
+      localStorage.setItem("selectedProducts", JSON.stringify([]));
+    }
+  };
   const totalSelected = selectedProducts.length;
   const totalPrice = selectedProducts.reduce(
     (acc, product) => acc + products.find((p) => p.id === product.id).price,
@@ -121,27 +123,34 @@ function Main() {
     <main className="main">
       <Navbar/>
       <article className="main-inner">
-        <ContainerA
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <ContainerA
           filterLevel={filterLevel}
           setFilterLevel={setFilterLevel}
           filteredProducts={filteredProducts}
           selectedProducts={selectedProducts}
           toggleProduct={toggleProduct}
           updateSelectedVariantIndex={updateSelectedVariantIndex}
-        />
+        /></React.Suspense>
+        
         <aside className="container-for-BC">
-          <ContainerB 
-            backgroundClass={backgroundClass}
-            handleBackgroundChange={handleBackgroundChange}
-            selectedProducts={selectedProducts}
-            products={products}
-            handleClearSelect={handleClearSelect}
-          />
-          <ContainerC
-            totalSelected={totalSelected}
-            totalPrice={totalPrice}
-            selectedProducts={selectedProducts}
-          />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <ContainerB
+              backgroundClass={backgroundClass}
+              handleBackgroundChange={handleBackgroundChange}
+              selectedProducts={selectedProducts}
+              products={products}
+              handleClearSelect={handleClearSelect}
+            />
+          </React.Suspense>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <ContainerC
+              totalSelected={totalSelected}
+              totalPrice={totalPrice}
+              selectedProducts={selectedProducts}
+            />
+          </React.Suspense>
+          
         </aside>
       </article>
     </main>
