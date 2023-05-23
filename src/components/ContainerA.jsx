@@ -1,6 +1,5 @@
 // ContainerA.js
 import React from "react";
-import Filter from "./Filter";
 import ProductList from "./ProductList";
 
 const ContainerA = ({
@@ -8,16 +7,17 @@ const ContainerA = ({
   filteredProducts,
   selectedProducts,
   toggleProduct, 
-  updateSelectedVariantIndex 
+  updateSelectedVariantIndex,
+  containerARef,
 }) => {
   
   const getUniqueCategories = () => {
     return [...new Set(filteredProducts.map((product) => product.categoryName))];
   };
 
+
   return (
-    <section className="containerA">
-      <Filter onFilterChange={(level) => setFilterLevel(level)} />
+    <section className="containerA" >
       {getUniqueCategories().map((category) => (
         <ProductList
           key={category}

@@ -2,7 +2,7 @@
 
 .product-list {
   width: 100%;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 
   h2 {
       font-size: 1.4rem;
@@ -88,10 +88,18 @@
   } 
 
   .product-list-items {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
+    padding: 1rem;
+    //SM
+    @include sm {
+      flex-wrap: nowrap;
+      overflow: scroll;
+      @include scrollbar-style(1px, transparent);
+    }
   }
 }

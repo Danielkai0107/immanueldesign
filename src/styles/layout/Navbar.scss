@@ -1,14 +1,17 @@
 //Navbar.scss
 .navbar {
   width: 100vw;
-  height: 6rem;
+  height: $navbar-height;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 1.25rem;
+  //SM
+  @include sm {
+    padding: 0 1rem;
+  }
   ul {
     width: 100%;
-    margin-top: 1rem;
     padding: 1rem 2.25rem;
     border-radius: 1rem;
     display: flex;
@@ -16,6 +19,11 @@
     align-items: center;
     box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
     background-color: #fff;
+    //SM
+    @include sm {
+      justify-content: center;
+      padding-top: 1.5rem;
+    }
   }
   &-logo {
     margin-top: .5rem;
@@ -24,7 +32,13 @@
       font-weight: 100;
       font-family: 'Great Vibes', cursive;
       color: #A99374;
+      //SM
+      @include sm {
+        font-size: 1.8rem;
+      }
     }
+    //SM
+    @include sm {margin-top: 0;}
   }
   &-options {
     display: flex;
@@ -40,6 +54,10 @@
       &:active {
         scale: 0.8;
       }
+    }
+    //SM
+    @include sm {
+      display: none;
     }
   }
 

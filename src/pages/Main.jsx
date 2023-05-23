@@ -1,6 +1,8 @@
 // Main.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import Navbar from '../components/Navbar'
+import { bgc } from "../content/bgc";
+
 const ContainerA = React.lazy(() => import('../components/ContainerA'));
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
@@ -13,12 +15,25 @@ function Main() {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [filterLevel, setFilterLevel] = useState("high"); 
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
+  const [bgcIndex, setBgcIndex] = useState(0);
 
   // Handler Functions
-  const handleBackgroundChange = (newClass) => {
+  const handleBackgroundChange = (direction) => { // 更新此函数
+    let newIndex = direction === 'next' ? bgcIndex + 1 : bgcIndex - 1;
+
+    // 轮回到数组的另一端
+    if(newIndex < 0) {
+      newIndex = bgc.length - 1;
+    } else if (newIndex >= bgc.length) {
+      newIndex = 0;
+    }
+
+    setBgcIndex(newIndex);
+    const newClass = bgc[newIndex];
     setBackgroundClass(newClass);
     localStorage.setItem("backgroundClass", newClass);
   };
+
   const toggleProduct = (selectedProduct) => {
     setSelectedProducts((prevState) => {
       const existingProductIndex = prevState.findIndex(
@@ -61,18 +76,19 @@ function Main() {
     });
   };
 
-
   const handleClearSelect = () => {
     if (selectedProducts.length > 0) {
       setSelectedProducts([]);
       localStorage.setItem("selectedProducts", JSON.stringify([]));
     }
   };
+
   const totalSelected = selectedProducts.length;
   const totalPrice = selectedProducts.reduce(
     (acc, product) => acc + products.find((p) => p.id === product.id).price,
     0
   ).toLocaleString();
+
   const updateSelectedVariantIndex = (productId, variantIndex) => {
     setSelectedProducts(
       selectedProducts.map((product) =>
@@ -82,6 +98,7 @@ function Main() {
       )
     );
   };
+
 
   // Effect Hooks
   useEffect(() => {
@@ -102,10 +119,13 @@ function Main() {
       .catch((error) => {
       });
   }, []);
+
   useEffect(() => {
-    const savedBackgroundClass = localStorage.getItem("backgroundClass");
-    setBackgroundClass(savedBackgroundClass || 'bg-image-1');
-  }, []);
+    const newClass = bgc[bgcIndex];
+    setBackgroundClass(newClass);
+    localStorage.setItem("backgroundClass", newClass);
+  }, [bgcIndex]);
+
   useEffect(() => {
     const filterProducts = (level) => {
       if (level === "low") {
@@ -120,18 +140,20 @@ function Main() {
   }, [filterLevel, products]);
 
   return (
-    <main className="main">
-      <Navbar/>
+    <main className="main"> 
+    
+    <Navbar/>
       <article className="main-inner">
         <React.Suspense fallback={<div>Loading...</div>}>
           <ContainerA
-          filterLevel={filterLevel}
-          setFilterLevel={setFilterLevel}
-          filteredProducts={filteredProducts}
-          selectedProducts={selectedProducts}
-          toggleProduct={toggleProduct}
-          updateSelectedVariantIndex={updateSelectedVariantIndex}
-        /></React.Suspense>
+            filterLevel={filterLevel}
+            setFilterLevel={setFilterLevel}
+            filteredProducts={filteredProducts}
+            selectedProducts={selectedProducts}
+            toggleProduct={toggleProduct}
+            updateSelectedVariantIndex={updateSelectedVariantIndex}
+          />
+        </React.Suspense>
         
         <aside className="container-for-BC">
           <React.Suspense fallback={<div>Loading...</div>}>
@@ -150,7 +172,6 @@ function Main() {
               selectedProducts={selectedProducts}
             />
           </React.Suspense>
-          
         </aside>
       </article>
     </main>
@@ -158,6 +179,3 @@ function Main() {
 }
 
 export default Main;
-
-
-

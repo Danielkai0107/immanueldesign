@@ -1,7 +1,12 @@
 .containerB {
   width: 100%;
-  @media screen and (max-width: 970px) {
+  //MD
+  @include md {
     width: 70%;
+  }
+  //SM
+  @include sm {
+    width:100%;
   }
   .displayIMG-container {
     width: 100%;
@@ -19,7 +24,7 @@
       border-radius: 2rem;
       border: 2px solid transparent;
       padding: .6rem 1rem;
-      z-index: 100;
+      z-index: 1000;
       //font
       font-weight: 300;
       font-size: 1rem;
@@ -48,17 +53,7 @@
       transition: all 0.4s;
     }
 
-    .bg-image-1 {
-      background-image: url('../../images/frame_工作區域\ 1.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .bg-image-2 {
-      background-image: url('../../images/b2.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+    
 
     .product-layer {
       position: absolute;
@@ -77,64 +72,42 @@
 
   .bgcChanger {
     width: 100%;
+    padding: 0 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.25rem;
 
-    span {
-      width: 2.4rem;
-      aspect-ratio: 1;
-      box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+    &-btn {
+      width: 1.8rem;
+      height: 1.8rem;
+      box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.5);
       border-radius: 4rem;
       border: 2px solid transparent;
-      padding: .6rem 1rem;
       cursor: pointer;
       transition: 0.2s;
-      background-size: 250%;
-      background-position: center;
+      background-color: #fff;
+      background-size: 40%;
       background-repeat: no-repeat;
-      opacity: 0.7;
 
       &:first-of-type {
-        background-image: url('../../images/bb0.jpg');
+        background-image: url('../../images/left.png');
+        background-position: 45% 50%;
       }
 
       &:nth-of-type(2) {
-        background-image: url('../../images/b2.png');
-      }
-
-      &:hover {
-        scale: 1.1;
+        background-image: url('../../images/right.png');
+        background-position: 55% 50%;
       }
 
       &:active {
         scale: 0.7;
       }
 
-      &.selected {
-        position: relative;
-        opacity: 1;
-
-        &::after {
-          content: '';
-          width: 2.6rem;
-          height: 2.6rem;
-          border: 2px solid #A99374;
-          border-radius: 2.6rem;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-
-      }
-
-    }
-
-    li {
-      display: flex;
-      gap: 1rem;
     }
   }
 }

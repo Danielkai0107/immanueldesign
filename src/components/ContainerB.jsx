@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 
 const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSelect, handleBackgroundChange }) => {
 
-  const handleClick = (option) => {
-    handleBackgroundChange(option);
-  };
 
 
   const ProductLayer = ({ product }) => {
@@ -30,6 +27,10 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
       <section className="displayIMG-container">
         <span className='clearBtn' onClick={handleClearSelect}>清空</span>
         <figure className={`layer-bgc ${backgroundClass}`}></figure>
+        <ul className='bgcChanger'>
+        <li className="bgcChanger-btn" onClick={() => handleBackgroundChange('pre')}></li>
+        <li className="bgcChanger-btn" onClick={() => handleBackgroundChange('next')}></li>
+      </ul>
         {
           selectedProducts
             .sort((a, b) => {
@@ -56,20 +57,6 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
 
         }
       </section>
-      <ul className='bgcChanger'>
-        <li>
-          <span
-            className={backgroundClass === "bg-image-1" ? "selected" : ""}
-            onClick={() => handleClick('bg-image-1')}
-          >
-          </span>
-          <span
-            className={backgroundClass === "bg-image-2" ? "selected" : ""}
-            onClick={() => handleClick('bg-image-2')}
-          >
-          </span>
-        </li>
-      </ul>
     </article>
   );
 };
