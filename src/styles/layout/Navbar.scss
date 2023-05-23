@@ -21,8 +21,8 @@
     background-color: #fff;
     //SM
     @include sm {
-      justify-content: center;
       padding-top: 1.5rem;
+      padding: 1rem 1.5rem;
     }
   }
   &-logo {
