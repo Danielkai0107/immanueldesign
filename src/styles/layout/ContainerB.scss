@@ -17,17 +17,17 @@
 
     .clearBtn {
       position: absolute;
-      right: 1rem;
-      top: 1rem;
+      right: .5rem;
+      top: .5rem;
       background-color: #fff;
-      box-shadow: 0 0 9.8px 0 rgba(104, 104, 104, 0.3);
+      box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.5);
       border-radius: 2rem;
       border: 2px solid transparent;
       padding: .6rem 1rem;
       z-index: 1000;
       //font
       font-weight: 300;
-      font-size: 1rem;
+      font-size: .9rem;
       letter-spacing: 2px;
       color: #6d6d6d;
       cursor: pointer;
