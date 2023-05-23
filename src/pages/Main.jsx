@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 const ContainerA = React.lazy(() => import('../components/ContainerA'));
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
-// const Navbar = memo(Navbar);
+
 
 function Main() {
   // State Hooks

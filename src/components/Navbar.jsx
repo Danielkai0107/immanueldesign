@@ -1,5 +1,5 @@
 // Navbar.js
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -11,12 +11,12 @@ function Navbar() {
         </li>
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/">HOME</Link>
-          <Link className="navbar-options-main" to="/about">MAIN</Link>
-          <Link className="navbar-options-about" to="/about">ABOUT</Link>
+          <Link className="navbar-options-main" to="/About">MAIN</Link>
+          <Link className="navbar-options-about" to="/About">ABOUT</Link>
         </li>
       </ul>
     </nav>
   )
 }
 
-export default Navbar;
+export default memo(Navbar);
