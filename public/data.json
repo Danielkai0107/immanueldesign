@@ -21,6 +21,66 @@
   },
   {
     "id": 2,
+    "name": "大背板",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
+    "categoryIndex": 1,
+    "budgetLevel": "low",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#8F797E",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "大背板",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
+    "categoryIndex": 1,
+    "budgetLevel": "low",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#8F797E",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "大背板",
+    "price": 7000,
+    "sizeInfo": "200 x 400cm",
+    "insideIndex":1,
+    "categoryName": "主背板",
+    "categoryNameEn": "｜Main Backdrop",
+    "categoryIndex": 1,
+    "budgetLevel": "low",
+    "selectedVariantIndex": 0,
+    "variants": [
+      {
+        "color": "#8F797E",
+        "info":"",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
+      }
+    ]
+  },
+  {
+    "id": 5,
     "name": "布幔",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
@@ -40,7 +100,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 6,
     "name": "大背板",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
@@ -96,7 +156,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 7,
     "name": "長輸出",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
@@ -122,7 +182,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 8,
     "name": "地板花藝",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
@@ -148,7 +208,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 9,
     "name": "高架花藝",
     "price": 7000,
     "sizeInfo": "200 x 400cm",

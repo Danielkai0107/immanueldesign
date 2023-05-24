@@ -2,8 +2,7 @@
 
 .product-list {
   width: 100%;
-  margin-bottom: 2rem;
-
+  margin-bottom: 1rem;
   h2 {
       font-size: 1.4rem;
       font-weight: 300;
@@ -22,8 +21,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1.2rem;
-
+    padding: .5rem 0;
+    //LG
+    @include lg {
+      padding: .5rem 1rem;
+    }
     &-title {
       display: flex;
       justify-content: center;
@@ -90,16 +92,21 @@
   .product-list-items {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
-    margin-top: 1rem;
-    padding: 1rem;
-    //SM
-    @include sm {
-      flex-wrap: nowrap;
-      overflow: scroll;
-      @include scrollbar-style(1px, transparent);
+    padding: .5rem;
+    margin: 0.5rem -0.5rem 0 -0.5rem;
+    overflow: auto;
+    @include scrollbar-style(1px, transparent);
+    //MD
+    @include md {
     }
+    //LG
+    @include lg {
+    padding: 1.2rem;
+    flex-wrap: wrap;
+    }
+    
+
   }
 }

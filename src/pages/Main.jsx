@@ -1,9 +1,10 @@
 // Main.js
 import React, { useState, useEffect} from "react";
 import Navbar from '../components/Navbar'
+import ProductList from '../components/ProductList'
 import { bgc } from "../content/bgc";
+import BurgerMenu from "../components/BurgerMenu";
 
-const ContainerA = React.lazy(() => import('../components/ContainerA'));
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
 
@@ -12,12 +13,16 @@ function Main() {
   // State Hooks
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [burgerOpen, setBurgerOpen] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [filterLevel, setFilterLevel] = useState("high"); 
+  // const [filterLevel, setFilterLevel] = useState("high"); 
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
   const [bgcIndex, setBgcIndex] = useState(0);
 
   // Handler Functions
+  const handleBurgerClick = ()=>{
+    setBurgerOpen(!burgerOpen)
+  }
   const handleBackgroundChange = (direction) => { // 更新此函数
     let newIndex = direction === 'next' ? bgcIndex + 1 : bgcIndex - 1;
 
@@ -33,7 +38,6 @@ function Main() {
     setBackgroundClass(newClass);
     localStorage.setItem("backgroundClass", newClass);
   };
-
   const toggleProduct = (selectedProduct) => {
     setSelectedProducts((prevState) => {
       const existingProductIndex = prevState.findIndex(
@@ -75,20 +79,17 @@ function Main() {
       return updatedProducts;
     });
   };
-
   const handleClearSelect = () => {
     if (selectedProducts.length > 0) {
       setSelectedProducts([]);
       localStorage.setItem("selectedProducts", JSON.stringify([]));
     }
   };
-
   const totalSelected = selectedProducts.length;
   const totalPrice = selectedProducts.reduce(
     (acc, product) => acc + products.find((p) => p.id === product.id).price,
     0
   ).toLocaleString();
-
   const updateSelectedVariantIndex = (productId, variantIndex) => {
     setSelectedProducts(
       selectedProducts.map((product) =>
@@ -98,7 +99,9 @@ function Main() {
       )
     );
   };
-
+  const getUniqueCategories = () => {
+    return [...new Set(filteredProducts.map((product) => product.categoryName))];
+  };
 
   // Effect Hooks
   useEffect(() => {
@@ -126,54 +129,58 @@ function Main() {
     localStorage.setItem("backgroundClass", newClass);
   }, [bgcIndex]);
 
-  useEffect(() => {
-    const filterProducts = (level) => {
-      if (level === "low") {
-        return products.filter((product) => product.budgetLevel === "low");
-      } else if (level === "medium") {
-        return products.filter((product) => product.budgetLevel !== "high");
-      } else {
-        return products;
-      }
-    };
-    setFilteredProducts(filterProducts(filterLevel));
-  }, [filterLevel, products]);
+  // useEffect(() => {
+  //   const filterProducts = (level) => {
+  //     if (level === "low") {
+  //       return products.filter((product) => product.budgetLevel === "low");
+  //     } else if (level === "medium") {
+  //       return products.filter((product) => product.budgetLevel !== "high");
+  //     } else {
+  //       return products;
+  //     }
+  //   };
+  //   setFilteredProducts(filterProducts(filterLevel));
+  // }, [filterLevel, products]);
 
   return (
-    <main className="main"> 
-    
-    <Navbar/>
-      <article className="main-inner">
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <ContainerA
-            filterLevel={filterLevel}
-            setFilterLevel={setFilterLevel}
-            filteredProducts={filteredProducts}
+    <main> 
+      <section className="containerA" >
+        {getUniqueCategories().map((category) => (
+          <ProductList
+            key={category}
+            categoryName={category}
+            products={filteredProducts.filter(
+              (product) => product.categoryName === category
+            )}
             selectedProducts={selectedProducts}
             toggleProduct={toggleProduct}
             updateSelectedVariantIndex={updateSelectedVariantIndex}
           />
+        ))}
+      </section>
+      <Navbar handleBurgerClick={handleBurgerClick}/>
+      <BurgerMenu 
+        totalPrice={totalPrice}
+        totalSelected={totalSelected}
+        burgerOpen={burgerOpen}
+      />
+      <aside className="container-for-BC">
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <ContainerB
+            backgroundClass={backgroundClass}
+            handleBackgroundChange={handleBackgroundChange}
+            selectedProducts={selectedProducts}
+            products={products}
+            handleClearSelect={handleClearSelect}
+          />
         </React.Suspense>
-        
-        <aside className="container-for-BC">
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <ContainerB
-              backgroundClass={backgroundClass}
-              handleBackgroundChange={handleBackgroundChange}
-              selectedProducts={selectedProducts}
-              products={products}
-              handleClearSelect={handleClearSelect}
-            />
-          </React.Suspense>
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <ContainerC
-              totalSelected={totalSelected}
-              totalPrice={totalPrice}
-              selectedProducts={selectedProducts}
-            />
-          </React.Suspense>
-        </aside>
-      </article>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <ContainerC
+            totalSelected={totalSelected}
+            totalPrice={totalPrice}
+          />
+        </React.Suspense>
+      </aside>
     </main>
   );
 }

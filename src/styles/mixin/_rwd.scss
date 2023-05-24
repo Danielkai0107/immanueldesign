@@ -1,11 +1,11 @@
-@mixin sm() {
-  @media all and (max-width: $sm-screen) {
+@mixin md() {
+  @media all and (min-width: $sm-up) {
     @content;
   }
 }
 
-@mixin md() {
-  @media all and (max-width: $md-screen) {
+@mixin lg() {
+  @media all and (min-width: $md-up) {
     @content;
   }
 }

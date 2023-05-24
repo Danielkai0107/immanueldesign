@@ -1,3 +1,8 @@
-$md-screen : 970px;
-$sm-screen : 780px;
+//rwd
+$md-up : 992px;
+$sm-up : 576px;
+//components height
 $navbar-height: 6rem;
+$containerB-sm-height: calc((100vw - 2rem) * 9 / 16);
+$containerB-md-height: calc((70vw - 2rem) * 9 / 16);
+$containerB-lg-height: calc((50vw - 2rem) * 9 / 16);

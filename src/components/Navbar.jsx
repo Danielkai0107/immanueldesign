@@ -1,10 +1,13 @@
 // Navbar.js
-import React, { memo } from 'react';
+import React, { memo }from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({totalPrice,totalSelected,handleBurgerClick}) {
+
+  
+
   return (
-    <nav className="navbar">
+    <nav className="navbar" >
       <ul>
         <li className="navbar-logo">
           <Link className="nav-item" to="/">Immanuel</Link>
@@ -14,6 +17,7 @@ function Navbar() {
           <Link className="navbar-options-main" to="/About">MAIN</Link>
           <Link className="navbar-options-about" to="/About">ABOUT</Link>
         </li>
+        <li className='navbar-burger-btn' onClick={handleBurgerClick}></li>
       </ul>
     </nav>
   )

@@ -1,42 +1,20 @@
 .containerC {
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: flex-start;
-  padding: 0 .8rem 0 0.4rem;
-  margin-top: .2rem;
+  display: none;
   //MD
   @include md {
-    justify-content: space-between;
-    width: 35%;
-    margin-top: 0;
-    padding: 2rem 1.5rem 4rem 3rem;
-  }
-  //SM
-  @include sm {
-    display: none;
-  }
-  
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column;
+    gap: 1rem;
+    padding-left: 2rem;
     .price-container {
-      margin-top: 1rem;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      flex-direction: column;
       gap: 1rem;
-      //MD
-      @include md {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      //SM
-      @include sm {
-        width: 100%;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
       p {
         font-size: 0.9rem;
         font-weight: 300;
@@ -44,59 +22,36 @@
         line-height: 2rem;
         color: #A9A8A8;
       }
-  
+    
       .total-price {
         font-size: 2.5rem;
         font-weight: 300;
         font-family: 'Noto Sans', sans-serif;
-        //SM
-        @include sm {
-          font-size: 1.8rem;
-        }
       }
     }
-  .second-container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    //MD
-    @include md {
+    .second-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
       flex-direction: column;
+      justify-content: space-between;
       align-items: flex-start;
-    }
-    //SM
-    @include sm {
-    display: none;
-    }
-    .info {
+      gap: 1rem;
+      .info {
         .total-num {
           font-size: 1.1rem;
           font-weight: 300;
           letter-spacing: 2px;
           line-height: 2rem;
-          //MD
-          @include md {
-            margin-bottom: .2rem;
-          }
         }
-    
         p {
           font-size: 0.9rem;
           font-weight: 300;
           letter-spacing: 2px;
           line-height: 2rem;
           color: #A9A8A8;
-          //MD
-          @include md {
-            font-size: 0.8rem;
-            line-height: 1.5rem;
-          }
         }
-      }
-    
+        }
       .Connect {
         display: flex;
         justify-content: space-between;
@@ -121,11 +76,23 @@
           &:active {
             scale: 0.7;
           }
-          
-    
         }
-    
       }
+    }
   }
-  
+  //LG
+  @include lg {
+    width: 100%;
+    padding-left: 0;
+    margin-top: .2rem;
+    .price-container {
+      margin-top: 1rem;
+      flex-direction: row;
+      align-items: center;
+    }
+    .second-container {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
 }

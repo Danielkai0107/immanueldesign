@@ -12,7 +12,7 @@
 }
 
 .product-card {
-  min-width: 150px;
+  min-width: 180px;
   max-width: 180px;
   display: flex;
   flex-direction: column;
@@ -22,10 +22,11 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.2s;
-  //SM
-  @include sm {
-    min-width: 200px;
-    max-width: 200px;
+  //LG
+  @include lg {
+    width: 30%;
+    min-width: 160px;
+    max-width: 180px;
   }
   &.selected {
     opacity: 1;
@@ -33,7 +34,11 @@
     border: 3px solid #DCD4C9;
   }
   &:hover {
-    scale: 1.05;
+    scale: 1;
+    //LG
+    @include lg {
+      scale: 1.05;
+    }
   }
   .product-image {
     width: 100%;
@@ -62,7 +67,7 @@
     .size {
       font-family: 'Noto Sans', sans-serif;
       font-size: 0.8rem;
-      font-weight: 100;
+      font-weight: 300;
       letter-spacing: 1px;
     }
   }
@@ -76,7 +81,7 @@
     p {
       font-family: 'Noto Sans', sans-serif;
       font-size: 0.8rem;
-      font-weight: 100;
+      font-weight: 300;
       letter-spacing: 1px;
     }
     .color-default {
