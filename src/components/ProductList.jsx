@@ -32,7 +32,7 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
           {selectedCount > 0 && (
             <p className="selectedInfo"><span className="dot"></span> {selectedCount}</p>
           )}
-          <p className="listInfo">({products.length}項)</p>
+          {/* <p className="listInfo">({products.length}項)</p> */}
         </li>
         
       </ul>
