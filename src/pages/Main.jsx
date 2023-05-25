@@ -3,7 +3,6 @@ import React, { useState, useEffect} from "react";
 import Navbar from '../components/Navbar'
 import ProductList from '../components/ProductList'
 import { bgc } from "../content/bgc";
-import BurgerMenu from "../components/BurgerMenu";
 
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
@@ -13,16 +12,13 @@ function Main() {
   // State Hooks
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [burgerOpen, setBurgerOpen] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
   // const [filterLevel, setFilterLevel] = useState("high"); 
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
   const [bgcIndex, setBgcIndex] = useState(0);
 
   // Handler Functions
-  const handleBurgerClick = ()=>{
-    setBurgerOpen(!burgerOpen)
-  }
+
   const handleBackgroundChange = (direction) => { // 更新此函数
     let newIndex = direction === 'next' ? bgcIndex + 1 : bgcIndex - 1;
 
@@ -102,16 +98,14 @@ function Main() {
   const getUniqueCategories = () => {
     return [...new Set(filteredProducts.map((product) => product.categoryName))];
   };
-  const handleRemoveProduct = (productId) => {
-    setSelectedProducts((prevState) => {
-      const updatedProducts = prevState.filter((product) => product.id !== productId);
-
-      // Save to localStorage
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-
-      return updatedProducts;
-    });
-  };
+  
+  // const handleRemoveProduct = (productId) => {
+  //   setSelectedProducts((prevState) => {
+  //     const updatedProducts = prevState.filter((product) => product.id !== productId);
+  //     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+  //     return updatedProducts;
+  //   });
+  // };
 
   // Effect Hooks
   useEffect(() => {
@@ -168,15 +162,8 @@ function Main() {
           />
         ))}
       </section>
-      <Navbar handleBurgerClick={handleBurgerClick}/>
-      <BurgerMenu 
-        totalPrice={totalPrice}
-        totalSelected={totalSelected}
-        burgerOpen={burgerOpen}
-        selectedProducts={selectedProducts}
-        handleRemoveProduct={handleRemoveProduct}
-        handleBurgerClick={handleBurgerClick}
-      />
+      <Navbar/>
+
       <aside className="container-for-BC">
         <React.Suspense fallback={<div>Loading...</div>}>
           <ContainerB

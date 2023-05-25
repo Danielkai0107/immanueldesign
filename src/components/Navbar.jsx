@@ -2,7 +2,7 @@
 import React, { memo }from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({totalPrice,totalSelected,handleBurgerClick}) {
+function Navbar({handleBurgerClick}) {
 
   
 
@@ -17,7 +17,6 @@ function Navbar({totalPrice,totalSelected,handleBurgerClick}) {
           <Link className="navbar-options-main" to="/About">MAIN</Link>
           <Link className="navbar-options-about" to="/About">ABOUT</Link>
         </li>
-        <li className='navbar-burger-btn' onClick={handleBurgerClick}></li>
       </ul>
     </nav>
   )

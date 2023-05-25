@@ -22,7 +22,7 @@
 .container-for-BC {
   width: 100vw;
   position:fixed;
-  top: 6rem;
+  top: $navbar-height;
   left: 0;
   z-index: 20;
   display: flex;
