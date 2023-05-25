@@ -102,6 +102,16 @@ function Main() {
   const getUniqueCategories = () => {
     return [...new Set(filteredProducts.map((product) => product.categoryName))];
   };
+  const handleRemoveProduct = (productId) => {
+    setSelectedProducts((prevState) => {
+      const updatedProducts = prevState.filter((product) => product.id !== productId);
+
+      // Save to localStorage
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+
+      return updatedProducts;
+    });
+  };
 
   // Effect Hooks
   useEffect(() => {
@@ -163,6 +173,9 @@ function Main() {
         totalPrice={totalPrice}
         totalSelected={totalSelected}
         burgerOpen={burgerOpen}
+        selectedProducts={selectedProducts}
+        handleRemoveProduct={handleRemoveProduct}
+        handleBurgerClick={handleBurgerClick}
       />
       <aside className="container-for-BC">
         <React.Suspense fallback={<div>Loading...</div>}>
