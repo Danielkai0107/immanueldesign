@@ -14,7 +14,7 @@ function Navbar({handleBurgerClick}) {
         </li>
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/">HOME</Link>
-          <Link className="navbar-options-main" to="/About">MAIN</Link>
+          <Link className="navbar-options-main" to="/Main">MAIN</Link>
           <Link className="navbar-options-about" to="/About">ABOUT</Link>
         </li>
       </ul>

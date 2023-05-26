@@ -62,7 +62,7 @@ const ProductCard = ({
                       setSelectedColor(variant.color);
                       setIsExpanded(!isExpanded)
                     }}
-                  ><span>{isSelected ? variant.info : ''}</span></li>
+                  ><span></span></li>
                 ))}
               </ul>
             </section>):

@@ -1,11 +1,11 @@
 // Main.js
 import React, { useState, useEffect} from "react";
-import Navbar from '../components/Navbar'
 import ProductList from '../components/ProductList'
 import { bgc } from "../content/bgc";
 
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
+
 
 
 function Main() {
@@ -70,7 +70,7 @@ function Main() {
       }
 
       // Save to localStorage
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
 
       return updatedProducts;
     });
@@ -162,8 +162,6 @@ function Main() {
           />
         ))}
       </section>
-      <Navbar/>
-
       <aside className="container-for-BC">
         <React.Suspense fallback={<div>Loading...</div>}>
           <ContainerB
@@ -178,6 +176,7 @@ function Main() {
           <ContainerC
             totalSelected={totalSelected}
             totalPrice={totalPrice}
+            selectedProducts={selectedProducts}
           />
         </React.Suspense>
       </aside>

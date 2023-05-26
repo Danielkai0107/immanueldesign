@@ -1,61 +1,47 @@
-//server.js
-
+// 引入需要的库
 const express = require('express');
-const line = require('@line/bot-sdk');
+const axios = require('axios');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 
-const config = {
-  channelAccessToken: '你的Channel Access Token',
-  channelSecret: '你的Channel Secret',
-};
-
-const client = new line.Client(config);
-
+// 创建一个Express应用
 const app = express();
 
-app.use(bodyParser.json());
-app.use(cors({
-  origin: 'http://localhost:3001',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// 使用CORS中间件来处理跨域请求
+app.use(cors());
 
-app.post('/webhook', line.middleware(config), (req, res) => {
-  Promise
-    .all(req.body.events.map(handleEvent))
-    .then((result) => res.json(result))
-    .catch((err) => {
-      console.error(err);
-      res.status(500).end();
-    });
-});
+// 解析请求体的中间件
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-function handleEvent(event) {
-  if (event.type !== 'message' || event.message.type !== 'text') {
-    return Promise.resolve(null);
+// 设置你的Line Notify Token
+const lineNotifyToken = '1HWIJsl30zHoQl0fLtarAJfSsIaqdpJNJKng6pT0wLG';
+
+// 创建一个端点来处理发送到Line Notify的请求
+app.post('/notify', async (req, res) => {
+  try {
+    // 创建一个POST请求的选项对象
+    const options = {
+      method: 'post',
+      url: 'https://notify-api.line.me/api/notify',
+      headers: {
+        'Authorization': `Bearer ${lineNotifyToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: `message=${req.body.message}`, // 将请求体中的消息用作Line Notify的消息
+    };
+
+    // 发送POST请求
+    const response = await axios(options);
+    
+    // 将Line Notify的响应发送回客户端
+    res.send(response.data);
+  } catch (error) {
+    // 如果出现错误，将其发送回客户端
+    res.status(500).send({ error: error.toString() });
   }
-
-  const echo = { type: 'text', text: event.message.text };
-  return client.replyMessage(event.replyToken, echo);
-}
-
-app.post('/send-order', (req, res) => {
-  const { selectedProducts } = req.body;
-
-  let message = '新訂單:\n';
-  selectedProducts.forEach(product => {
-    message += `- ${product.name}\n`;
-  });
-
-  return client.pushMessage('1661187151', { type: 'text', text: message })
-    .then(() => res.sendStatus(200))
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send(err);
-    });
 });
 
-app.listen(3000, () => {
-  console.log('listening on 3000');
+// 开始监听3001端口
+app.listen(3001, () => {
+  console.log('Server is running on port 3001');
 });
