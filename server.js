@@ -2,6 +2,9 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require("express-rate-limit");
+require('dotenv').config();
 
 // 创建一个Express应用
 const app = express();
@@ -9,12 +12,22 @@ const app = express();
 // 使用CORS中间件来处理跨域请求
 app.use(cors());
 
+// 使用 Helmet 中间件增强 HTTP 头的安全性
+app.use(helmet());
+
+// 使用 express-rate-limit 中间件限制请求速率
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
+
 // 解析请求体的中间件
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 设置你的Line Notify Token
-const lineNotifyToken = '1HWIJsl30zHoQl0fLtarAJfSsIaqdpJNJKng6pT0wLG';
+// 从环境变量中获取你的Line Notify Token
+const lineNotifyToken = process.env.LINE_NOTIFY_TOKEN;
 
 // 创建一个端点来处理发送到Line Notify的请求
 app.post('/notify', async (req, res) => {
