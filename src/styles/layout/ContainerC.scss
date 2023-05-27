@@ -83,8 +83,8 @@
   //LG
   @include lg {
     width: 100%;
-    padding-left: 0;
-    margin-top: .2rem;
+    padding-right: 2rem;
+    padding-left: 1rem;
     .price-container {
       margin-top: 1rem;
       flex-direction: row;

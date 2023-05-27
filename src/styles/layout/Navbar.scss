@@ -1,7 +1,6 @@
 //Navbar.scss
 .navbar {
   width: 100vw;
-  height: $navbar-height;
   position:fixed;
   top: 0;
   left: 0;
@@ -9,12 +8,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  flex-direction: column;
+  padding: 1.5rem;
   background-color: #fff;
   box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+  animation: fadeIn 1s backwards;
+  //MD
+  @include md {
+  height: $navbar-height;
+  }
   
   ul {
     width: 100%;
+    height: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,10 +29,14 @@
   &-logo {
     margin-top: .5rem;
     a {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 100;
       font-family: 'Great Vibes', cursive;
       color: #A99374;
+      //MD
+      @include md {
+        font-size: 2rem;
+      }
     }
   }
   &-options {
@@ -68,4 +78,78 @@
     }
   }
 
+}
+
+.navbar-sm {
+  background-color: red;
+  //MD
+  @include md {
+  display:none;
+  }
+}
+
+.navbar-sm-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  span {
+    background-color: #303030;
+    width: 100%;
+    height: 2px;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.4s;
+    &:nth-child(1) {
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    &:nth-child(2) {
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+  &.expanded {
+    span {
+      &:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:nth-child(2) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+  //MD
+  @include md {
+  display:none;
+  }
+}
+
+.navbar-sm-options {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: .5rem;
+  padding-top: 2rem;
+  gap: 1rem;
+  animation: fadeIn 1s backwards;
+  a {
+    border-bottom: 1px solid #e1e1e1;
+    display: flex;
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    &:last-child {
+    border-bottom: 1px solid transparent;
+    }
+  }
+  //MD
+  @include md {
+  display:none;
+  }
 }

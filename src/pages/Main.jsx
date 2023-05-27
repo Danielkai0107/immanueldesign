@@ -2,6 +2,7 @@
 import React, { useState, useEffect} from "react";
 import ProductList from '../components/ProductList'
 import { bgc } from "../content/bgc";
+import Cart from "../components/Cart";
 
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
@@ -16,9 +17,12 @@ function Main() {
   // const [filterLevel, setFilterLevel] = useState("high"); 
   const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
   const [bgcIndex, setBgcIndex] = useState(0);
+  const [isDataReady, setIsDataReady] = useState(false); // 追加資料準備狀態
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const [isCart, setIsCart] = useState(false);
 
   // Handler Functions
-
+  const handleCartExpand=()=>{setIsCart(!isCart)}
   const handleBackgroundChange = (direction) => { // 更新此函数
     let newIndex = direction === 'next' ? bgcIndex + 1 : bgcIndex - 1;
 
@@ -109,7 +113,7 @@ function Main() {
 
   // Effect Hooks
   useEffect(() => {
-    fetch("/data.json") // 根据实际情况修改文件路径
+    fetch("/data.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -122,8 +126,10 @@ function Main() {
         const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
         const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
         setSelectedProducts(verifiedProducts);
+        setIsDataReady(true); // 資料準備完成
       })
       .catch((error) => {
+        console.error(error);
       });
   }, []);
 
@@ -146,7 +152,25 @@ function Main() {
   //   setFilteredProducts(filterProducts(filterLevel));
   // }, [filterLevel, products]);
 
+  useEffect(() => {
+    const checkScrollTop = () => {
+      if (!isButtonVisible && window.pageYOffset > 0) {
+        setIsButtonVisible(true);
+      } else if (isButtonVisible && window.pageYOffset <= 0) {
+        setIsButtonVisible(false);
+      }
+    };
+    
+    window.addEventListener('scroll', checkScrollTop);
+    
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop);
+    };
+  }, [isButtonVisible]);
+  
+
   return (
+    isDataReady ? (
     <main> 
       <section className="containerA" >
         {getUniqueCategories().map((category) => (
@@ -163,24 +187,33 @@ function Main() {
         ))}
       </section>
       <aside className="container-for-BC">
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <ContainerB
-            backgroundClass={backgroundClass}
-            handleBackgroundChange={handleBackgroundChange}
-            selectedProducts={selectedProducts}
-            products={products}
-            handleClearSelect={handleClearSelect}
-          />
-        </React.Suspense>
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <ContainerC
-            totalSelected={totalSelected}
-            totalPrice={totalPrice}
-            selectedProducts={selectedProducts}
-          />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <ContainerB
+          backgroundClass={backgroundClass}
+          handleBackgroundChange={handleBackgroundChange}
+          selectedProducts={selectedProducts}
+          products={products}
+          handleClearSelect={handleClearSelect}
+        />
+      </React.Suspense>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <ContainerC
+          totalSelected={totalSelected}
+          totalPrice={totalPrice}
+          selectedProducts={selectedProducts}
+          handleCartExpand={handleCartExpand}
+        />
         </React.Suspense>
       </aside>
+      {isButtonVisible && <section className="to-the-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}><span></span>
+      </section>}
+      {isCart && <Cart selectedProducts={selectedProducts} 
+          handleCartExpand={handleCartExpand} />}
     </main>
+    ):( 
+    <div className="loading-overlay">Loading...</div>
+    )
+    
   );
 }
 
