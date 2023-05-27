@@ -36,7 +36,7 @@ const handleNotify = async (event) => {
   
   try {
     // 发送一个POST请求到你的后端服务器
-    const response = await axios.post('http://locallhost:3001/notify', {
+    const response = await axios.post('http://localhost:3001/notify', {
       message: `\n姓名：${name}\n佈置日期：${time}\n手機號碼：${phone}\n電子信箱：${email}\n${productMessage}\nTotal Price: ${totalprice}`,
     });
 
