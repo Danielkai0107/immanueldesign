@@ -187,7 +187,7 @@ function Main() {
         ))}
       </section>
       <aside className="container-for-BC">
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>
         <ContainerB
           backgroundClass={backgroundClass}
           handleBackgroundChange={handleBackgroundChange}
@@ -196,7 +196,7 @@ function Main() {
           handleClearSelect={handleClearSelect}
         />
       </React.Suspense>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>
         <ContainerC
           totalSelected={totalSelected}
           totalPrice={totalPrice}
@@ -211,7 +211,7 @@ function Main() {
           handleCartExpand={handleCartExpand} />}
     </main>
     ):( 
-    <div className="loading-overlay">Loading...</div>
+    <div className="loading-overlay"><span></span></div>
     )
     
   );

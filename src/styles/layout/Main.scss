@@ -78,3 +78,18 @@
   }
   
 }
+.loading-overlay {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    display: block;
+    width: 6rem;
+    height: 6rem;
+    background-image: url('../../images/loading.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
