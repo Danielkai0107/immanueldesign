@@ -53,6 +53,10 @@ const handleNotify = async (event) => {
 
     setSuccess('傳送成功\n請加入Line@與我們確認喔!');
     setTimeout(() => setSuccess(''), 5000);
+    setName('')
+    setTime('')
+    setPhone('')
+    setEmail('')
   } catch (error) {
     console.error(error); // 如果出现错误，将其打印到控制台
 
@@ -61,14 +65,7 @@ const handleNotify = async (event) => {
   }
 };
 
-const handleCleanInput =()=>{
-  if (success !=='') {
-    setName('')
-    setTime('')
-    setPhone('')
-    setEmail('')
-  }
-}
+
 
   return (
     <article className='cart'>
@@ -100,7 +97,7 @@ const handleCleanInput =()=>{
             <input type="date" value={time} onChange={e => setTime(e.target.value)} placeholder="" />
             <label htmlFor="">電子郵件：</label>
             <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="" />
-            <button type="submit" onClick={handleCleanInput}>送出</button>
+            <button type="submit" >送出</button>
           </form>
           <section className='line'>
             <a className='line-btn' href="https://lin.ee/8phpLYwB">
