@@ -1,74 +1,98 @@
 .cart {
-  border: 1px solid red;
   width: 100vw;
-  height: calc(100vh - $navbar-height);
   margin-top: $navbar-height;
+  padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  gap: 1rem;
   .btn {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row-reverse;
+    padding: .5rem;
     .back-btn {
       display: flex;
-      width: 1.5rem;
-      height: 1.5rem;
-      background-image: url('../../images/up-arrow.png');
+      width: 1.8rem;
+      height: 1.8rem;
+      background-image: url('../../images/close.png');
       background-repeat: no-repeat;
-      background-size: contain;
-      rotate: -90deg;
+      background-size: 80%;
+      background-position: center;
+      transition: all 0.4s;
+      &:hover {
+        scale: 1.1;
+      }
+      &:active {
+        scale: 0.7;
+      }
+    }
+    li {
+      p {
+        font-size: 1.1rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #8a7d6c;
+        line-height: 2rem;
+      }
+      // .error {color: red;}
+      // .message {color: red;}
+      // .success {color: cadetblue;}
     }
   }
   .context {
+    width: 100%;
     display: flex;
-
-    .form {
-      border: 1px solid red;
-      width: 50vw;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem 3rem 1rem;
+    .title {
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      align-self: center;
+    }
+    .context-container {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       border-radius: 1rem;
-      padding: 4rem 1rem 2rem 1rem;
-      animation: fadeIn 0.2s;
-      font-size: 1rem;
-      font-weight: 300;
-      letter-spacing: 2px; 
-      //LG
-      @include lg {
-        width: 50vw;
-        max-width: 700px;
-      }
-      .error {
-        position: absolute;
-        top: 2rem;
-        right: 50%;
-        transform: translate(50%,0);
-      }
+      margin-top: 2rem;
       form {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: 300;
-        letter-spacing: 2px; 
+        letter-spacing: 2px;
         input {
           font-size: 1rem;
           font-weight: 300;
           letter-spacing: 2px;
-          height: 2em;
+          height: 1.5em;
           padding: .5rem 1rem;
           border-radius: .5rem;
           border: 1px solid #c2c2c2;
+          &[type="date"]{
+            font-family: "Roboto Mono",monospace;
+            color: #303030;
+            font-size: 18px;
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            background-color: transparent;
+        }
         }
         label {
+          display: flex;
+          align-items: center;
           span {
-            font-size: .6rem;
+            font-size: 1rem;
+            font-weight: 400;
             color: #A99374;
           }
         }
@@ -99,18 +123,65 @@
           } 
         }
       }
+      .line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .line-btn {
+          margin-top: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 60%;
+          }
+        }
+        .QRcode {
+          width: 40%;
+          margin-top: 1rem;
+        }
+      }
     }
     .info {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      border: 1px solid blue;
-      width: 50%;
-      .screenshot {
-        border: 1px solid red;
-        width: 70%;
-          aspect-ratio: 16/9;
+      .price {
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-family: 'Noto Sans', sans-serif;
+        span {
+          font-size: 1rem;
+          font-weight: 300;
+          letter-spacing: 2px;
+          line-height: 2rem;
+          color: #787878;
         }
+      }
+      .number {
+        font-size: 1.1rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        line-height: 2rem;
+      }
     }
   }
-  
+}
+
+.window-msg {
+  min-width: 300px;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: calc($navbar-height + 2rem);
+  left: 50%;
+  transform: translate(-50%,0);
+  background-color: #fff;
+  z-index: 20;
+  box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
