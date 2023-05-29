@@ -174,6 +174,8 @@ function App() {
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 
         selectedProducts={selectedProducts}
+        totalSelected={totalSelected}
+        totalPrice={totalPrice}
       />} />
       <Route path="*" element={<Error />} />
     </Routes>

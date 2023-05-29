@@ -22,14 +22,20 @@ function Navbar({totalSelected}) {
           <Link className="navbar-options-home" to="/">HOME</Link>
           <Link className="navbar-options-main" to="/Main">MAIN</Link>
           <Link className="navbar-options-about" to="/About">ABOUT</Link>
-          <div className="cart-btn" onClick={() => navigate('/Cart')}>
-            <a></a>
-            {totalSelected > 0 && <span>({totalSelected})</span>}
-          </div>
+          <section className="cart-md-btn" onClick={() => navigate('/Cart')}>
+            <figure></figure>
+            {totalSelected > 0 && <span>{totalSelected}</span>}
+          </section>
         </li>
-        <li className={`navbar-sm-btn ${isExpand ? 'expanded' : ''}`} onClick={handleClick}>
-          <span></span>
-          <span></span>
+        <li className='navbar-sm'>
+          <section className="cart-btn" onClick={() => navigate('/Cart')}>
+            <figure></figure>
+            {totalSelected > 0 && <span>{totalSelected}</span>}
+          </section>
+          <section className={`menu-btn ${isExpand ? 'expanded' : ''}`} onClick={handleClick}>
+            <span></span>
+            <span></span>
+          </section>
         </li>
       </ul>
       {isExpand && (
@@ -39,7 +45,6 @@ function Navbar({totalSelected}) {
             <Link className="navbar-options-about" to="/About" onClick={handleClick}>ABOUT</Link>
         </section>
       )}
-      
     </nav>
   )
 }

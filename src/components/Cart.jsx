@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
-function Cart({selectedProducts}) {
+function Cart({selectedProducts,totalSelected,totalPrice}) {
 
   const navigate = useNavigate();
 
@@ -91,6 +91,8 @@ const handleNotify = async (event) => {
           <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0"/>
         </a>
         <img src="https://qr-official.line.me/gs/M_802ygcsd_GW.png" alt="QRcode"/>
+        <section>{totalPrice}</section>
+        <section>{totalSelected}</section>
         </li>
       </ul>
     </article>

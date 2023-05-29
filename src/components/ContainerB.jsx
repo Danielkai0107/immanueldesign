@@ -28,8 +28,8 @@ const ContainerB = ({
   return (
     <article className="containerB">
       <section className="containerB-btn">
-        <span className='clearBtn' onClick={handleClearSelect}>清空</span>
-        <span className="screenshot-btn" onClick={handleDownload}>下載</span>
+        <span className='clearBtn' onClick={handleClearSelect}></span>
+        <span className="download-btn" onClick={handleDownload}></span>
       </section>
       
       <ul className='bgcChanger'>

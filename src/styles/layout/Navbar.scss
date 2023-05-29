@@ -59,36 +59,56 @@
           scale: 0.8;
         }
       }
+      .cart-md-btn {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        cursor: pointer;
+        &:hover {
+          opacity: .6;
+        }
+        &:active {
+          scale: 0.8;
+        }
+        figure {
+          width: 2rem;
+          height: 2rem;
+          background-image: url('../../images/shopping-bag.png');
+          background-repeat: no-repeat;
+          background-size: 80%;
+          background-position: center;
+        }
+        span {
+          width: 1.2rem;
+          height: 1.2rem;
+          background-color: red;
+          border: 1px solid #fff;
+          border-radius: 2rem;
+          position: absolute;
+          bottom: .1rem;
+          right: -.3rem;
+          //font
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: .7rem;
+          letter-spacing: -1px;
+          color: #fff;
+        }
+      }
     }
   }
-
 }
 
-.cart-btn {
+.navbar-sm {
   display: flex;
   align-items: center;
-  gap: .2rem;
-  cursor: pointer;
-  &:hover {
-    opacity: .6;
+  gap: 1rem;
+  //MD
+  @include md {
+    display:none;
   }
-  &:active {
-    scale: 0.8;
-  }
-  a {
-    background-image: url('../../images/shopping-bag.png');
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center;
-  }
-  span {
-    font-size: .9rem;
-    font-weight: 100;
-    letter-spacing: 1px;
-    }
-}
-
-.navbar-sm-btn {
+  .menu-btn {
   width: 1.5rem;
   height: 1.5rem;
   span {
@@ -125,7 +145,47 @@
   @include md {
   display:none;
   }
+  }
+  .cart-btn {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  cursor: pointer;
+  &:hover {
+    opacity: .6;
+  }
+  &:active {
+    scale: 0.8;
+  }
+  figure {
+    margin-top: 0.1rem;
+    width: 2rem;
+    height: 2rem;
+    background-image: url('../../images/shopping-bag.png');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+  }
+  span {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: red;
+    border: 1px solid #fff;
+    border-radius: 2rem;
+    position: absolute;
+    bottom: .1rem;
+    right: -.3rem;
+    //font
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .7rem;
+    letter-spacing: -1px;
+    color: #fff;
+  }
+  }
 }
+
 
 .navbar-sm-options {
   width: 100%;
