@@ -9,8 +9,16 @@ require('dotenv').config();
 // 创建一个Express应用
 const app = express();
 
+// CORS的详细配置
+const corsOptions = {
+  origin: '*',    // 允许来自所有域名的请求
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',    // 允许所有 HTTP 请求方法
+  allowedHeaders: ['Content-Type', 'Authorization'],    // 允许这两种 HTTP 请求头
+  credentials: true,    // 允许服务器接收 cookies
+};
+
 // 使用CORS中间件来处理跨域请求
-app.use(cors());
+app.use(cors(corsOptions));
 
 // 使用 Helmet 中间件增强 HTTP 头的安全性
 app.use(helmet());
