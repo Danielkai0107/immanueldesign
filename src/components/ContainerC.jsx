@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
-function ContainerC({ totalPrice, totalSelected ,handleCartExpand }) {
+function ContainerC({ totalPrice, totalSelected ,handleScreenshot}) {
 
 
 
@@ -18,8 +19,8 @@ return (
         <p>＊包含進、撤場佈置服務</p>
         <p>＊所有道具為出租模式</p>
       </li>
-      <li className='Connect' onClick={handleCartExpand}>
-        <span>立即預約檔期</span>
+      <li className='Connect' >
+        <Link to='/Cart' onClick={handleScreenshot}>立即預約檔期</Link>
       </li>
     </ul>
   </section>

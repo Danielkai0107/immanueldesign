@@ -44,9 +44,11 @@
     //MD
     @include md {
       display: flex;
+      align-items: center;
       margin-top: .5rem;
-      gap: 2rem;
+      gap: 1rem;
       a {
+        padding: .8rem;
         font-size: 1.1rem;
         font-weight: 100;
         letter-spacing: 1px;
@@ -60,32 +62,30 @@
     }
   }
 
-  &-burger-btn {
-    position: absolute;
-    top: 50%;
-    right: 1rem;
-    transform: translate(0%,-50%);
-    width: 1.8rem;
-    height: 1.8rem;
-    background-color: #000;
-
-    &:active {
-      scale: 1.1;
-    }
-    //MD
-    @include md {
-      display:none;
-    }
-  }
-
 }
 
-.navbar-sm {
-  background-color: red;
-  //MD
-  @include md {
-  display:none;
+.cart-btn {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  cursor: pointer;
+  &:hover {
+    opacity: .6;
   }
+  &:active {
+    scale: 0.8;
+  }
+  a {
+    background-image: url('../../images/shopping-bag.png');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+  }
+  span {
+    font-size: .9rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    }
 }
 
 .navbar-sm-btn {

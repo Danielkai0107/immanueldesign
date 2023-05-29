@@ -1,8 +1,10 @@
 // Navbar.js
 import React, { memo, useState }from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Navbar({handleBurgerClick}) {
+function Navbar({totalSelected}) {
+
+  const navigate = useNavigate();
 
   const [isExpand, setIsExpand] = useState(false);
   
@@ -20,6 +22,10 @@ function Navbar({handleBurgerClick}) {
           <Link className="navbar-options-home" to="/">HOME</Link>
           <Link className="navbar-options-main" to="/Main">MAIN</Link>
           <Link className="navbar-options-about" to="/About">ABOUT</Link>
+          <div className="cart-btn" onClick={() => navigate('/Cart')}>
+            <a></a>
+            {totalSelected > 0 && <span>({totalSelected})</span>}
+          </div>
         </li>
         <li className={`navbar-sm-btn ${isExpand ? 'expanded' : ''}`} onClick={handleClick}>
           <span></span>

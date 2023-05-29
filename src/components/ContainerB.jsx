@@ -1,9 +1,12 @@
 // ContainerB.js
 import React, { useEffect, useState } from "react";
 
-const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSelect, handleBackgroundChange }) => {
-
-
+const ContainerB = ({ 
+  selectedProducts,products,backgroundClass,
+  handleClearSelect, handleBackgroundChange,
+  screenshotDataUrl,handleDownload }) => {
+  
+  
 
   const ProductLayer = ({ product }) => {
     const [imageSrc, setImageSrc] = useState(null);
@@ -24,13 +27,18 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
 
   return (
     <article className="containerB">
-      <section className="displayIMG-container">
+      <section className="containerB-btn">
         <span className='clearBtn' onClick={handleClearSelect}>清空</span>
-        <figure className={`layer-bgc ${backgroundClass}`}></figure>
-        <ul className='bgcChanger'>
+        <span className="screenshot-btn" onClick={handleDownload}>下載</span>
+      </section>
+      
+      <ul className='bgcChanger'>
         <li className="bgcChanger-btn" onClick={() => handleBackgroundChange('pre')}></li>
         <li className="bgcChanger-btn" onClick={() => handleBackgroundChange('next')}></li>
       </ul>
+      <section className="displayIMG-container">
+        <figure className={`layer-bgc ${backgroundClass}`}></figure>
+        
         {
           selectedProducts
             .sort((a, b) => {
@@ -57,6 +65,7 @@ const ContainerB = ({ selectedProducts, products, backgroundClass, handleClearSe
 
         }
       </section>
+      {/* {screenshotDataUrl && <img className="screenshot" src={screenshotDataUrl} alt="Screenshot" />} */}
     </article>
   );
 };
