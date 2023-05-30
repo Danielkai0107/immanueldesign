@@ -118,10 +118,10 @@ useEffect(() => {
         </li>
       </ul>
       <section className='msg'>
-          {message !== '' && <p className='window-msg message'>{message}</p>}
-          {success !== '' && <p className='window-msg success'>
+          {message !== '' && <p className='window-msg'>{message}</p>}
+          {success !== '' && <p className='window-msg'>
             {success.split('\n').map((item, i) => { return <p key={i}>{item}</p>;})}</p>}
-          {error !== '' && <p className='window-msg error'>
+          {error !== '' && <p className='window-msg'>
             {error.split('\n').map((item, i) => { return <p key={i}>{item}</p>;})}</p>}
         </section>
     </article>
