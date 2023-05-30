@@ -7,7 +7,7 @@
     z-index: 10;
     width: 100vw;
     padding: 1rem 0 10rem 0;
-    margin-top: calc($navbar-height + $containerB-sm-height + 3.5rem);
+    margin-top: calc($navbar-height + $containerB-sm-height + 1.5rem);
     //MD
     @include md {
       margin-top: calc($navbar-height + $containerB-md-height + 2rem);
@@ -22,7 +22,7 @@
 .container-for-BC {
   width: 100vw;
   position:fixed;
-  top: calc($navbar-height + 2rem);
+  top: $navbar-height;
   left: 0;
   z-index: 20;
   display: flex;
@@ -97,9 +97,9 @@
 .show-message {
   width: 100vw;
   height: 2rem;
-  background-color: #fff;
   position: fixed;
-  top: $navbar-height;
+  // top: $navbar-height;
+  bottom: 0;
   left: 0;
   z-index: 19;
   overflow: hidden;
@@ -118,7 +118,7 @@
     color: #fff;
     animation: moveIn 0.4s forwards;
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     p {
       font-size: 1rem;
@@ -137,6 +137,6 @@
 }
 
 @keyframes moveIn {
-  0% {top:-2rem}
-  100% {top:0}
+  0% {bottom:-2rem}
+  100% {bottom:0}
 }

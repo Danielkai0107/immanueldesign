@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function Cart({handleRemoveProduct,selectedProducts,totalSelected,totalPrice}) {
+function Cart({handleRemoveProduct,selectedProducts,totalSelected,totalPrice,setIsNavbar}) {
 
   const [name, setName] = useState('');
   const [time, setTime] = useState('');
@@ -51,7 +51,7 @@ const handleNotify = async (event) => {
 
     console.log(response.data); // 在控制台打印响应数据以供调试
 
-    setSuccess('傳送成功\n請加入Line@與我們確認喔!');
+    setSuccess('耶～傳送成功\n剩下最後一步了');
     setTimeout(() => setSuccess(''), 5000);
     setName('')
     setTime('')
@@ -60,7 +60,7 @@ const handleNotify = async (event) => {
   } catch (error) {
     console.error(error); // 如果出现错误，将其打印到控制台
 
-    setError('不好意思，傳送有誤\n加入好友與我們洽談喔!');
+    setError('傳送有誤\n直接加入好友詢問喔');
     setTimeout(() => setError(''), 5000);
   }
 };
@@ -73,17 +73,18 @@ useEffect(() => {
   return (
     <article className='cart'>
       <ul className='header'>
-        <li>
-          <Link className='back-btn' to='/Main'></Link>
+        <li className='back-btn'>
+          <span></span>
+          <Link to='/Main' onClick={()=>{setIsNavbar(0)}}>返回我的佈置</Link>
         </li>
         <li className='title'>
           <p>輕鬆預約三步驟</p>
         </li>
       </ul>
       <ul className='context'>
-        <p className='step'>Step 1 -- <span>設計好了，確認內容</span></p>
+        <p className='step'>Step 1 -- <span>我設計的內容</span></p>
         <li className='info'>
-        {selectedProducts.length === 0 && <Link className="start-btn" to="/Main">開始佈置</Link>}
+        {selectedProducts.length === 0 && <Link className="start-btn" to="/Main" onClick={()=>{setIsNavbar(0)}}>開始佈置</Link>}
         {selectedProducts.map((product) => (
           <section key={product.id} className='selected-item'>
             <p>{product.name}-{product.variants[product.selectedVariantIndex].info}</p>
@@ -106,13 +107,14 @@ useEffect(() => {
             <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="" />
             <button type="submit" >送出</button>
           </form>
-          <p className='step'>Step 3 -- <span>加入好友，確認訂購細節</span></p>
+          <p className='step'>Step 3 -- <span>加入好友，確認細節</span></p>
           <section className='line'>
             <a className='line-btn' href="https://lin.ee/8phpLYwB">
               <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友"/>
             </a>
             <img className='QRcode' src="https://qr-official.line.me/gs/M_802ygcsd_GW.png" alt="QRcode"/>
           </section>
+          <p className='step'></p>
         </li>
       </ul>
       <section className='msg'>

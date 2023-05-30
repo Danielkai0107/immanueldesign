@@ -12,25 +12,39 @@
   .header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
+    align-items: flex-start;
+    flex-direction: column;
     padding: .5rem;
     margin-bottom: 1.5rem;
+    gap: 2rem;
     .back-btn {
-      display: flex;
-      width: 1.8rem;
-      height: 1.8rem;
-      background-image: url('../../images/close.png');
-      background-repeat: no-repeat;
-      background-size: 80%;
-      background-position: center;
-      transition: all 0.4s;
-      &:hover {
-        scale: 1.1;
-      }
-      &:active {
-        scale: 0.7;
+      display: none;
+      //MD
+      @include md {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        transition: all 0.4s;
+        opacity: 0.5;
+        span {
+          width: 1.8rem;
+          height: 1.8rem;
+          background-image: url('../../images/up-arrow.png');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 80%;
+          rotate: -90deg;
+        }
+        &:hover {
+          scale: 1.1;
+        }
+        &:active {
+          scale: 0.7;
+        }
       }
     }
     .title {

@@ -20,25 +20,21 @@
   border-radius: 1rem;
   box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   transition: all 0.2s;
   //LG
   @include lg {
     width: 30%;
     min-width: 160px;
     max-width: 180px;
+    &:hover {
+      scale: 1.05;
+    }
   }
   &.selected {
     opacity: 1;
     background-color: #F9F7F4;
     border: 3px solid #DCD4C9;
-  }
-  &:hover {
-    scale: 1;
-    //LG
-    @include lg {
-      scale: 1.05;
-    }
   }
   .product-image {
     width: 100%;
@@ -96,6 +92,7 @@
       height: 2rem;
       border-radius: 2rem;
       transition: all 0.4s;
+      
       figure {
         width: 1.2rem;
         height: 1.2rem;
@@ -135,11 +132,16 @@
           border: none;
           box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
           cursor: pointer;
+          transition: all 0.2s;
           span {
             font-size: .4rem;
           }
           &:hover {
-            opacity: 0.8;
+            //LG
+            @include lg {
+            scale: 1.2;
+            }
+            
           }
         }
       }

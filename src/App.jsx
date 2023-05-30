@@ -22,6 +22,7 @@ function App() {
   const [isDataReady, setIsDataReady] = useState(false); // 追加資料準備狀態
   // const [filterLevel, setFilterLevel] = useState("high"); 
   const [screenshotDataUrl, setScreenshotDataUrl] = useState(null);
+  const [isNavbar, setIsNavbar] = useState(0);
 
   const handleDownload = () => {
     const containerB = document.querySelector('.displayIMG-container');
@@ -153,7 +154,7 @@ function App() {
 
   return (
   <Router>
-    <Navbar totalSelected={totalSelected} />
+    <Navbar totalSelected={totalSelected} isNavbar={isNavbar} setIsNavbar={setIsNavbar} />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Main" element={<Main 
@@ -177,6 +178,7 @@ function App() {
         totalSelected={totalSelected}
         totalPrice={totalPrice}
         handleRemoveProduct={handleRemoveProduct}
+        setIsNavbar={setIsNavbar}
       />} />
       <Route path="*" element={<Error />} />
     </Routes>
