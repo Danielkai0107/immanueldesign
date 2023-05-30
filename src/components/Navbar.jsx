@@ -21,7 +21,6 @@ function Navbar({totalSelected}) {
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/">首頁</Link>
           <Link className="navbar-options-main" to="/Main">開始佈置</Link>
-          <Link className="navbar-options-about" to="/About">聯絡我們</Link>
           <section className="cart-md-btn" onClick={() => navigate('/Cart')}>
             <figure></figure>
             {totalSelected > 0 && <span>{totalSelected}</span>}
@@ -42,7 +41,6 @@ function Navbar({totalSelected}) {
         <section className="navbar-sm-options">
             <Link className="navbar-options-home" to="/" onClick={handleClick}>首頁</Link>
             <Link className="navbar-options-main" to="/Main" onClick={handleClick}>開始佈置</Link>
-            <Link className="navbar-options-about" to="/About" onClick={handleClick}>聯絡我們</Link>
         </section>
       )}
     </nav>

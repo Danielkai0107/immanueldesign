@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import ProductList from '../components/ProductList'
 import { bgc } from "../content/bgc";
+import ShowMsg from "../components/ShowMsg";
 
 const ContainerB = React.lazy(() => import('../components/ContainerB'));
 const ContainerC = React.lazy(() => import('../components/ContainerC'));
@@ -63,9 +64,14 @@ function Main({
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     isDataReady ? (
     <main> 
+      <ShowMsg totalPrice={totalPrice} selectedProducts={selectedProducts}/>
       <section className="containerA" >
         {getUniqueCategories().map((category) => (
           <ProductList

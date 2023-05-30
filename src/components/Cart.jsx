@@ -1,6 +1,6 @@
 //Cart.js
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 function Cart({selectedProducts,totalSelected,totalPrice}) {
@@ -65,6 +65,9 @@ const handleNotify = async (event) => {
   }
 };
 
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
 
   return (
@@ -82,16 +85,17 @@ const handleNotify = async (event) => {
         </li>
       </ul>
       <ul className='context'>
-        <p className='title'>【同在設計-預約單】</p>
+        <p className='title'>Step 1 -- <span>設計好了，確認內容</span></p>
         <li className='info'>
-          <section className='number'>共計{totalSelected}項</section>
           <section className='price'><span>佈置總金額：</span>＄{totalPrice}</section>
+          <section className='number'>共計{totalSelected}項</section>
         </li>
+        <p className='title'>Step 2 -- <span>將設計傳給我們</span></p>
         <li className='context-container'>
           <form onSubmit={handleNotify}>
             <label htmlFor="">姓名：<span>(必填)</span></label>
             <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="" />
-            <label htmlFor="">手機號碼：<span>(訂單編號--必填)</span></label>
+            <label htmlFor="">手機號碼：<span>(訂單編號-必填)</span></label>
             <input type="text" value={phone} onChange={e => setPhone(e.target.value)} placeholder="" />
             <label htmlFor="">佈置日期：</label>
             <input type="date" value={time} onChange={e => setTime(e.target.value)} placeholder="" />
@@ -99,6 +103,7 @@ const handleNotify = async (event) => {
             <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="" />
             <button type="submit" >送出</button>
           </form>
+          <p className='title'>Step 3 -- <span>加入好友，確認訂購細節</span></p>
           <section className='line'>
             <a className='line-btn' href="https://lin.ee/8phpLYwB">
               <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友"/>

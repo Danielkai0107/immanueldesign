@@ -27,6 +27,7 @@ const ContainerB = ({
 
   return (
     <article className="containerB">
+      
       <section className="containerB-btn">
         <span className='clearBtn' onClick={handleClearSelect}></span>
         <span className="download-btn" onClick={handleDownload}></span>
