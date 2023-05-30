@@ -29,7 +29,7 @@ const ContainerB = ({
     <article className="containerB">
       
       <section className="containerB-btn">
-        <span className='clearBtn' onClick={handleClearSelect}></span>
+        <span className='clearBtn' onClick={handleClearSelect}>清空</span>
         <span className="download-btn" onClick={handleDownload}></span>
       </section>
       

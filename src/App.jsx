@@ -105,13 +105,13 @@ function App() {
   const getUniqueCategories = () => {
     return [...new Set(filteredProducts.map((product) => product.categoryName))];
   };
-  // const handleRemoveProduct = (productId) => {
-  //   setSelectedProducts((prevState) => {
-  //     const updatedProducts = prevState.filter((product) => product.id !== productId);
-  //     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-  //     return updatedProducts;
-  //   });
-  // };
+  const handleRemoveProduct = (productId) => {
+    setSelectedProducts((prevState) => {
+      const updatedProducts = prevState.filter((product) => product.id !== productId);
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+      return updatedProducts;
+    });
+  };
 
   // Effect Hooks
 
@@ -176,6 +176,7 @@ function App() {
         selectedProducts={selectedProducts}
         totalSelected={totalSelected}
         totalPrice={totalPrice}
+        handleRemoveProduct={handleRemoveProduct}
       />} />
       <Route path="*" element={<Error />} />
     </Routes>

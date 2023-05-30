@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function Cart({selectedProducts,totalSelected,totalPrice}) {
+function Cart({handleRemoveProduct,selectedProducts,totalSelected,totalPrice}) {
 
   const [name, setName] = useState('');
   const [time, setTime] = useState('');
@@ -77,14 +77,21 @@ useEffect(() => {
           <Link className='back-btn' to='/Main'></Link>
         </li>
         <li className='title'>
-          <p>輕鬆下訂三步驟</p>
+          <p>輕鬆預約三步驟</p>
         </li>
       </ul>
       <ul className='context'>
         <p className='step'>Step 1 -- <span>設計好了，確認內容</span></p>
         <li className='info'>
-          <section className='price'><span>佈置總金額：</span>＄{totalPrice}</section>
+        {selectedProducts.length === 0 && <Link className="start-btn" to="/Main">開始佈置</Link>}
+        {selectedProducts.map((product) => (
+          <section key={product.id} className='selected-item'>
+            <p>{product.name}-{product.variants[product.selectedVariantIndex].info}</p>
+            <span onClick={()=>{handleRemoveProduct(product.id)}}></span>
+          </section>
+        ))}
           <section className='number'>共計{totalSelected}項</section>
+          <section className='price'><span>佈置金額：</span>＄{totalPrice}</section>
         </li>
         <p className='step'>Step 2 -- <span>將設計傳給我們</span></p>
         <li className='context-container'>

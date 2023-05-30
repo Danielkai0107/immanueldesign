@@ -6,7 +6,7 @@ function ShowMsg({totalPrice,selectedProducts}) {
       {selectedProducts.length > 0 && 
       <li>
         <p>目前金額:</p>
-        <span>${totalPrice}</span>
+        <span>$ {totalPrice}</span>
       </li>}
       
     </ul>
