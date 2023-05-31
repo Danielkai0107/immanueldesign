@@ -12,18 +12,17 @@ function Cart({handleRemoveProduct,selectedProducts,totalSelected,totalPrice,set
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isSending, setIsSending] = useState(false);
 
 // 创建一个处理点击事件的函数
 const handleNotify = async (event) => {
-  event.preventDefault(); // 阻止表单的默认提交行为
-  // 确保有选择产品
+  event.preventDefault();
   if (selectedProducts.length === 0) {
     setMessage('尚未選擇商品');
     setTimeout(() => setMessage(''), 3000);
     return;
   }
   
-  // 获取用户姓名
   if (name === '') {
     setMessage('請輸入姓名');
     setTimeout(() => setMessage(''), 3000);
@@ -35,22 +34,22 @@ const handleNotify = async (event) => {
     setTimeout(() => setMessage(''), 3000);
     return;
   }
-  
-  // 创建发送的消息内容
+
   let totalprice = 0;
   let productMessage = selectedProducts.map(product => {
     totalprice += product.price;
     return `${product.name} ${product.variants[product.selectedVariantIndex].info}`;
   }).join('\n');
   
+  // 在發送請求之前，將 isSending 設定為 true
+  setIsSending(true);
+
   try {
-    // 发送一个POST请求到你的后端服务器
     const response = await axios.post('/api/notify', {
       message: `\n姓名：${name}\n佈置日期：${time}\n手機號碼：${phone}\n電子信箱：${email}\n${productMessage}\nTotal Price: ${totalprice}`,
     });
 
-    console.log(response.data); // 在控制台打印响应数据以供调试
-
+    console.log(response.data);
     setSuccess('耶～傳送成功\n剩下最後一步了');
     setTimeout(() => setSuccess(''), 5000);
     setName('')
@@ -58,12 +57,15 @@ const handleNotify = async (event) => {
     setPhone('')
     setEmail('')
   } catch (error) {
-    console.error(error); // 如果出现错误，将其打印到控制台
-
+    console.error(error);
     setError('傳送有誤\n直接加入好友詢問喔');
     setTimeout(() => setError(''), 5000);
+  } finally {
+    // 無論請求成功還是失敗，最後都需要將 isSending 設定為 false
+    setIsSending(false);
   }
 };
+
 
 useEffect(() => {
   window.scrollTo(0, 0);
@@ -124,6 +126,12 @@ useEffect(() => {
           {error !== '' && <p className='window-msg'>
             {error.split('\n').map((item, i) => { return <p key={i}>{item}</p>;})}</p>}
         </section>
+        {isSending && <section className='sending'>
+          <p>傳送中</p>
+          <p>先別離開喔</p>
+          <figure></figure>
+          <span></span>
+        </section>}
     </article>
   )
 }
