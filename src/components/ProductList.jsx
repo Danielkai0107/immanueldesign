@@ -1,8 +1,10 @@
 // ProductList.js
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
+
+  const productListRef = useRef(null);
   // const [isExpanded, setIsExpanded] = useState(true);
   const updateSelectedVariantIndex = (productId, variantIndex) => {
     const updatedProduct = selectedProducts.find((product) => product.id === productId);
@@ -21,6 +23,12 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
   };
   const categoryNameEn = products[0].categoryNameEn
 
+  useEffect(() => {
+    if (productListRef.current) {
+      productListRef.current.scrollLeft += 90;
+    }
+  }, []);
+
   return (
     <section className="product-list">
       <ul className="product-list-header" >
@@ -36,7 +44,7 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
         </li>
         
       </ul>
-      <ul className="product-list-items">
+      <ul className="product-list-items" ref={productListRef}>
         {products.length > 0 ? (
           sortByPrice(products).map((product) => {
             const selectedProduct = selectedProducts.find(

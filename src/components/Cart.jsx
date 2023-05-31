@@ -75,10 +75,10 @@ useEffect(() => {
   return (
     <article className='cart'>
       <ul className='header'>
-        <li className='back-btn'>
+        {/* <li className='back-btn'>
           <span></span>
           <Link to='/Main' onClick={()=>{setIsNavbar(0)}}>返回我的佈置</Link>
-        </li>
+        </li> */}
         <li className='title'>
           <p>輕鬆預約三步驟</p>
         </li>
