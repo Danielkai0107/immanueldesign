@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [current, setCurrent] = useState('p1');
@@ -12,18 +13,45 @@ function Home() {
           default: return 'p1';
         }
       });
-    }, 5000); // Change slide every 3 seconds
+    }, 8000); // Change slide every 3 seconds
 
     // Cleanup on unmount
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <ul className='home'>
-      <li className={current === 'p1' ? 'p1 active' : 'p1'}></li>
-      <li className={current === 'p2' ? 'p2 active' : 'p2'}></li>
-      <li className={current === 'p3' ? 'p3 active' : 'p3'}></li>
-    </ul>
+    <section className='home'>
+      <ul className={current === 'p1' ? 'p1 active' : 'p1'}>
+        <figure></figure>
+        <li className='context-container'>
+          <p className='logo-zh'>同在設計</p>
+          <p className='main'>自己婚禮<span>｜</span>自己決定</p>
+          <p className='second'>與我們一起，讓婚禮佈置變得更簡單，更有趣</p>
+          <p className='second-sm'>開始打造你的婚禮</p>
+          <Link to='/Main'>開始佈置</Link>
+        </li>
+      </ul>
+      <ul className={current === 'p2' ? 'p2 active' : 'p2'}>
+        <figure></figure>
+        <li className='context-container'>
+          <p className='logo-zh'>同在設計</p>
+          <p className='main'>一鍵佈置<span>｜</span>即時預覽</p>
+          <p className='second'>與我們一同創作，將你的夢想婚禮化為現實</p>
+          <p className='second-sm'>一站式解決佈置困擾</p>
+          <Link to='/Main'>開始佈置</Link>
+        </li>
+      </ul>
+      <ul className={current === 'p3' ? 'p3 active' : 'p3'}>
+        <figure></figure>
+        <li className='context-container'>
+          <p className='logo-zh'>同在設計</p>
+          <p className='main'>創造你的婚禮故事</p>
+          <p className='second'>讓我們為你編織一個絕美的婚禮夢想</p>
+          <p className='second-sm'>編織夢想婚禮</p>
+          <Link to='/Main'>開始佈置</Link>
+        </li>
+      </ul>
+    </section>
   )
 }
 

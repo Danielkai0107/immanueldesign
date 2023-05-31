@@ -43,7 +43,7 @@
           scale: 1.1;
         }
         &:active {
-          scale: 0.7;
+          scale: 0.9;
         }
       }
     }
@@ -129,7 +129,7 @@
               scale: 1.1;
             }
           &:active {
-            scale: 0.7;
+            scale: 0.9;
           } 
         }
       }
@@ -185,7 +185,7 @@
             scale: 1.1;
           }
         &:active {
-          scale: 0.7;
+          scale: 0.9;
         } 
       }
       .selected-item {
@@ -218,7 +218,7 @@
             }
           }
           &:active {
-            scale: 0.7;
+            scale: 0.9;
           }
         }
       }
@@ -248,6 +248,7 @@
 .msg {
   width: 100vw;
   overflow: hidden;
+  z-index: 19;
   .window-msg {
     width: 100%;
     padding: 1rem 2rem;
