@@ -33,7 +33,7 @@ function Home() {
       </ul>
       <ul className={current === 'p2' ? 'p2 active' : 'p2'}>
         <figure></figure>
-        <li className='context-container'>
+        <li className='context-home'>
           <p className='logo-zh'>同在設計</p>
           <p className='main'>一鍵佈置<span>｜</span>即時預覽</p>
           <p className='second'>與我們一同創作，將你的夢想婚禮化為現實</p>
@@ -43,7 +43,7 @@ function Home() {
       </ul>
       <ul className={current === 'p3' ? 'p3 active' : 'p3'}>
         <figure></figure>
-        <li className='context-container'>
+        <li className='context-home'>
           <p className='logo-zh'>同在設計</p>
           <p className='main'>創造你的婚禮故事</p>
           <p className='second'>讓我們為你編織一個絕美的婚禮夢想</p>
