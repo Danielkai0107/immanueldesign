@@ -18,7 +18,7 @@ function Cart({handleRemoveProduct,selectedProducts,totalSelected,totalPrice,set
 const handleNotify = async (event) => {
   event.preventDefault();
   if (selectedProducts.length === 0) {
-    setMessage('尚未選擇商品');
+    setMessage('您尚未選擇商品');
     setTimeout(() => setMessage(''), 3000);
     return;
   }
@@ -50,7 +50,7 @@ const handleNotify = async (event) => {
     });
 
     console.log(response.data);
-    setSuccess('耶～傳送成功\n剩下最後一步了');
+    setSuccess('傳送成功\n剩下最後一步了');
     setTimeout(() => setSuccess(''), 5000);
     setName('')
     setTime('')
@@ -58,7 +58,7 @@ const handleNotify = async (event) => {
     setEmail('')
   } catch (error) {
     console.error(error);
-    setError('傳送有誤\n直接加入好友詢問喔');
+    setError('傳送有誤\n請直接加入好友詢問喔');
     setTimeout(() => setError(''), 5000);
   } finally {
     // 無論請求成功還是失敗，最後都需要將 isSending 設定為 false
@@ -122,9 +122,9 @@ useEffect(() => {
       <section className='msg'>
           {message !== '' && <p className='window-msg'>{message}</p>}
           {success !== '' && <p className='window-msg'>
-            {success.split('\n').map((item, i) => { return <p key={i}>{item}</p>;})}</p>}
-          {error !== '' && <p className='window-msg'>
-            {error.split('\n').map((item, i) => { return <p key={i}>{item}</p>;})}</p>}
+            {success.split('\n').map((item, i) => { return <span key={i}>{item}</span>;})}</p>}
+          {error !== '' && <p className='window-msg error'>
+            {error.split('\n').map((item, i) => { return <span key={i}>{item}</span>;})}</p>}
         </section>
         {isSending && <section className='sending'>
           <p>傳送中</p>
