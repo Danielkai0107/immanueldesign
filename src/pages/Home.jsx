@@ -23,7 +23,7 @@ function Home() {
     <section className='home'>
       <ul className={current === 'p1' ? 'p1 active' : 'p1'}>
         <figure></figure>
-        <li className='context-container'>
+        <li className='context-home'>
           <p className='logo-zh'>同在設計</p>
           <p className='main'>自己婚禮<span>｜</span>自己佈置</p>
           <p className='second'>與我們一起，讓婚禮佈置變得更簡單，更有趣</p>
