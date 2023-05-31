@@ -25,7 +25,7 @@ function Home() {
         <figure></figure>
         <li className='context-container'>
           <p className='logo-zh'>同在設計</p>
-          <p className='main'>自己婚禮<span>｜</span>自己決定</p>
+          <p className='main'>自己婚禮<span>｜</span>自己佈置</p>
           <p className='second'>與我們一起，讓婚禮佈置變得更簡單，更有趣</p>
           <p className='second-sm'>開始打造你的婚禮</p>
           <Link to='/Main'>開始佈置</Link>
