@@ -92,6 +92,7 @@
       height: 2rem;
       border-radius: 2rem;
       transition: all 0.1s;
+      cursor: pointer;
       
       figure {
         width: 1.2rem;
@@ -103,6 +104,7 @@
         background-image: url('../../images/color.png');
         background-size: cover;
         background-repeat: no-repeat;
+        cursor: pointer;
 
       }
       ul {
