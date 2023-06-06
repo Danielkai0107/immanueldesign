@@ -20,8 +20,8 @@
   border-radius: 1rem;
   box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
   cursor: pointer;
-  border: 3px solid transparent;
-  transition: all 0.2s;
+  border: 2px solid transparent;
+  transition: all 0.1s;
   //LG
   @include lg {
     width: 30%;
@@ -34,7 +34,7 @@
   &.selected {
     opacity: 1;
     background-color: #F9F7F4;
-    border: 3px solid #DCD4C9;
+    border: 2px solid #906c41;
   }
   .product-image {
     width: 100%;
@@ -91,7 +91,7 @@
       width: 2rem;
       height: 2rem;
       border-radius: 2rem;
-      transition: all 0.4s;
+      transition: all 0.1s;
       
       figure {
         width: 1.2rem;
@@ -117,7 +117,7 @@
         flex-wrap: wrap-reverse;
         gap: .5rem;
         animation: colorMove 0.4s forwards;
-        transition: all 0.6s;
+        transition: all 0.1s;
         &.close {
           display: none;
         }
@@ -132,7 +132,7 @@
           border: none;
           box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.1s;
           span {
             font-size: .4rem;
           }
