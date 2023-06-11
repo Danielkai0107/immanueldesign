@@ -8,22 +8,34 @@ const ContainerB = ({
   
   
 
-  const ProductLayer = ({ product }) => {
+  const ProductLayer = ({ product}) => {
     const [imageSrc, setImageSrc] = useState(null);
-
+  
     useEffect(() => {
-      import(`../images/${product.displayImage}`)
-        .then((image) => {
-          setImageSrc(image.default);
-        });
+      if (product.categoryLayer === 0) {
+        import(`../images/${product.displayImage}`)
+          .then((image) => {
+            setImageSrc(image.default);
+          });
+      }
     }, [product.displayImage, product]);
-
-    return (
-      <figure className="product-layer">
-        {imageSrc && <img src={imageSrc} alt="selected product" className="product-image" />}
-      </figure>
-    );
+  
+    if (product.categoryLayer === 0) {
+      return (
+        <figure className="product-layer">
+          {imageSrc && <img src={imageSrc} alt="selected product" className="product-image" />}
+        </figure>
+      );
+    } else {
+      return (
+        <div
+          className={product.categoryLayer}
+          style={{backgroundColor: product.color}}
+        ></div>
+      );
+    }
   };
+    
 
   return (
     <article className="containerB">
@@ -58,6 +70,7 @@ const ContainerB = ({
                   product={{
                     ...selectedVariant,
                     categoryIndex: product.categoryIndex,
+                    categoryLayer:product.categoryLayer,
                     type: product.type,
                   }}
                 />
