@@ -13,7 +13,7 @@
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#000000",
+        "color": "red",
         "info":"綠",
         "productImage": "大背板.png",
         "displayImage": "大背板.png"
@@ -40,16 +40,16 @@
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "#555555",
+        "color": "green",
         "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": "大背板.png"
+        "productImage": "前草1.png",
+        "displayImage": "前草1.png"
       },
       {
-        "color": "red",
-        "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": "大背板.png"
+        "color": "orange",
+        "info":"橘",
+        "productImage": "前草2.png",
+        "displayImage": "前草2.png"
       }
     ]
   }

@@ -16,7 +16,6 @@ const ProductCard = ({
         updateSelectedVariantIndex(product.id, index);
       }
     };
-  const [selectedColor, setSelectedColor] = useState(product.variants[0].color || "");
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Effect Hooks
@@ -30,7 +29,7 @@ const ProductCard = ({
   return (
     <li
       className={`product-card ${isSelected ? "selected" : ""}`}
-      onClick={() => {toggleProduct({ ...product, selectedVariantIndex });setIsExpanded(false)}}
+      onClick={() => {toggleProduct({ ...product, selectedVariantIndex });setIsExpanded(false);}}
     >
       <section className="content">
       {imageSrc && (
@@ -45,7 +44,7 @@ const ProductCard = ({
         <article className="color-selector-container">
           <p className="size">{product.variants.length} 色</p>
           {isSelected ? 
-          (<section className="color-showBox" style={{ backgroundColor: selectedColor }}
+          (<section className="color-showBox" style={{ backgroundColor: product.variants[selectedVariantIndex].color}}
             onClick={(e) => {
               e.stopPropagation();
               setIsExpanded(!isExpanded)
@@ -59,14 +58,13 @@ const ProductCard = ({
                     onClick={(e) => {
                       e.stopPropagation();
                       handleColorButtonClick(index);
-                      setSelectedColor(variant.color);
                       setIsExpanded(!isExpanded)
                     }}
                   ><span></span></li>
                 ))}
               </ul>
             </section>):
-            (<section className="color-default" style={{ backgroundColor: selectedColor }} ></section>)}
+            (<section className="color-default" style={{ backgroundColor: product.variants[selectedVariantIndex].color }} ></section>)}
         </article>
       )}
       
