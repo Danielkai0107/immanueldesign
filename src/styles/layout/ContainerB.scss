@@ -9,6 +9,8 @@
     width: 100%;
   }
   .displayIMG-container {
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: $containerB-sm-height;
     border-radius: 1rem;

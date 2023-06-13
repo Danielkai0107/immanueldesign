@@ -1,40 +1,12 @@
 // ContainerB.js
-import React, { useEffect, useState } from "react";
+import React from "react";
+import ProductLayer from "./ProductLayer";
 
 const ContainerB = ({ 
   selectedProducts,products,backgroundClass,
   handleClearSelect, handleBackgroundChange,
   screenshotDataUrl,handleDownload }) => {
   
-  
-
-  const ProductLayer = ({ product}) => {
-    const [imageSrc, setImageSrc] = useState(null);
-  
-    useEffect(() => {
-      if (product.categoryLayer === 0) {
-        import(`../images/${product.displayImage}`)
-          .then((image) => {
-            setImageSrc(image.default);
-          });
-      }
-    }, [product.displayImage, product]);
-  
-    if (product.categoryLayer === 0) {
-      return (
-        <figure className="product-layer">
-          {imageSrc && <img src={imageSrc} alt="selected product" className="product-image" />}
-        </figure>
-      );
-    } else {
-      return (
-        <div
-          className={product.categoryLayer}
-          style={{backgroundColor: product.color}}
-        ></div>
-      );
-    }
-  };
     
 
   return (
@@ -70,9 +42,10 @@ const ContainerB = ({
                   product={{
                     ...selectedVariant,
                     categoryIndex: product.categoryIndex,
-                    categoryLayer:product.categoryLayer,
+                    categoryLayer:product.LayerSize,
                     type: product.type,
                   }}
+                  handleBackgroundChange={handleBackgroundChange}
                 />
               );
             })

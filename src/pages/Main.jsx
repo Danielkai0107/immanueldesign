@@ -1,7 +1,7 @@
 // Main.js
 import React, { useEffect, useState } from "react";
 import ProductList from '../components/ProductList'
-import { bgc } from "../content/bgc";
+import { bgc } from "../constants/bgc";
 import ShowMsg from "../components/ShowMsg";
 
 const ContainerB = React.lazy(() => import('../components/ContainerB'));

@@ -1,8 +1,24 @@
+.layer-container {
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+    opacity: 0.5;
+  }
+}
 .main-board-1 {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10%;
-  height: 10%;
+  top: 60%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
+
+.main-board-2 {
+  position: absolute;
+  top: 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+

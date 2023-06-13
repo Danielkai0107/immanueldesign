@@ -4,11 +4,11 @@
     "name": "大背板",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
-    "insideIndex":1,
+    "insideIndex":3,
     "categoryName": "主背板",
     "categoryNameEn": "｜Main",
     "categoryIndex": 1,
-    "categoryLayer": "main-board-1",
+    "LayerSize": 1,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
@@ -27,29 +27,29 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "大背板",
     "price": 7000,
     "sizeInfo": "200 x 400cm",
-    "insideIndex":1,
+    "insideIndex":2,
     "categoryName": "主背板",
     "categoryNameEn": "｜Main",
     "categoryIndex": 1,
-    "categoryLayer": 0,
+    "LayerSize": 2,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "green",
+        "color": "gray",
         "info":"綠",
-        "productImage": "前草1.png",
-        "displayImage": "前草1.png"
+        "productImage": "大背板.png",
+        "displayImage": ""
       },
       {
-        "color": "orange",
-        "info":"橘",
-        "productImage": "前草2.png",
-        "displayImage": "前草2.png"
+        "color": "blue",
+        "info":"綠",
+        "productImage": "大背板.png",
+        "displayImage": "大背板.png"
       }
     ]
   }
