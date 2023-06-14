@@ -25,7 +25,7 @@ function App() {
   const [isNavbar, setIsNavbar] = useState(0);
 
   const handleDownload = () => {
-    const containerB = document.querySelector('.displayIMG-container');
+      const containerB = document.querySelector('.displayIMG-container');
     html2canvas(containerB).then(canvas => {
       const dataUrl = canvas.toDataURL();
       setScreenshotDataUrl(dataUrl);
@@ -42,8 +42,8 @@ function App() {
     html2canvas(containerB).then(canvas => {
     const dataUrl = canvas.toDataURL();
     setScreenshotDataUrl(dataUrl);
+    console.log(dataUrl);
   });}
-  
   
 
   // Handler Functions
@@ -154,7 +154,11 @@ function App() {
 
   return (
   <Router>
-    <Navbar totalSelected={totalSelected} isNavbar={isNavbar} setIsNavbar={setIsNavbar} />
+    <Navbar 
+        totalSelected={totalSelected} 
+        isNavbar={isNavbar} setIsNavbar={setIsNavbar} 
+        handleScreenshot={handleScreenshot}
+    />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Main" element={<Main 
@@ -171,6 +175,7 @@ function App() {
         screenshotDataUrl={screenshotDataUrl}
         handleDownload={handleDownload}
         handleScreenshot={handleScreenshot}
+        setScreenshotDataUrl={setScreenshotDataUrl}
       />} />
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 

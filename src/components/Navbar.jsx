@@ -2,13 +2,14 @@
 import React, { memo }from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Navbar({totalSelected,isNavbar,setIsNavbar}) {
+function Navbar({totalSelected,isNavbar,setIsNavbar,handleScreenshot}) {
 
   const navigate = useNavigate();
   
   const handleCartClick =()=>{
     navigate('/Cart')
     setIsNavbar(1)
+    handleScreenshot()
   }
 
   const handleMainClick =()=>{
@@ -25,7 +26,7 @@ function Navbar({totalSelected,isNavbar,setIsNavbar}) {
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/"><span className='home-icon'></span>首頁</Link>
           <Link className="navbar-options-main" to="/Main"><span className='deco-icon'></span>我的佈置</Link>
-          <Link className="navbar-options-main" to="/Cart"><span className='cart-icon'></span>我要預約
+          <Link className="navbar-options-main" to="/Cart" onClick={handleScreenshot}><span className='cart-icon'></span>我要預約
           {totalSelected > 0 && <span className='red-dot'>{totalSelected}</span>}
           </Link>
         </li>

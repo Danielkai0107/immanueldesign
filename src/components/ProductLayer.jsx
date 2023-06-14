@@ -8,10 +8,13 @@ function ProductLayer({product}) {
   const layerSize = layerMenu.find(item => item.id === product.categoryLayer)
 
   useEffect(() => {
-    import(`../images/${product.displayImage}`)
+    if(product.displayImage) {
+      import(`../images/${product.displayImage}`)
       .then((image) => {
         setImageSrc(image.default);
       });
+    }
+    
   }, [product.displayImage, product]);
 
 
