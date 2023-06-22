@@ -1,7 +1,6 @@
 // Main.js
 import React, { useEffect, useState } from "react";
 import ProductList from '../components/ProductList'
-import { bgc } from "../constants/bgc";
 import ShowMsg from "../components/ShowMsg";
 import html2canvas from "html2canvas";
 
@@ -17,27 +16,7 @@ function Main({
   screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl
 }) {
   
-  //換背景功能
-  const [bgcIndex, setBgcIndex] = useState(0);
-  const [backgroundClass, setBackgroundClass] = useState('bg-image-1');
-  const handleBackgroundChange = (direction) => { // 更新此函数
-    let newIndex = direction === 'next' ? bgcIndex + 1 : bgcIndex - 1;
-    // 轮回到数组的另一端
-    if(newIndex < 0) {
-      newIndex = bgc.length - 1;
-    } else if (newIndex >= bgc.length) {
-      newIndex = 0;
-    }
-    setBgcIndex(newIndex);
-    const newClass = bgc[newIndex];
-    setBackgroundClass(newClass);
-    localStorage.setItem("backgroundClass", newClass);
-  };
-  useEffect(() => {
-    const newClass = bgc[bgcIndex];
-    setBackgroundClass(newClass);
-    localStorage.setItem("backgroundClass", newClass);
-  }, [bgcIndex]);
+  
 
   //置頂按鈕功能
   const [isTopButton, setIsTopButton] = useState(false);
@@ -103,8 +82,6 @@ function Main({
       <aside className="container-for-BC">
       <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>
         <ContainerB
-          backgroundClass={backgroundClass}
-          handleBackgroundChange={handleBackgroundChange}
           selectedProducts={selectedProducts}
           products={products}
           handleClearSelect={handleClearSelect}

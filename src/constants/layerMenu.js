@@ -1,9 +1,11 @@
 export const layerMenu = [
   {
     id:1,
-    width:'5%',
-    height:'30%',
-    className:'main-board-1',
+    width:'38%',
+    height:'60%',
+    bottom:'50%',
+    left:'50%',
+    className:'mainboard-3 mc',
     axis: {axis:'x'}
   },
   {

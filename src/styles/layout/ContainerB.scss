@@ -34,6 +34,9 @@
       aspect-ratio: 16/9;
       z-index: -1;
       transition: all 0.4s;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .product-layer {
       position: absolute;
@@ -106,6 +109,30 @@
           scale: 0.7;
         }
       }
+    }
+    .upload-btn1{
+      background-color: #fff;
+      box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.5);
+      border-radius: 2rem;
+      border: 2px solid transparent;
+      padding: .6rem 1rem;
+      z-index: 100;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        scale: 1;
+        //MD
+        @include md {
+          scale: 1.1;
+        }
+      }
+      &:active {
+        scale: 0.7;
+      }
+    }
+    .upload-btn2{
+      display: none;
     }
   }
 
