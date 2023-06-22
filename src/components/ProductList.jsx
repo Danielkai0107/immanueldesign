@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }) => {
+const ProductList = ({ categoryName, products, selectedProducts, toggleProduct,productQuantities,changeProductCount}) => {
 
   const productListRef = useRef(null);
   // const [isExpanded, setIsExpanded] = useState(true);
@@ -58,6 +58,8 @@ const ProductList = ({ categoryName, products, selectedProducts, toggleProduct }
                 selectedVariantIndex={selectedProduct?.selectedVariantIndex || 0}
                 toggleProduct={toggleProduct}
                 updateSelectedVariantIndex={updateSelectedVariantIndex}
+                productQuantities={productQuantities}
+                changeProductCount={changeProductCount}
               />
             );
           })

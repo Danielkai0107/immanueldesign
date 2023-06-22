@@ -7,7 +7,11 @@ const ProductCard = ({
   toggleProduct,
   selectedVariantIndex,
   updateSelectedVariantIndex,
+  productQuantities, // 從props接收
+  changeProductCount // 從props接收
   }) => {
+
+  const productCount = productQuantities[product.id] || 0;
   // State Hooks
   const [imageSrc, setImageSrc] = useState(null);
   // Handler Functions
@@ -31,6 +35,12 @@ const ProductCard = ({
       className={`product-card ${isSelected ? "selected" : ""}`}
       onClick={() => {toggleProduct({ ...product, selectedVariantIndex });setIsExpanded(false);}}
     >
+      {isSelected ? 
+      <ul className="count-btn">
+        <li onClick={(e) => {e.stopPropagation(); changeProductCount(product.id, -1);}}></li>
+        <span>{productCount}</span>
+        <li onClick={(e) => {e.stopPropagation(); changeProductCount(product.id, 1);}}></li>
+      </ul>:null}
       <section className="content">
       {imageSrc && (
         <img src={imageSrc} alt="product" className="product-image" />
@@ -42,7 +52,7 @@ const ProductCard = ({
       
       {product.variants && (
         <article className="color-selector-container">
-          <p className="size">{product.variants.length} 款</p>
+          <p className="size">{product.variants.length} 盆器</p>
           {isSelected ? 
           (<section className="color-showBox" style={{ backgroundColor: product.variants[selectedVariantIndex].color}}
             onClick={(e) => {

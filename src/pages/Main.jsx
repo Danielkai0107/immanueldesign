@@ -13,7 +13,7 @@ function Main({
   isDataReady,getUniqueCategories,filteredProducts,
   selectedProducts,toggleProduct,updateSelectedVariantIndex,
   products,totalSelected,totalPrice,setSelectedProducts,
-  screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl
+  screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl,productQuantities,changeProductCount
 }) {
   
   
@@ -76,6 +76,8 @@ function Main({
             selectedProducts={selectedProducts}
             toggleProduct={toggleProduct}
             updateSelectedVariantIndex={updateSelectedVariantIndex}
+            productQuantities={productQuantities}
+            changeProductCount={changeProductCount}
           />
         ))}
       </section>
@@ -87,6 +89,7 @@ function Main({
           handleClearSelect={handleClearSelect}
           screenshotDataUrl={screenshotDataUrl}
           handleDownload={handleDownload}
+          productQuantities={productQuantities}
         />
       </React.Suspense>
       <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>

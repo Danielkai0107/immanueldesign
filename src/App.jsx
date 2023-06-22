@@ -1,3 +1,4 @@
+//App.js最外層
 import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
@@ -23,6 +24,8 @@ function App() {
   // const [filterLevel, setFilterLevel] = useState("high"); 
   const [screenshotDataUrl, setScreenshotDataUrl] = useState(null);
   const [isNavbar, setIsNavbar] = useState(0);
+  const [productQuantities, setProductQuantities] = useState({});
+
 
   const handleDownload = () => {
       const containerB = document.querySelector('.displayIMG-container');
@@ -52,15 +55,15 @@ function App() {
       const existingProductIndex = prevState.findIndex(
         (product) => product.id === selectedProduct.id
       );
-
+  
       let updatedProducts;
-
+  
       if (existingProductIndex > -1) {
-        // If the product exists and the variant is the same, remove it
+        // 如果商品已存在并且variant相同，我们将不做任何操作
         if (prevState[existingProductIndex].selectedVariantIndex === selectedProduct.selectedVariantIndex) {
-          updatedProducts = prevState.filter((product) => product.id !== selectedProduct.id);
+          updatedProducts = [...prevState];
         } else {
-          // Otherwise, update the variant
+          // 否则，更新variant
           updatedProducts = [...prevState];
           updatedProducts[existingProductIndex] = {
             ...selectedProduct,
@@ -70,7 +73,7 @@ function App() {
           };
         }
       } else {
-        // If the product does not exist, add it
+        // 如果商品不存在，添加它，并将其数量设为1
         updatedProducts = [
           ...prevState,
           {
@@ -80,15 +83,72 @@ function App() {
             insideIndex: selectedProduct.insideIndex,
           },
         ];
+        setProductQuantities((prevState) => ({
+          ...prevState,
+          [selectedProduct.id]: 1
+        }));
       }
-
-      // Save to localStorage
-    localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-
+  
+      // 保存到localStorage
+      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
+  
       return updatedProducts;
     });
   };
   
+  useEffect(() => {
+    fetch("/data.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+        const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
+        setSelectedProducts(verifiedProducts);
+  
+        const recoveredQuantities = JSON.parse(localStorage.getItem("productQuantities")) || {};
+        setProductQuantities(recoveredQuantities);
+  
+        setIsDataReady(true); // 資料準備完成
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  
+  const changeProductCount = (productId, amount) => {
+    setProductQuantities((prevState) => {
+      const prevQuantity = prevState[productId] || 0;
+      const newQuantity = prevQuantity + amount;
+  
+      if (newQuantity < 0 || (newQuantity === 0 && amount < 0)) {
+        // 如果数量小于0或者数量为0且尝试减少，移除商品并将其数量设为0
+        handleRemoveProduct(productId);
+        const updatedQuantities = { ...prevState, [productId]: 0 };
+  
+        // 保存到localStorage
+        localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
+  
+        return updatedQuantities;
+      }
+  
+      const updatedQuantities = { ...prevState, [productId]: newQuantity };
+  
+      // 保存到localStorage
+      localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
+  
+      return updatedQuantities;
+    });
+  };
+  
+  
+
+
   const totalSelected = selectedProducts.length;
   const totalPrice = selectedProducts.reduce(
     (acc, product) => acc + products.find((p) => p.id === product.id).price,
@@ -176,6 +236,8 @@ function App() {
         handleDownload={handleDownload}
         handleScreenshot={handleScreenshot}
         setScreenshotDataUrl={setScreenshotDataUrl}
+        productQuantities={productQuantities}
+        changeProductCount={changeProductCount}
       />} />
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 

@@ -1,3 +1,4 @@
+//ProductLayer.js
 import React, { useEffect, useState } from 'react'
 import Draggable from 'react-draggable';
 import { layerMenu } from '../constants/layerMenu';
@@ -18,10 +19,6 @@ function ProductLayer({product}) {
   }, [product.displayImage, product]);
 
 
-
-    // <figure className="product-layer">
-    //   {imageSrc && <img src={imageSrc} alt="selected product" className="product-image" />}
-    // </figure>
 
     return (
       <Draggable bounds="parent" {...layerSize.axis}>
