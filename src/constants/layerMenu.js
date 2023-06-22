@@ -1,25 +1,26 @@
 export const layerMenu = [
   {
     id:1,
-    width:'38%',
-    height:'60%',
-    bottom:'50%',
-    left:'50%',
-    className:'mainboard-3 mc',
-    axis: {axis:'x'}
+    name:'small',
+    width:'12%',
+    ratio:'7/10',
+    className:'',
+    axis: null
   },
   {
     id:2,
-    width:'50%',
-    height:'50%',
-    className:'main-board-2',
+    name:'middle',
+    width:'22%',
+    ratio:'1/2',
+    className:'',
     axis: null
   },
   {
     id:3,
-    width:'50%',
-    height:'20%',
-    className:'main-board-3',
-    axis: {axis:'x'}
+    name:'large',
+    width:'22%',
+    ratio:'1/2',
+    className:'',
+    axis: null
   },
 ]

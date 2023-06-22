@@ -80,7 +80,7 @@ useEffect(() => {
           <Link to='/Main' onClick={()=>{setIsNavbar(0)}}>返回我的佈置</Link>
         </li> */}
         <li className='title'>
-          <p>輕鬆預約三步驟</p>
+          <p>輕鬆訂購三步驟</p>
         </li>
       </ul>
       <ul className='context'>

@@ -20,7 +20,7 @@ return (
         <p>＊所有道具為出租模式</p>
       </li>
       <li className='Connect' >
-        <Link to='/Cart' onClick={handleScreenshot}>立即預約檔期</Link>
+        <Link to='/Cart' onClick={handleScreenshot}>立即訂購</Link>
       </li>
     </ul>
   </section>

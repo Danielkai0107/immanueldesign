@@ -1,55 +1,55 @@
 [
   {
     "id": 1,
-    "name": "大背板",
-    "price": 7000,
-    "sizeInfo": "200 x 400cm",
+    "name": "蘋果樹",
+    "price": 300,
+    "sizeInfo": "60 x 45 cm",
+    "categoryName": "小型植栽",
+    "categoryNameEn": "｜Small Plant",
+    "categoryIndex": 2,
     "insideIndex":3,
-    "categoryName": "主背板",
-    "categoryNameEn": "｜Main",
-    "categoryIndex": 1,
     "LayerSize": 1,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "red",
+        "color": "#B29F8E",
         "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": ""
+        "productImage": "plant2.png",
+        "displayImage": "plant2.png"
       },
       {
-        "color": "blue",
+        "color": "#CCBFB3",
         "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": "大背板.png"
+        "productImage": "plant2.png",
+        "displayImage": "plant2.png"
       }
     ]
   },
   {
-    "id": 11,
-    "name": "大背板",
-    "price": 7000,
-    "sizeInfo": "200 x 400cm",
-    "insideIndex":2,
-    "categoryName": "主背板",
-    "categoryNameEn": "｜Main",
+    "id": 2,
+    "name": "天堂鳥",
+    "price": 6400,
+    "sizeInfo": "120 x 50 cm",
+    "categoryName": "大型植栽",
+    "categoryNameEn": "｜Large Plant",
     "categoryIndex": 1,
-    "LayerSize": 2,
+    "insideIndex":1,
+    "LayerSize": 3,
     "budgetLevel": "low",
     "selectedVariantIndex": 0,
     "variants": [
       {
-        "color": "gray",
+        "color": "#997F68",
         "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": ""
+        "productImage": "plant1.png",
+        "displayImage": "plant1.png"
       },
       {
-        "color": "blue",
+        "color": "#E5DFD9",
         "info":"綠",
-        "productImage": "大背板.png",
-        "displayImage": "大背板.png"
+        "productImage": "plant1.png",
+        "displayImage": "plant1.png"
       }
     ]
   }

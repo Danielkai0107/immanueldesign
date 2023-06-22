@@ -26,11 +26,10 @@ function ProductLayer({product}) {
     return (
       <Draggable bounds="parent" {...layerSize.axis}>
         <ul
-          className={`layer-container ${layerSize.className}`}
+          className={`layer-container layer-position ${layerSize.className}`}
           style={{ 
             width: layerSize.width,
-            height: layerSize.height,
-            backgroundColor: product.color, 
+            aspectRatio: layerSize.ratio,
             backgroundImage: `url(${imageSrc})`
           }}
         >
