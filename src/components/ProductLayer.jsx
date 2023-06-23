@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Draggable from 'react-draggable';
 import { layerMenu } from '../constants/layerMenu';
 
-function ProductLayer({product,position, onPositionChange}) {
+function ProductLayer({product,onPositionChange,position}) {
   const [imageSrc, setImageSrc] = useState(null);
   const layerSize = layerMenu.find(item => item.id === product.categoryLayer)
 
@@ -24,7 +24,7 @@ function ProductLayer({product,position, onPositionChange}) {
       bounds="parent" 
       {...layerSize.axis}
       position={position}
-      onStop={handleStop}  // 在拖拽结束时调用 handleMoveToFront 函数
+      onStop={handleStop}
     >
       <ul
         className={`layer-container layer-position ${layerSize.className}`}

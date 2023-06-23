@@ -2,15 +2,26 @@
 import React, {  useEffect, useState } from "react";
 import ProductLayer from "./ProductLayer";
 
+
 const ContainerB = ({ 
-  selectedProducts,products,handleClearSelect,
-  screenshotDataUrl,handleDownload,productQuantities,productPositions,setProductPositions }) => {
+  selectedProducts,setSelectedProducts,
+  screenshotDataUrl,handleDownload }) => {
 
   const [imageSrc, setImageSrc] = useState(null);
   const [bgcList, setBgcList] = useState(['b1.png','b2.png']);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [productPositions, setProductPositions] = useState({});
+
   // 在 useState 開頭添加
 
+  //清除按鈕功能
+  const handleClearSelect = () => {
+    if (selectedProducts.length > 0) {
+      setProductPositions({});
+      setSelectedProducts([]);
+      localStorage.setItem("selectedProducts", JSON.stringify([]));
+    }
+  };
 
   const handleBackgroundChange = (direction) => {
     if (direction === 'pre') {
@@ -57,47 +68,41 @@ const ContainerB = ({
       <section className="displayIMG-container">
         <figure className="layer-bgc" style={{
             backgroundImage: `url(${imageSrc})`
-          }}></figure>
-        
+          }}>
+        </figure>
         {
-          selectedProducts
-          .sort((a, b) => {
-            if (a.categoryIndex !== b.categoryIndex) {
-              return a.categoryIndex - b.categoryIndex;
-            } else {
-              return a.insideIndex - b.insideIndex;
-            }
-          })
-            .map((selectedProduct) => {
-              const product = products.find((p) => p.id === selectedProduct.id);
-              const selectedVariant = product.variants[selectedProduct.selectedVariantIndex];
-              // 获取商品数量
-              const productQuantity = productQuantities[selectedProduct.id] || 1;
-              
-              // 创建一个数组来呈现多个商品层
-              const productLayers = Array(productQuantity).fill().map((_, i) => (
-                <ProductLayer
+  selectedProducts
+    .sort((a, b) => {
+      if (a.categoryIndex !== b.categoryIndex) {
+        return a.categoryIndex - b.categoryIndex;
+      } else {
+        return a.insideIndex - b.insideIndex;
+      }
+    })
+    .flatMap((selectedProduct) => {
+      const productQuantity = selectedProduct.quantity || 1;
+
+      return Array(productQuantity).fill().map((_, i) => (
+        <ProductLayer
           key={`${selectedProduct.id}-${i}`} // 增加索引以避免重复的键
           product={{
-            ...selectedVariant,
-            categoryIndex: product.categoryIndex,
-            categoryLayer:product.LayerSize,
-            type: product.type,
+            ...selectedProduct,
+            categoryIndex: selectedProduct.categoryIndex,
+            categoryLayer:selectedProduct.LayerSize,
           }}
           handleBackgroundChange={handleBackgroundChange}
           position={productPositions[`${selectedProduct.id}-${i}`]}
           onPositionChange={(newPosition) => {
-            setProductPositions((prevPositions) => ({
-              ...prevPositions,
-              [`${selectedProduct.id}-${i}`]: newPosition,
-            }));
-          }}
+          setProductPositions((prevPositions) => ({
+            ...prevPositions,
+            [`${selectedProduct.id}-${i}`]: newPosition,
+          }));
+  }}
         />
-              ));
+      ));
+    })
+}
 
-              return productLayers;
-            })
-        }
         
       </section>
       {/* {screenshotDataUrl && <img className="screenshot" src={screenshotDataUrl} alt="Screenshot" />} */}

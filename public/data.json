@@ -14,9 +14,15 @@
     "variants": [
       {
         "color": "#B29F8E",
-        "info":"綠",
+        "info":"水泥",
         "productImage": "plant2.png",
         "displayImage": "plant2.png"
+      },
+      {
+        "color": "#C5B67B",
+        "info":"陶",
+        "productImage": "plant2-1.png",
+        "displayImage": "plant2-1.png"
       }
     ]
   },
@@ -35,9 +41,15 @@
     "variants": [
       {
         "color": "#997F68",
-        "info":"綠",
+        "info":"水泥",
         "productImage": "plant1.png",
         "displayImage": "plant1.png"
+      },
+      {
+        "color": "#7D8758",
+        "info":"磨石子",
+        "productImage": "plant1-1.png",
+        "displayImage": "plant1-1.png"
       }
     ]
   }

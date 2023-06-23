@@ -16,8 +16,6 @@ function Main({
   screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl,productQuantities,changeProductCount
 }) {
   
-  
-  const [productPositions, setProductPositions] = useState({});
 
   //置頂按鈕功能
   const [isTopButton, setIsTopButton] = useState(false);
@@ -37,14 +35,6 @@ function Main({
     };
   }, [isTopButton]);
 
-  //清除按鈕功能
-  const handleClearSelect = () => {
-    setProductPositions({});
-    if (selectedProducts.length > 0) {
-      setSelectedProducts([]);
-      localStorage.setItem("selectedProducts", JSON.stringify([]));
-    }
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -88,12 +78,10 @@ function Main({
         <ContainerB
           selectedProducts={selectedProducts}
           products={products}
-          handleClearSelect={handleClearSelect}
           screenshotDataUrl={screenshotDataUrl}
           handleDownload={handleDownload}
           productQuantities={productQuantities}
-          productPositions={productPositions}
-          setProductPositions={setProductPositions}
+          setSelectedProducts={setSelectedProducts}
         />
       </React.Suspense>
       <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>

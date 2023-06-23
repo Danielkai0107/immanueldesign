@@ -3,23 +3,18 @@ import React, { useState, useEffect } from "react";
 
 const ProductCard = ({
   product,
-  isSelected,
   toggleProduct,
-  selectedVariantIndex,
-  updateSelectedVariantIndex,
-  productQuantities, // 從props接收
-  changeProductCount // 從props接收
-  }) => {
-
-  const productCount = productQuantities[product.id] || 0;
+}) => {
   // State Hooks
   const [imageSrc, setImageSrc] = useState(null);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);  // 添加新的state
   // Handler Functions
   const handleColorButtonClick = (index) => {
-      if (selectedVariantIndex !== index) {
-        updateSelectedVariantIndex(product.id, index);
-      }
-    };
+    if (selectedVariantIndex !== index) {
+      setSelectedVariantIndex(index);  // 改為使用新的state
+    }
+  };
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Effect Hooks
@@ -31,16 +26,14 @@ const ProductCard = ({
   }, [product, selectedVariantIndex]);
 
   return (
-    <li
-      className={`product-card ${isSelected ? "selected" : ""}`}
-      onClick={() => {toggleProduct({ ...product, selectedVariantIndex });setIsExpanded(false);}}
-    >
-      {isSelected ? 
-      <ul className="count-btn">
-        <li onClick={(e) => {e.stopPropagation(); changeProductCount(product.id, -1);}}></li>
-        <span>{productCount}</span>
-        <li onClick={(e) => {e.stopPropagation(); changeProductCount(product.id, 1);}}></li>
-      </ul>:null}
+    <li className="product-card" > 
+      <ul className="addSelect-btn">
+        <li onClick={(e) => {
+          e.stopPropagation();
+          toggleProduct({ ...product, selectedVariantIndex });
+          }}
+        ></li>
+      </ul>
       <section className="content">
       {imageSrc && (
         <img src={imageSrc} alt="product" className="product-image" />
@@ -52,9 +45,8 @@ const ProductCard = ({
       
       {product.variants && (
         <article className="color-selector-container">
-          <p className="size">{product.variants[0].info} </p>
-          {isSelected ? 
-          (<section className="color-showBox" style={{ backgroundColor: product.variants[selectedVariantIndex].color}}
+          <p className="size">{product.variants[selectedVariantIndex].info} </p>
+          <section className="color-showBox" style={{ backgroundColor: product.variants[selectedVariantIndex].color}}
             onClick={(e) => {
               e.stopPropagation();
               setIsExpanded(!isExpanded)
@@ -73,8 +65,7 @@ const ProductCard = ({
                   ><span></span></li>
                 ))}
               </ul>
-            </section>):
-            (<section className="color-default" style={{ backgroundColor: product.variants[selectedVariantIndex].color }} ></section>)}
+            </section>
         </article>
       )}
       

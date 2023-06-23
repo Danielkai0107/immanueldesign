@@ -12,23 +12,70 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import html2canvas from 'html2canvas';
+import { useSelector, useDispatch } from 'react-redux'
+import { setProducts } from './redux/slice/productSlice';
 
 
 function App() {
 
+  //Redux
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
   
-
   // State Hooks
-  const [products, setProducts] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [isDataReady, setIsDataReady] = useState(false); // 追加資料準備狀態
-  // const [filterLevel, setFilterLevel] = useState("high"); 
+  const [isDataReady, setIsDataReady] = useState(false);
   const [screenshotDataUrl, setScreenshotDataUrl] = useState(null);
   const [isNavbar, setIsNavbar] = useState(0);
-  const [productQuantities, setProductQuantities] = useState({});
+  const [selectedProducts, setSelectedProducts] = useState(JSON.parse(localStorage.getItem('selectedProducts')) || []);
+  const totalSelected = selectedProducts.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+    );
+  const totalPrice = selectedProducts.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+    ).toLocaleString();
+  // const [filterLevel, setFilterLevel] = useState("high"); 
 
-
+  // Handler Functions
+  const toggleProduct = (product) => {
+    const existingProductIndex = selectedProducts.findIndex(p => 
+      p.id === product.id && 
+      p.name === product.name && 
+      p.price === product.price && 
+      p.categoryIndex === product.categoryIndex && 
+      p.insideIndex === product.insideIndex && 
+      p.LayerSize === product.LayerSize && 
+      p.color === product.variants[product.selectedVariantIndex].color &&
+      p.info === product.variants[product.selectedVariantIndex].info &&
+      p.productImage === product.variants[product.selectedVariantIndex].productImage &&
+      p.displayImage === product.variants[product.selectedVariantIndex].productImage
+    );
+    if (existingProductIndex !== -1) {
+      // 商品已經存在，增加數量
+      setSelectedProducts(prevProducts => {
+        const newProducts = [...prevProducts];
+        newProducts[existingProductIndex].quantity += 1;
+        return newProducts;
+      });
+    } else {
+      // 商品不存在，添加新商品
+      setSelectedProducts(prevProducts => [...prevProducts, {
+        id:product.id,
+        name: product.name,
+        price: product.price,
+        categoryIndex: product.categoryIndex,
+        insideIndex: product.insideIndex,
+        LayerSize: product.LayerSize,
+        color: product.variants[product.selectedVariantIndex].color,
+        info: product.variants[product.selectedVariantIndex].info,
+        productImage: product.variants[product.selectedVariantIndex].productImage,
+        displayImage: product.variants[product.selectedVariantIndex].productImage,
+        quantity: 1
+      }]);
+    }
+  };
   const handleDownload = () => {
       const containerB = document.querySelector('.displayIMG-container');
     html2canvas(containerB).then(canvas => {
@@ -40,8 +87,6 @@ function App() {
       a.click();
     });
   };
-
-
   const handleScreenshot = () => {
     const containerB = document.querySelector('.displayIMG-container');
     html2canvas(containerB).then(canvas => {
@@ -49,89 +94,6 @@ function App() {
     setScreenshotDataUrl(dataUrl);
     console.log(dataUrl);
   });}
-  
-
-  // Handler Functions
-  const toggleProduct = (selectedProduct) => {
-    setSelectedProducts((prevState) => {
-      const existingProductIndex = prevState.findIndex(
-        (product) => product.id === selectedProduct.id
-      );
-  
-      let updatedProducts;
-  
-      if (existingProductIndex > -1) {
-        // 如果商品已存在并且variant相同，我们将不做任何操作
-        if (prevState[existingProductIndex].selectedVariantIndex === selectedProduct.selectedVariantIndex) {
-          updatedProducts = [...prevState];
-        } else {
-          // 否则，更新variant
-          updatedProducts = [...prevState];
-          updatedProducts[existingProductIndex] = {
-            ...selectedProduct,
-            categoryIndex: selectedProduct.categoryIndex,
-            clickOrder: prevState[existingProductIndex].clickOrder,
-            insideIndex: selectedProduct.insideIndex,
-          };
-        }
-      } else {
-        // 如果商品不存在，添加它，并将其数量设为1
-        updatedProducts = [
-          ...prevState,
-          {
-            ...selectedProduct,
-            categoryIndex: selectedProduct.categoryIndex,
-            clickOrder: prevState.length + 1,
-            insideIndex: selectedProduct.insideIndex,
-          },
-        ];
-        setProductQuantities((prevState) => ({
-          ...prevState,
-          [selectedProduct.id]: 1
-        }));
-      }
-  
-      // 保存到localStorage
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-  
-      return updatedProducts;
-    });
-  };
-  
-  useEffect(() => {
-    fetch("/data.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setFilteredProducts(data);
-        const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
-        const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
-        setSelectedProducts(verifiedProducts);
-  
-        const recoveredQuantities = JSON.parse(localStorage.getItem("productQuantities")) || {};
-        setProductQuantities(recoveredQuantities);
-  
-        setIsDataReady(true); // 資料準備完成
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  
-  
-  
-
-
-  const totalSelected = selectedProducts.length;
-  const totalPrice = selectedProducts.reduce(
-    (acc, product) => acc + products.find((p) => p.id === product.id).price,
-    0
-  ).toLocaleString();
   const updateSelectedVariantIndex = (productId, variantIndex) => {
     setSelectedProducts(
       selectedProducts.map((product) =>
@@ -144,37 +106,30 @@ function App() {
   const getUniqueCategories = () => {
     return [...new Set(filteredProducts.map((product) => product.categoryName))];
   };
-  const handleRemoveProduct = (productId) => {
-    setSelectedProducts((prevState) => {
-      const productIndex = prevState.findIndex((product) => product.id === productId);
-      if (productIndex > -1) {
-        prevState.splice(productIndex, 1);
-      }
-      localStorage.setItem("selectedProducts", JSON.stringify(prevState));
-      return [...prevState];
-    });
-  };
-  
-  const changeProductCount = (productId, amount) => {
-    setProductQuantities((prevState) => {
-      const prevQuantity = prevState[productId] || 0;
-      const newQuantity = prevQuantity + amount;
-      if (newQuantity <= 0) {
-        handleRemoveProduct(productId);
-        const updatedQuantities = { ...prevState };
-        delete updatedQuantities[productId];
-        localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
-        return updatedQuantities;
-      }
-      const updatedQuantities = { ...prevState, [productId]: newQuantity };
-      localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
-      return updatedQuantities;
-    });
-  };
-  
-  
 
+  
   // Effect Hooks
+  
+  useEffect(() => {
+    fetch("/data.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(setProducts(data))
+        setFilteredProducts(data);
+        const recoveredProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        const verifiedProducts = recoveredProducts.filter(product => data.some(p => p.id === product.id));
+        setSelectedProducts(verifiedProducts);
+        setIsDataReady(true); // 資料準備完成
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [dispatch]);
 
   useEffect(() => {
     fetch("/data.json")
@@ -210,8 +165,6 @@ function App() {
   //   setFilteredProducts(filterProducts(filterLevel));
   // }, [filterLevel, products]);
   
-  
-
   return (
   <Router>
     <Navbar 
@@ -236,15 +189,12 @@ function App() {
         handleDownload={handleDownload}
         handleScreenshot={handleScreenshot}
         setScreenshotDataUrl={setScreenshotDataUrl}
-        productQuantities={productQuantities}
-        changeProductCount={changeProductCount}
       />} />
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 
         selectedProducts={selectedProducts}
         totalSelected={totalSelected}
         totalPrice={totalPrice}
-        handleRemoveProduct={handleRemoveProduct}
         setIsNavbar={setIsNavbar}
       />} />
       <Route path="*" element={<Error />} />

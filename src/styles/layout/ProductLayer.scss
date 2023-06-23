@@ -1,4 +1,5 @@
 .layer-container {
+  animation: scale .4s forwards;
   cursor: grab;
   &:active {
     cursor: grabbing;
@@ -15,4 +16,9 @@
   background-position: center;
 }
 
-
+@keyframes scale {
+  0%{scale: .5;}
+  50%{scale: 1.1;}
+  100%{scale: 1;
+  }
+}

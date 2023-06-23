@@ -19,22 +19,16 @@
   padding: .8rem 1rem;
   border-radius: 1.4rem;
   box-shadow: 0 0 6.8px 0 rgba(153, 153, 153, 0.3);
-  cursor: pointer;
   border: 1.5px solid transparent;
-  transition: all 0.1s;
+  transition: all 0.2s;
   //LG
   @include lg {
     width: 30%;
     min-width: 160px;
     max-width: 180px;
     &:hover {
-      scale: 1.05;
+      scale: 1.01;
     }
-  }
-  &.selected {
-    opacity: 1;
-    // background-color: #906c4130;
-    border: 1.5px solid #906c41;
   }
   .product-image {
     width: 100%;
@@ -82,6 +76,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
     p {
       font-family: 'Noto Sans', sans-serif;
       font-size: .9rem;
@@ -98,9 +93,8 @@
       width: 2rem;
       height: 2rem;
       border-radius: 2rem;
-      transition: all 0.1s;
+      transition: all 0.2s;
       cursor: pointer;
-      
       figure {
         width: 1.2rem;
         height: 1.2rem;
@@ -157,44 +151,35 @@
     }
     
   }
-  .count-btn {
+  .addSelect-btn {
     position: absolute;
     border-radius: 4rem;
     top: 5%;
-    left: 50%;
+    right: .7rem;
     z-index: 20;
-    transform: translate(-50%, 0%);
-    padding: 0 0.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    cursor: pointer;
-    background-color: #ffffff9b;
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 5.8px 0 rgba(166, 166, 166, 0.3);
-    gap: 1rem;
+    box-shadow: 0 0 9.8px 0 rgba(166, 166, 166, 0.4);
+    transition: 0.1s;
+    background-color: #fff;
+    //LG
+    @include lg {
+      &:hover{scale: 1.2;}
+      &:active{
+        scale: .9;
+      }
+    }
     li {
-      width: 1.8rem;
-      height: 1.8rem;
-      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 1.8rem;
       cursor: pointer;
-      // box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.3);
-      // background-color: #fff;
-      transition: 0.2s;
       background-size: 40%;
       background-repeat: no-repeat;
-      &:first-of-type {
-        background-image: url('../../images/minus.png');
-        background-position: 50% 50%;
-      }
-
-      &:nth-of-type(2) {
-        background-image: url('../../images/plus.png');
-        background-position: 50% 50%;
-      }
-      &:active {
-        scale: 0.5;
-      }
+      background-image: url('../../images/plus.png');
+      background-position: 50% 50%;
     }
     span {
       font-family: 'Noto Sans', sans-serif;
