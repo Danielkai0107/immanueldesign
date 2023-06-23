@@ -52,7 +52,7 @@ const ProductCard = ({
       
       {product.variants && (
         <article className="color-selector-container">
-          <p className="size">{product.variants.length} 盆器</p>
+          <p className="size">{product.variants[0].info} </p>
           {isSelected ? 
           (<section className="color-showBox" style={{ backgroundColor: product.variants[selectedVariantIndex].color}}
             onClick={(e) => {

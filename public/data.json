@@ -17,12 +17,6 @@
         "info":"綠",
         "productImage": "plant2.png",
         "displayImage": "plant2.png"
-      },
-      {
-        "color": "#CCBFB3",
-        "info":"綠",
-        "productImage": "plant2.png",
-        "displayImage": "plant2.png"
       }
     ]
   },
@@ -41,12 +35,6 @@
     "variants": [
       {
         "color": "#997F68",
-        "info":"綠",
-        "productImage": "plant1.png",
-        "displayImage": "plant1.png"
-      },
-      {
-        "color": "#E5DFD9",
         "info":"綠",
         "productImage": "plant1.png",
         "displayImage": "plant1.png"

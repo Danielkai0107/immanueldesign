@@ -16,6 +16,8 @@ import html2canvas from 'html2canvas';
 
 function App() {
 
+  
+
   // State Hooks
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -121,30 +123,6 @@ function App() {
       });
   }, []);
   
-  const changeProductCount = (productId, amount) => {
-    setProductQuantities((prevState) => {
-      const prevQuantity = prevState[productId] || 0;
-      const newQuantity = prevQuantity + amount;
-  
-      if (newQuantity < 0 || (newQuantity === 0 && amount < 0)) {
-        // 如果数量小于0或者数量为0且尝试减少，移除商品并将其数量设为0
-        handleRemoveProduct(productId);
-        const updatedQuantities = { ...prevState, [productId]: 0 };
-  
-        // 保存到localStorage
-        localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
-  
-        return updatedQuantities;
-      }
-  
-      const updatedQuantities = { ...prevState, [productId]: newQuantity };
-  
-      // 保存到localStorage
-      localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
-  
-      return updatedQuantities;
-    });
-  };
   
   
 
@@ -168,11 +146,33 @@ function App() {
   };
   const handleRemoveProduct = (productId) => {
     setSelectedProducts((prevState) => {
-      const updatedProducts = prevState.filter((product) => product.id !== productId);
-      localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
-      return updatedProducts;
+      const productIndex = prevState.findIndex((product) => product.id === productId);
+      if (productIndex > -1) {
+        prevState.splice(productIndex, 1);
+      }
+      localStorage.setItem("selectedProducts", JSON.stringify(prevState));
+      return [...prevState];
     });
   };
+  
+  const changeProductCount = (productId, amount) => {
+    setProductQuantities((prevState) => {
+      const prevQuantity = prevState[productId] || 0;
+      const newQuantity = prevQuantity + amount;
+      if (newQuantity <= 0) {
+        handleRemoveProduct(productId);
+        const updatedQuantities = { ...prevState };
+        delete updatedQuantities[productId];
+        localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
+        return updatedQuantities;
+      }
+      const updatedQuantities = { ...prevState, [productId]: newQuantity };
+      localStorage.setItem("productQuantities", JSON.stringify(updatedQuantities));
+      return updatedQuantities;
+    });
+  };
+  
+  
 
   // Effect Hooks
 
