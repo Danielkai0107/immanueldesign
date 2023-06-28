@@ -41,7 +41,8 @@ function App() {
   // Handler Functions
   const toggleProduct = (product) => {
     const existingProductIndex = selectedProducts.findIndex(p => 
-      p.id === product.id && 
+      p.id === product.id &&
+      p.pk === totalSelected &&
       p.name === product.name && 
       p.price === product.price && 
       p.categoryIndex === product.categoryIndex && 
@@ -63,6 +64,7 @@ function App() {
       // 商品不存在，添加新商品
       setSelectedProducts(prevProducts => [...prevProducts, {
         id:product.id,
+        pk:totalSelected,
         name: product.name,
         price: product.price,
         categoryIndex: product.categoryIndex,
@@ -76,6 +78,9 @@ function App() {
       }]);
     }
   };
+  const handleDelete = (pk) => {
+    setSelectedProducts(prevProducts => prevProducts.filter(product => product.pk !== pk));
+};
   const handleDownload = () => {
       const containerB = document.querySelector('.displayIMG-container');
     html2canvas(containerB).then(canvas => {
@@ -189,6 +194,7 @@ function App() {
         handleDownload={handleDownload}
         handleScreenshot={handleScreenshot}
         setScreenshotDataUrl={setScreenshotDataUrl}
+        handleDelete={handleDelete}
       />} />
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 

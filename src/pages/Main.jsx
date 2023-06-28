@@ -13,7 +13,7 @@ function Main({
   isDataReady,getUniqueCategories,filteredProducts,
   selectedProducts,toggleProduct,updateSelectedVariantIndex,
   products,totalSelected,totalPrice,setSelectedProducts,
-  screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl,productQuantities,changeProductCount
+  screenshotDataUrl,handleScreenshot,handleDownload,setScreenshotDataUrl,productQuantities,changeProductCount,handleDelete
 }) {
   
 
@@ -82,6 +82,7 @@ function Main({
           handleDownload={handleDownload}
           productQuantities={productQuantities}
           setSelectedProducts={setSelectedProducts}
+          handleDelete={handleDelete}
         />
       </React.Suspense>
       <React.Suspense fallback={<div className="loading-overlay"><span></span></div>}>
