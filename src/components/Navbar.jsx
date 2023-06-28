@@ -21,7 +21,7 @@ function Navbar({totalSelected,isNavbar,setIsNavbar,handleScreenshot}) {
     <nav className="navbar" >
       <ul>
         <li className="navbar-logo">
-          <Link className="nav-item" to="/" onClick={()=>{setIsNavbar(0)}}>Immanuel</Link>
+          <Link className="nav-item" to="/" onClick={()=>{setIsNavbar(0)}}>AlwaysGreenLife</Link>
         </li>
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/"><span className='home-icon'></span>首頁</Link>

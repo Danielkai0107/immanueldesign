@@ -24,6 +24,7 @@ function ProductLayer({product,onPositionChange,position,handleDelete,setIsSelec
     setIsSelectedId(null);
   };
   const handleDeleteWithPrevent = (e, pk) => {
+    e.preventDefault();
     e.stopPropagation();
     handleDelete(pk);
   };

@@ -2,7 +2,7 @@ export const layerMenu = [
   {
     id:1,
     name:'small',
-    width:'16%',
+    width:'15%',
     ratio:'7/10',
     className:'',
     axis: null
@@ -18,7 +18,7 @@ export const layerMenu = [
   {
     id:3,
     name:'large',
-    width:'25%',
+    width:'22%',
     ratio:'1/2',
     className:'',
     axis: null

@@ -50,7 +50,12 @@ const ProductCard = ({
             onClick={(e) => {
               e.stopPropagation();
               setIsExpanded(!isExpanded)
-            }}>
+            }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded)
+            }}
+            >
               <figure></figure>
               <ul className={isExpanded ? "" : "close"}>
                 {product.variants.map((variant, index) => (
@@ -58,6 +63,11 @@ const ProductCard = ({
                     key={index}
                     style={{ backgroundColor: variant.color }}
                     onClick={(e) => {
+                      e.stopPropagation();
+                      handleColorButtonClick(index);
+                      setIsExpanded(!isExpanded)
+                    }}
+                    onTouchStart={(e) => {
                       e.stopPropagation();
                       handleColorButtonClick(index);
                       setIsExpanded(!isExpanded)
