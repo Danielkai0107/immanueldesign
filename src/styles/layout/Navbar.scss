@@ -27,14 +27,26 @@
   }
   
   &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+    figure {
+      width: 1.8rem;
+      height: 1.8rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-image: url('../../images/logo2.png');
+    }
     a {
-      font-size: 1.6rem;
-      font-weight: 200;
-      color: #906c41;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: #303030;
       //MD
       @include md {
-        font-weight: 100;
-        font-size: 2rem;
+        font-weight: 200;
+        font-size: 1.45rem;
       }
     }
   }
