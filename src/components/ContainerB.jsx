@@ -12,6 +12,7 @@ const ContainerB = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [productPositions, setProductPositions] = useState({});
   const [isSelectedId, setIsSelectedId] = useState(null);
+  const [productZIndexes, setProductZIndexes] = useState({});
   // const [scale, setScale] = useState(false);
 
   // 在 useState 開頭添加
@@ -41,6 +42,14 @@ const ContainerB = ({
       setCurrentImageIndex(bgcList.length);
     }
   };
+
+  const handleMoveToFront = (pk) => {
+    setProductZIndexes((prevZIndexes) => {
+      const maxZIndex = Math.max(...Object.values(prevZIndexes), 0);
+      return { ...prevZIndexes, [pk]: maxZIndex + 1 };
+    });
+  };
+
 
   useEffect(() => {
     if (bgcList[currentImageIndex].startsWith('blob:')) {
@@ -87,11 +96,7 @@ const ContainerB = ({
       <span className="bgcChanger-btn2" 
       onClick={() => handleBackgroundChange('next')}
       ></span>
-      <section className="displayIMG-container">
-        <figure className="layer-bgc" style={{
-            backgroundImage: `url(${imageSrc})`
-          }}>
-        </figure>
+      <section className="displayIMG-container" style={{ backgroundImage: `url(${imageSrc})`}}>
         {
           selectedProducts
             .sort((a, b) => {
@@ -123,6 +128,8 @@ const ContainerB = ({
                   handleDelete={handleDelete}
                   setIsSelectedId={setIsSelectedId}
                   selected={isSelectedId === selectedProduct.pk}
+                  handleMoveToFront={() => handleMoveToFront(selectedProduct.pk)}
+                  productZIndexes={productZIndexes}
                 />
               ));
             })

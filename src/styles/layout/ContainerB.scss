@@ -14,19 +14,14 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    // height: $containerB-sm-height;
+    transition: all 0.4s;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 1.4rem;
     box-shadow: 0 0 9.8px 0 rgba(153, 153, 153, 0.6);
     overflow: hidden;
-    //MD
-    @include md {
-      // height: $containerB-md-height;
-    }
-    //LG
-    @include lg {
-      // height: $containerB-lg-height;
-    }
-
+    
     .layer-bgc {
       position: absolute;
       top: 50%;
