@@ -25,9 +25,9 @@ function Navbar({totalSelected,isNavbar,setIsNavbar,handleScreenshot}) {
           <Link className="nav-item" to="/" onClick={()=>{setIsNavbar(0)}}>AlwaysGreenLife</Link>
         </li>
         <li className="navbar-options">
-          <Link className="navbar-options-home" to="/"><span className='home-icon'></span>首頁</Link>
-          <Link className="navbar-options-main" to="/Main"><span className='deco-icon'></span>我的佈置</Link>
-          <Link className="navbar-options-main" to="/Cart" onClick={handleScreenshot}><span className='cart-icon'></span>我要預約
+          <Link className="navbar-options-home" to="/">首頁</Link>
+          <Link className="navbar-options-main" to="/Main">我的佈置</Link>
+          <Link className="navbar-options-main" to="/Cart" onClick={handleScreenshot}>網路商店
           {totalSelected > 0 && <span className='red-dot'>{totalSelected}</span>}
           </Link>
         </li>
