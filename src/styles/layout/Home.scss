@@ -18,13 +18,13 @@
     align-items: flex-end;
   }
   .p1 {
-    background-image: url('../../images/p1.jpg');
+    background-image: url('../../images/p1.jpeg');
   }
   .p2 {
-    background-image: url('../../images/p2.jpg');
+    background-image: url('../../images/p2.jpeg');
   }
   .p3 {
-    background-image: url('../../images/p3.jpg');
+    background-image: url('../../images/p3.jpeg');
   }
   .active {
     opacity: 1; /* Updated this line */
@@ -68,6 +68,7 @@
     }
   }
   .main {
+    font-family: 'Noto Serif TC', serif;
     font-size: 2rem;
     font-weight: 400;
     letter-spacing: 4px;
@@ -102,6 +103,7 @@
     }
   }
   a {
+    // font-family: 'Noto Serif TC', serif;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -27,7 +27,8 @@ function Navbar({totalSelected,isNavbar,setIsNavbar,handleScreenshot}) {
         <li className="navbar-options">
           <Link className="navbar-options-home" to="/">首頁</Link>
           <Link className="navbar-options-main" to="/Main">我的佈置</Link>
-          <Link className="navbar-options-main" to="/Cart" onClick={handleScreenshot}>網路商店
+          <Link className="navbar-options-main" to="/Cart" onClick={handleScreenshot}>商城</Link>
+          <Link className="navbar-options-main" to="/ShopCart" onClick={handleScreenshot}>購物車
           {totalSelected > 0 && <span className='red-dot'>{totalSelected}</span>}
           </Link>
         </li>

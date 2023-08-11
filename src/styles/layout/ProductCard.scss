@@ -41,22 +41,25 @@
     gap: .7rem;
     margin-top: 1rem;
     .name {
-        font-size: 1.1rem;
-        font-weight: 400;
-        letter-spacing: 2px;
-        margin-top: 0.3rem;
-      }
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-top: 0.3rem;
+    }
     .price {
-      font-family: 'Noto Sans', sans-serif;
+      display: flex;
+      align-items: center;
       font-size: 1.3rem;
       font-weight: 300;
       letter-spacing: 1px;
+      span {
+        font-size: 1.1rem;
+        margin-right: .2rem;
+      }
       //MD
       @include md {
         font-weight: 200;
-      }
-      span {
-        margin-right: .2rem;
       }
     }
     .size {

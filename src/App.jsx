@@ -14,6 +14,7 @@ import Cart from './components/Cart';
 import html2canvas from 'html2canvas';
 import { useSelector, useDispatch } from 'react-redux'
 import { setProducts } from './redux/slice/productSlice';
+import ShopCart from './components/ShopCart';
 
 
 function App() {
@@ -198,6 +199,12 @@ function App() {
       />} />
       <Route path="/About" element={<About />} />
       <Route path="/Cart" element={<Cart 
+        selectedProducts={selectedProducts}
+        totalSelected={totalSelected}
+        totalPrice={totalPrice}
+        setIsNavbar={setIsNavbar}
+      />} />
+      <Route path="/ShopCart" element={<ShopCart 
         selectedProducts={selectedProducts}
         totalSelected={totalSelected}
         totalPrice={totalPrice}
